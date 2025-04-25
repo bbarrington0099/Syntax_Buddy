@@ -1,0 +1,170 @@
+{
+    "name": "TypeScript",
+    "sections": {
+        "basic_types": {
+            "description": "TypeScript's basic type annotations and type inference",
+            "examples": [
+                {
+                    "title": "Primitive Types",
+                    "explanation": "Explicit type annotations for basic types",
+                    "code": "let name: string = 'John';\nlet age: number = 30;\nlet isActive: boolean = true;\nlet nothing: null = null;\nlet notDefined: undefined = undefined;"
+                },
+                {
+                    "title": "Arrays and Tuples",
+                    "explanation": "Typed arrays and fixed-length tuple types",
+                    "code": "let numbers: number[] = [1, 2, 3];\nlet tuple: [string, number] = ['age', 30]; // Fixed-type sequence"
+                },
+                {
+                    "title": "Enums",
+                    "explanation": "Named numeric and string constants",
+                    "code": "enum Direction {\n    North = 'NORTH',\n    South = 'SOUTH',\n    East = 'EAST',\n    West = 'WEST'\n}\nlet dir: Direction = Direction.North;"
+                }
+            ]
+        },
+        "type_annotations": {
+            "description": "Type annotations for functions and objects",
+            "examples": [
+                {
+                    "title": "Function Types",
+                    "explanation": "Parameter and return type annotations",
+                    "code": "function add(a: number, b: number): number {\n    return a + b;\n}\n\nconst multiply: (x: number, y: number) => number = (x, y) => x * y;"
+                },
+                {
+                    "title": "Object Types",
+                    "explanation": "Inline type annotations for objects",
+                    "code": "let user: { name: string; age: number } = {\n    name: 'John',\n    age: 30\n};"
+                }
+            ]
+        },
+        "interfaces": {
+            "description": "Defining and using interfaces",
+            "examples": [
+                {
+                    "title": "Basic Interface",
+                    "explanation": "Shape validation with interfaces",
+                    "code": "interface User {\n    name: string;\n    age: number;\n    email?: string; // Optional property\n}\n\nconst newUser: User = { name: 'Alice', age: 25 };"
+                },
+                {
+                    "title": "Interface Extending",
+                    "explanation": "Combining and extending interfaces",
+                    "code": "interface Admin extends User {\n    privileges: string[];\n    readonly adminId: number; // Readonly property\n}"
+                }
+            ]
+        },
+        "advanced_types": {
+            "description": "TypeScript's advanced type system features",
+            "examples": [
+                {
+                    "title": "Union Types",
+                    "explanation": "Combining multiple types",
+                    "code": "function printId(id: number | string) {\n    console.log(`ID: ${id}`);\n}"
+                },
+                {
+                    "title": "Type Guards",
+                    "explanation": "Runtime type checking with type predicates",
+                    "code": "function isString(value: any): value is string {\n    return typeof value === 'string';\n}"
+                },
+                {
+                    "title": "Mapped Types",
+                    "explanation": "Creating types from existing types",
+                    "code": "type Readonly<T> = {\n    readonly [P in keyof T]: T[P];\n};\n\ninterface Point { x: number; y: number; }\ntype ReadonlyPoint = Readonly<Point>;"
+                }
+            ]
+        },
+        "generics": {
+            "description": "Generic types and functions",
+            "examples": [
+                {
+                    "title": "Generic Functions",
+                    "explanation": "Reusable type-safe functions",
+                    "code": "function identity<T>(arg: T): T {\n    return arg;\n}\n\nlet output = identity<string>('hello');"
+                },
+                {
+                    "title": "Generic Constraints",
+                    "explanation": "Constraining generic types",
+                    "code": "interface Lengthwise {\n    length: number;\n}\n\nfunction loggingIdentity<T extends Lengthwise>(arg: T): T {\n    console.log(arg.length);\n    return arg;\n}"
+                }
+            ]
+        },
+        "classes": {
+            "description": "TypeScript class features",
+            "examples": [
+                {
+                    "title": "Access Modifiers",
+                    "explanation": "Public, private, and protected members",
+                    "code": "class Animal {\n    private name: string;\n    protected age: number;\n\n    constructor(name: string, age: number) {\n        this.name = name;\n        this.age = age;\n    }\n}"
+                },
+                {
+                    "title": "Abstract Classes",
+                    "explanation": "Base classes that can't be instantiated",
+                    "code": "abstract class Shape {\n    abstract getArea(): number;\n}\n\nclass Circle extends Shape {\n    constructor(public radius: number) { super(); }\n    getArea() { return Math.PI * this.radius ** 2; }\n}"
+                }
+            ]
+        },
+        "decorators": {
+            "description": "TypeScript decorators (experimental)",
+            "examples": [
+                {
+                    "title": "Class Decorator",
+                    "explanation": "Modifying class behavior",
+                    "code": "function sealed(constructor: Function) {\n    Object.seal(constructor);\n    Object.seal(constructor.prototype);\n}\n\n@sealed\nclass Greeter {\n    greeting: string;\n    constructor(message: string) { this.greeting = message; }\n}"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Type-safe error handling",
+            "examples": [
+                {
+                    "title": "Custom Error Types",
+                    "explanation": "Type-safe error classes",
+                    "code": "class ValidationError extends Error {\n    constructor(public field: string, message: string) {\n        super(message);\n        Object.setPrototypeOf(this, ValidationError.prototype);\n    }\n}"
+                }
+            ]
+        },
+        "utility_types": {
+            "description": "Built-in utility types",
+            "examples": [
+                {
+                    "title": "Partial and Required",
+                    "explanation": "Modifying type properties",
+                    "code": "interface User {\n    name: string;\n    age?: number;\n}\n\ntype PartialUser = Partial<User>;\ntype RequiredUser = Required<User>;"
+                },
+                {
+                    "title": "Pick and Omit",
+                    "explanation": "Selecting type properties",
+                    "code": "type NameOnly = Pick<User, 'name'>;\ntype WithoutAge = Omit<User, 'age'>;"
+                }
+            ]
+        },
+        "integration": {
+            "description": "Integrating with JavaScript and type declarations",
+            "examples": [
+                {
+                    "title": "Type Declaration Files",
+                    "explanation": "Adding types to JavaScript libraries",
+                    "code": "// example.d.ts\ndeclare module 'my-library' {\n    export function doSomething(value: string): void;\n}"
+                }
+            ]
+        },
+        "config": {
+            "description": "TypeScript configuration (tsconfig.json)",
+            "examples": [
+                {
+                    "title": "Compiler Options",
+                    "explanation": "Common configuration settings",
+                    "code": "{\n  \"compilerOptions\": {\n    \"target\": \"ES2020\",\n    \"module\": \"CommonJS\",\n    \"strict\": true,\n    \"esModuleInterop\": true\n  }\n}"
+                }
+            ]
+        },
+        "react_integration": {
+            "description": "TypeScript with React components",
+            "examples": [
+                {
+                    "title": "Typed Components",
+                    "explanation": "Type-safe React components",
+                    "code": "interface ButtonProps {\n    onClick: () => void;\n    children: React.ReactNode;\n}\n\nconst Button: React.FC<ButtonProps> = ({ onClick, children }) => (\n    <button onClick={onClick}>{children}</button>\n);"
+                }
+            ]
+        }
+    }
+}

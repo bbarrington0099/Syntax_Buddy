@@ -1,0 +1,135 @@
+{
+    "name": "Linux Common Tasks",
+    "sections": {
+        "file_operations": {
+            "description": "File and directory management",
+            "examples": [
+                {
+                    "title": "Create File/Directory",
+                    "explanation": "Create new files and directories",
+                    "code": "touch newfile.txt\nmkdir newdirectory\nmkdir -p path/with/subdirectories"
+                },
+                {
+                    "title": "Delete File/Directory",
+                    "explanation": "Remove files and directories",
+                    "code": "rm file.txt\nrm -r directory/\nrmdir emptydir"
+                }
+            ]
+        },
+        "text_processing": {
+            "description": "Text manipulation and searching",
+            "examples": [
+                {
+                    "title": "Search in Files",
+                    "explanation": "Find text patterns using grep",
+                    "code": "grep 'pattern' file.txt\ngrep -r 'pattern' directory/\ngrep -i 'caseinsensitive' file.txt"
+                },
+                {
+                    "title": "Text Replacement",
+                    "explanation": "Find and replace text with sed",
+                    "code": "sed 's/old/new/g' file.txt\nsed -i 's/old/new/g' file.txt  # In-place replacement"
+                }
+            ]
+        },
+        "networking": {
+            "description": "Network-related operations",
+            "examples": [
+                {
+                    "title": "Download Files",
+                    "explanation": "Download content from the web",
+                    "code": "curl -O https://example.com/file.zip\nwget https://example.com/file.zip"
+                },
+                {
+                    "title": "Network Diagnostics",
+                    "explanation": "Check network connectivity",
+                    "code": "ping example.com\nnetstat -tuln\ntraceroute example.com"
+                }
+            ]
+        },
+        "system_info": {
+            "description": "System monitoring and information",
+            "examples": [
+                {
+                    "title": "Process Management",
+                    "explanation": "View and manage running processes",
+                    "code": "ps aux\ntop\nhtop\nkill -9 1234"
+                },
+                {
+                    "title": "Disk Usage",
+                    "explanation": "Check storage consumption",
+                    "code": "df -h\ndu -sh directory/\nls -lh file.txt"
+                }
+            ]
+        },
+        "permissions": {
+            "description": "File permissions management",
+            "examples": [
+                {
+                    "title": "Change Permissions",
+                    "explanation": "Modify file access permissions",
+                    "code": "chmod 755 script.sh\nchmod +x script.sh\nchown user:group file.txt"
+                }
+            ]
+        },
+        "package_management": {
+            "description": "Software package handling",
+            "examples": [
+                {
+                    "title": "APT (Debian/Ubuntu)",
+                    "explanation": "Debian-based package management",
+                    "code": "sudo apt update\nsudo apt install package\nsudo apt remove package"
+                },
+                {
+                    "title": "YUM/DNF (RHEL/Fedora)",
+                    "explanation": "RedHat-based package management",
+                    "code": "sudo yum install package\nsudo dnf remove package\nsudo rpm -i package.rpm"
+                }
+            ]
+        },
+        "process_management": {
+            "description": "Working with processes",
+            "examples": [
+                {
+                    "title": "Background/Foreground",
+                    "explanation": "Manage process execution",
+                    "code": "firefox &  # Run in background\njobs\nfg %1"
+                },
+                {
+                    "title": "Service Management",
+                    "explanation": "Control system services",
+                    "code": "sudo systemctl start nginx\nsudo service apache2 restart"
+                }
+            ]
+        },
+        "archives": {
+            "description": "Compression and archiving",
+            "examples": [
+                {
+                    "title": "Create/Extract Archives",
+                    "explanation": "Work with compressed files",
+                    "code": "tar -czvf archive.tar.gz directory/\ntar -xzvf archive.tar.gz\nzip -r archive.zip directory"
+                }
+            ]
+        },
+        "miscellaneous": {
+            "description": "Other common tasks",
+            "examples": [
+                {
+                    "title": "SSH Connections",
+                    "explanation": "Remote server access",
+                    "code": "ssh user@hostname\nssh -i key.pem user@hostname"
+                },
+                {
+                    "title": "Command History",
+                    "explanation": "Manage and reuse commands",
+                    "code": "history\ngrep 'pattern' ~/.bash_history\n!123  # Re-run command 123"
+                },
+                {
+                    "title": "Environment Variables",
+                    "explanation": "Set and view variables",
+                    "code": "echo $PATH\nexport VAR=value\nenv"
+                }
+            ]
+        }
+    }
+}

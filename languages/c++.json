@@ -1,0 +1,165 @@
+{
+    "name": "C++",
+    "sections": {
+        "basic_syntax": {
+            "description": "Fundamental syntax and program structure",
+            "examples": [
+                {
+                    "title": "Hello World",
+                    "explanation": "Basic program structure with namespace and iostream",
+                    "code": "#include <iostream>\n\nint main() {\n    std::cout << \"Hello, World!\" << std::endl;\n    return 0;\n}"
+                },
+                {
+                    "title": "Primitive Types",
+                    "explanation": "Built-in data types and type modifiers",
+                    "code": "bool flag = true;\nchar c = 'A';\nint num = 42;\ndouble pi = 3.14159;\nunsigned long bigNum = 1'000'000;"
+                }
+            ]
+        },
+        "pointers_references": {
+            "description": "Pointer and reference operations",
+            "examples": [
+                {
+                    "title": "Raw Pointers",
+                    "explanation": "Pointer declaration and dereferencing",
+                    "code": "int value = 42;\nint* ptr = &value;\nstd::cout << *ptr; // Outputs 42"
+                },
+                {
+                    "title": "References",
+                    "explanation": "Reference variables and aliasing",
+                    "code": "int original = 42;\nint& ref = original;\nref = 100;\nstd::cout << original; // Outputs 100"
+                }
+            ]
+        },
+        "memory_management": {
+            "description": "Dynamic memory management",
+            "examples": [
+                {
+                    "title": "New/Delete",
+                    "explanation": "Manual memory management",
+                    "code": "int* arr = new int[5];\n// Use array\ndelete[] arr;"
+                },
+                {
+                    "title": "Smart Pointers",
+                    "explanation": "Automatic memory management (C++11+)",
+                    "code": "#include <memory>\n\nauto uptr = std::make_unique<int>(42);\nauto sptr = std::make_shared<double>(3.1415);"
+                }
+            ]
+        },
+        "oop": {
+            "description": "Object-oriented programming features",
+            "examples": [
+                {
+                    "title": "Class Definition",
+                    "explanation": "Class with encapsulation and methods",
+                    "code": "class Rectangle {\n    double width, height;\npublic:\n    Rectangle(double w, double h) : width(w), height(h) {}\n    double area() const { return width * height; }\n};"
+                },
+                {
+                    "title": "Inheritance",
+                    "explanation": "Class inheritance and polymorphism",
+                    "code": "class Shape {\npublic:\n    virtual double area() const = 0; // Pure virtual\n};\n\nclass Circle : public Shape {\n    double radius;\npublic:\n    Circle(double r) : radius(r) {}\n    double area() const override { return 3.14159 * radius * radius; }\n};"
+                }
+            ]
+        },
+        "templates": {
+            "description": "Generic programming with templates",
+            "examples": [
+                {
+                    "title": "Function Template",
+                    "explanation": "Generic function definition",
+                    "code": "template <typename T>\nT max(T a, T b) {\n    return (a > b) ? a : b;\n}"
+                },
+                {
+                    "title": "Class Template",
+                    "explanation": "Generic class definition",
+                    "code": "template <typename T>\nclass Box {\n    T content;\npublic:\n    void store(const T& item) { content = item; }\n    T retrieve() const { return content; }\n};"
+                }
+            ]
+        },
+        "stl": {
+            "description": "Standard Template Library components",
+            "examples": [
+                {
+                    "title": "Containers",
+                    "explanation": "STL container usage",
+                    "code": "#include <vector>\n#include <map>\n\nstd::vector<int> numbers {1, 2, 3};\nstd::map<std::string, int> ages {{\"Alice\", 30}, {\"Bob\", 25}};"
+                },
+                {
+                    "title": "Algorithms",
+                    "explanation": "STL algorithm usage",
+                    "code": "#include <algorithm>\n#include <vector>\n\nstd::vector<int> nums {3, 1, 4, 1, 5};\nstd::sort(nums.begin(), nums.end());\nauto it = std::find(nums.begin(), nums.end(), 4);"
+                }
+            ]
+        },
+        "modern_features": {
+            "description": "C++11 and newer features",
+            "examples": [
+                {
+                    "title": "Auto and Range-based For",
+                    "explanation": "Type inference and simplified iteration",
+                    "code": "auto numbers = {1, 2, 3, 4, 5};\nfor (const auto& num : numbers) {\n    std::cout << num << \" \";\n}"
+                },
+                {
+                    "title": "Lambda Expressions",
+                    "explanation": "Anonymous functions and captures",
+                    "code": "auto adder = [](int a, int b) { return a + b; };\nint result = adder(2, 3); // 5\n\nint offset = 10;\nauto addOffset = [offset](int x) { return x + offset; };"
+                }
+            ]
+        },
+        "move_semantics": {
+            "description": "Move semantics and rvalue references",
+            "examples": [
+                {
+                    "title": "Move Constructor",
+                    "explanation": "Implementing move semantics",
+                    "code": "class Buffer {\n    int* data;\n    size_t size;\npublic:\n    Buffer(Buffer&& other) noexcept\n        : data(other.data), size(other.size) {\n        other.data = nullptr;\n        other.size = 0;\n    }\n};"
+                }
+            ]
+        },
+        "exception_handling": {
+            "description": "Error handling mechanisms",
+            "examples": [
+                {
+                    "title": "Try/Catch Blocks",
+                    "explanation": "Exception handling syntax",
+                    "code": "try {\n    throw std::runtime_error(\"Something went wrong\");\n}\ncatch (const std::exception& e) {\n    std::cerr << \"Error: \" << e.what() << std::endl;\n}"
+                }
+            ]
+        },
+        "operator_overloading": {
+            "description": "Custom operator implementations",
+            "examples": [
+                {
+                    "title": "Vector Addition",
+                    "explanation": "Overloading + operator",
+                    "code": "class Vector {\n    double x, y;\npublic:\n    Vector operator+(const Vector& other) const {\n        return Vector(x + other.x, y + other.y);\n    }\n};"
+                }
+            ]
+        },
+        "concurrency": {
+            "description": "Multithreading support (C++11+)",
+            "examples": [
+                {
+                    "title": "Thread Management",
+                    "explanation": "Creating and joining threads",
+                    "code": "#include <thread>\n\nvoid task() {\n    std::cout << \"Hello from thread!\\n\";\n}\n\nint main() {\n    std::thread t(task);\n    t.join();\n    return 0;\n}"
+                }
+            ]
+        },
+        "advanced_features": {
+            "description": "Advanced C++ techniques",
+            "examples": [
+                {
+                    "title": "Type Traits",
+                    "explanation": "Compile-time type inspection",
+                    "code": "#include <type_traits>\n\nstatic_assert(std::is_integral_v<int>, \"int is integral\");\nstatic_assert(!std::is_pointer_v<double>, \"double isn't pointer\");"
+                },
+                {
+                    "title": "Constexpr",
+                    "explanation": "Compile-time computation",
+                    "code": "constexpr int factorial(int n) {\n    return (n <= 1) ? 1 : n * factorial(n - 1);\n}\n\nconstexpr int fact5 = factorial(5); // 120"
+                }
+            ]
+        }
+    }
+}

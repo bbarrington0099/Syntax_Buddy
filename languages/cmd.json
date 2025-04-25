@@ -1,0 +1,140 @@
+{
+    "name": "Windows CMD Common Tasks",
+    "sections": {
+        "file_operations": {
+            "description": "File and directory management",
+            "examples": [
+                {
+                    "title": "Create File/Directory",
+                    "explanation": "Create new files and directories",
+                    "code": "echo.> newfile.txt\nmkdir newfolder\nmkdir \"folder with spaces\""
+                },
+                {
+                    "title": "Delete File/Directory",
+                    "explanation": "Remove files and directories",
+                    "code": "del file.txt\nrmdir /S /Q folder\nrd /s /q \"folder with spaces\""
+                }
+            ]
+        },
+        "text_processing": {
+            "description": "Text manipulation and searching",
+            "examples": [
+                {
+                    "title": "Search in Files",
+                    "explanation": "Find text patterns using findstr",
+                    "code": "findstr /I /S \"searchtext\" *.txt\nfind \"string\" file.txt"
+                },
+                {
+                    "title": "File Contents",
+                    "explanation": "View and modify file contents",
+                    "code": "type file.txt\ncopy con newfile.txt (Ctrl+Z to save)\necho New line >> file.txt"
+                }
+            ]
+        },
+        "networking": {
+            "description": "Network-related operations",
+            "examples": [
+                {
+                    "title": "Network Diagnostics",
+                    "explanation": "Check network connectivity",
+                    "code": "ping example.com\ntracert example.com\nipconfig /all"
+                },
+                {
+                    "title": "Download Files",
+                    "explanation": "Native download methods (Windows 10+)",
+                    "code": "curl -O https://example.com/file.zip\nbitsadmin /transfer job /download /priority normal https://example.com/file.zip C:\\path\\file.zip"
+                }
+            ]
+        },
+        "system_info": {
+            "description": "System monitoring and information",
+            "examples": [
+                {
+                    "title": "System Information",
+                    "explanation": "View system details",
+                    "code": "systeminfo\nwmic bios get serialnumber\ndate /t\ntime /t"
+                },
+                {
+                    "title": "Disk Management",
+                    "explanation": "Check storage and disks",
+                    "code": "dir\nchkdsk\nfsutil volume diskfree C:"
+                }
+            ]
+        },
+        "process_management": {
+            "description": "Process control and monitoring",
+            "examples": [
+                {
+                    "title": "Process Control",
+                    "explanation": "Manage running processes",
+                    "code": "tasklist\ntaskkill /IM notepad.exe /F\nstart notepad.exe"
+                }
+            ]
+        },
+        "user_management": {
+            "description": "User and permission control",
+            "examples": [
+                {
+                    "title": "User Accounts",
+                    "explanation": "Manage local users and groups",
+                    "code": "net user\nnet localgroup administrators\nnet user John /add"
+                },
+                {
+                    "title": "File Permissions",
+                    "explanation": "Manage file access controls",
+                    "code": "icacls file.txt\nattrib +R file.txt"
+                }
+            ]
+        },
+        "batch_scripting": {
+            "description": "Basic batch file operations",
+            "examples": [
+                {
+                    "title": "Batch File Basics",
+                    "explanation": "Simple scripting examples",
+                    "code": "@echo off\necho Hello World\nset /p name=Enter your name: \nif exist file.txt (echo File exists) else (echo File missing)"
+                },
+                {
+                    "title": "Loops and Variables",
+                    "explanation": "Iteration and variable handling",
+                    "code": "for /F %i in (files.txt) do echo %i\nfor /D %d in (*) do echo %d\nset PATH=%PATH%;C:\\new_folder"
+                }
+            ]
+        },
+        "utilities": {
+            "description": "Useful built-in utilities",
+            "examples": [
+                {
+                    "title": "System Maintenance",
+                    "explanation": "Built-in maintenance tools",
+                    "code": "sfc /scannow\nDISM /Online /Cleanup-Image /RestoreHealth\ncleanmgr"
+                },
+                {
+                    "title": "Miscellaneous Tools",
+                    "explanation": "Helpful commands",
+                    "code": "cls (clear screen)\nhelp command\nstart https://example.com\nshutdown /s /t 60"
+                }
+            ]
+        },
+        "environment": {
+            "description": "Environment configuration",
+            "examples": [
+                {
+                    "title": "Environment Variables",
+                    "explanation": "View and set variables",
+                    "code": "set\nset PATH=%PATH%;C:\\new_folder\nsetx /M JAVA_HOME \"C:\\Program Files\\Java\""
+                }
+            ]
+        },
+        "archives": {
+            "description": "File compression (Windows 10+)",
+            "examples": [
+                {
+                    "title": "Zip Files",
+                    "explanation": "Native compression commands",
+                    "code": "tar -czf archive.tar.gz files/\ntar -xzf archive.tar.gz\ncompact /C file.txt"
+                }
+            ]
+        }
+    }
+}

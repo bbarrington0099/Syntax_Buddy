@@ -1,0 +1,145 @@
+{
+    "name": "SQL",
+    "sections": {
+        "basic_queries": {
+            "description": "Fundamental SQL query structure",
+            "examples": [
+                {
+                    "title": "SELECT Statement",
+                    "explanation": "Retrieving data from a table",
+                    "code": "SELECT first_name, last_name FROM employees WHERE department = 'Sales' ORDER BY last_name ASC;"
+                },
+                {
+                    "title": "JOIN Operations",
+                    "explanation": "Combining data from multiple tables",
+                    "code": "SELECT orders.order_id, customers.name\nFROM orders\nINNER JOIN customers ON orders.customer_id = customers.id;"
+                }
+            ]
+        },
+        "data_definition": {
+            "description": "Database schema creation and modification",
+            "examples": [
+                {
+                    "title": "CREATE TABLE",
+                    "explanation": "Creating a new table with constraints",
+                    "code": "CREATE TABLE employees (\n    id INT PRIMARY KEY AUTO_INCREMENT,\n    first_name VARCHAR(50) NOT NULL,\n    last_name VARCHAR(50) NOT NULL,\n    email VARCHAR(100) UNIQUE,\n    hire_date DATE DEFAULT CURRENT_DATE\n);"
+                },
+                {
+                    "title": "ALTER TABLE",
+                    "explanation": "Modifying table structure",
+                    "code": "ALTER TABLE employees\nADD COLUMN salary DECIMAL(10,2),\nMODIFY COLUMN email VARCHAR(150);"
+                }
+            ]
+        },
+        "data_manipulation": {
+            "description": "Modifying and managing data",
+            "examples": [
+                {
+                    "title": "INSERT Statement",
+                    "explanation": "Adding new records to a table",
+                    "code": "INSERT INTO employees (first_name, last_name, email)\nVALUES ('John', 'Doe', 'john.doe@example.com');"
+                },
+                {
+                    "title": "UPDATE Statement",
+                    "explanation": "Modifying existing records",
+                    "code": "UPDATE employees\nSET salary = salary * 1.05\nWHERE department = 'Engineering';"
+                }
+            ]
+        },
+        "advanced_queries": {
+            "description": "Complex query patterns",
+            "examples": [
+                {
+                    "title": "Subqueries",
+                    "explanation": "Nested queries in SELECT statements",
+                    "code": "SELECT name, (SELECT COUNT(*) FROM orders WHERE customer_id = customers.id) AS order_count\nFROM customers;"
+                },
+                {
+                    "title": "Common Table Expressions",
+                    "explanation": "Temporary result sets with WITH clause",
+                    "code": "WITH regional_sales AS (\n    SELECT region, SUM(amount) AS total_sales\n    FROM orders\n    GROUP BY region\n)\nSELECT * FROM regional_sales WHERE total_sales > 1000000;"
+                }
+            ]
+        },
+        "aggregation": {
+            "description": "Data summarization and grouping",
+            "examples": [
+                {
+                    "title": "GROUP BY",
+                    "explanation": "Aggregating data with group functions",
+                    "code": "SELECT department, AVG(salary) AS avg_salary\nFROM employees\nGROUP BY department\nHAVING AVG(salary) > 50000;"
+                },
+                {
+                    "title": "Window Functions",
+                    "explanation": "Advanced analytical functions",
+                    "code": "SELECT employee_id, salary,\n       RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS dept_rank\nFROM employees;"
+                }
+            ]
+        },
+        "indexes": {
+            "description": "Performance optimization",
+            "examples": [
+                {
+                    "title": "Creating Indexes",
+                    "explanation": "Improving query performance",
+                    "code": "CREATE INDEX idx_last_name ON employees(last_name);\nCREATE UNIQUE INDEX idx_email ON employees(email);"
+                }
+            ]
+        },
+        "transactions": {
+            "description": "ACID-compliant operations",
+            "examples": [
+                {
+                    "title": "Transaction Control",
+                    "explanation": "Managing atomic operations",
+                    "code": "BEGIN TRANSACTION;\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\nUPDATE accounts SET balance = balance + 100 WHERE id = 2;\nCOMMIT;"
+                }
+            ]
+        },
+        "stored_procedures": {
+            "description": "Reusable database logic",
+            "examples": [
+                {
+                    "title": "Procedure Creation",
+                    "explanation": "Creating stored procedures",
+                    "code": "CREATE PROCEDURE get_employee(IN emp_id INT)\nBEGIN\n    SELECT * FROM employees WHERE id = emp_id;\nEND;"
+                }
+            ]
+        },
+        "data_types": {
+            "description": "SQL data types and constraints",
+            "examples": [
+                {
+                    "title": "Common Data Types",
+                    "explanation": "Basic column type definitions",
+                    "code": "CREATE TABLE products (\n    id SERIAL PRIMARY KEY,\n    name VARCHAR(100) NOT NULL,\n    price DECIMAL(10,2) CHECK (price > 0),\n    in_stock BOOLEAN DEFAULT true\n);"
+                }
+            ]
+        },
+        "security": {
+            "description": "Access control and permissions",
+            "examples": [
+                {
+                    "title": "User Privileges",
+                    "explanation": "Managing database access",
+                    "code": "GRANT SELECT, INSERT ON employees TO hr_user;\nREVOKE DELETE ON customers FROM support_user;"
+                }
+            ]
+        },
+        "modern_features": {
+            "description": "Advanced SQL features",
+            "examples": [
+                {
+                    "title": "JSON Support",
+                    "explanation": "Working with JSON data (PostgreSQL example)",
+                    "code": "SELECT data->>'name' AS product_name\nFROM orders\nWHERE data @> '{\"category\": \"electronics\"}';"
+                },
+                {
+                    "title": "Recursive Queries",
+                    "explanation": "Hierarchical data querying",
+                    "code": "WITH RECURSIVE org_tree AS (\n    SELECT id, name, manager_id\n    FROM employees\n    WHERE id = 1\n    UNION ALL\n    SELECT e.id, e.name, e.manager_id\n    FROM employees e\n    INNER JOIN org_tree o ON o.id = e.manager_id\n)\nSELECT * FROM org_tree;"
+                }
+            ]
+        }
+    }
+}

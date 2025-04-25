@@ -1,0 +1,205 @@
+{
+    "name": "Batch Scripting",
+    "sections": {
+        "comments": {
+            "description": "Adding comments and documentation",
+            "examples": [
+                {
+                    "title": "Single-line comments",
+                    "explanation": "REM command or double colon (::) for comments",
+                    "code": "REM This is a comment\n:: This is also a comment"
+                }
+            ]
+        },
+        "variables": {
+            "description": "Variable declaration and manipulation",
+            "examples": [
+                {
+                    "title": "Variable assignment",
+                    "explanation": "Variables are set using SET command, referenced with %",
+                    "code": "SET name=John\nSET /A age=30\nECHO %name% is %age% years old"
+                },
+                {
+                    "title": "Environment variables",
+                    "explanation": "Built-in system environment variables",
+                    "code": "ECHO User: %USERNAME%\nECHO OS: %OS%\nECHO Path: %PATH%"
+                },
+                {
+                    "title": "Delayed expansion",
+                    "explanation": "Using !var! for variables in blocks with SETLOCAL",
+                    "code": "SETLOCAL enabledelayedexpansion\nSET count=0\nFOR /L %%i IN (1,1,5) DO (\n    SET /A count+=1\n    ECHO !count!\n)"
+                }
+            ]
+        },
+        "commands": {
+            "description": "Common Batch commands",
+            "examples": [
+                {
+                    "title": "Basic commands",
+                    "explanation": "Essential commands for script control",
+                    "code": "@ECHO OFF       \nCLS            \nPAUSE          \nEXIT"
+                },
+                {
+                    "title": "Redirection",
+                    "explanation": "Input/output redirection operators",
+                    "code": "DIR > output.txt       \nTYPE file.txt >> log.txt\nFIND \"error\" < input.txt"
+                }
+            ]
+        },
+        "loops": {
+            "description": "Looping constructs",
+            "examples": [
+                {
+                    "title": "FOR loop",
+                    "explanation": "Iterating through sets of values",
+                    "code": "FOR %%G IN (1 2 3 4 5) DO ECHO %%G\n\nFOR /L %%G IN (1,1,5) DO ECHO Count: %%G\n\nFOR /R C:\\ %%G IN (*.txt) DO ECHO Found: %%G"
+                },
+                {
+                    "title": "WHILE loop simulation",
+                    "explanation": "Implementing while-like behavior",
+                    "code": "SET count=0\n:loop\nIF %count% LSS 5 (\n    ECHO %count%\n    SET /A count+=1\n    GOTO loop\n)"
+                }
+            ]
+        },
+        "conditionals": {
+            "description": "Conditional statements",
+            "examples": [
+                {
+                    "title": "IF statements",
+                    "explanation": "Basic conditional execution",
+                    "code": "IF \"%1\"==\"\" (\n    ECHO No arguments provided\n) ELSE (\n    ECHO First argument: %1\n)"
+                },
+                {
+                    "title": "Error checking",
+                    "explanation": "Checking exit codes and file existence",
+                    "code": "IF EXIST file.txt (\n    ECHO File exists\n) ELSE (\n    ECHO File not found\n)\n\nIF %ERRORLEVEL% NEQ 0 (\n    ECHO Previous command failed\n)"
+                }
+            ]
+        },
+        "functions": {
+            "description": "Creating reusable code blocks",
+            "examples": [
+                {
+                    "title": "Function definition",
+                    "explanation": "Using labels and CALL for functions",
+                    "code": ":greet\n    ECHO Hello %1\n    EXIT /B\n\nCALL :greet John"
+                },
+                {
+                    "title": "Return values",
+                    "explanation": "Using ERRORLEVEL for return values",
+                    "code": ":addition\n    SET /A result=%1 + %2\n    EXIT /B %result%\n\nCALL :addition 5 3\nSET answer=%ERRORLEVEL%\nECHO Result: %answer%"
+                }
+            ]
+        },
+        "parameters": {
+            "description": "Handling script arguments",
+            "examples": [
+                {
+                    "title": "Positional parameters",
+                    "explanation": "Accessing command-line arguments",
+                    "code": "ECHO Script: %0\nECHO First arg: %1\nECHO All args: %*\nECHO Count: %#"
+                },
+                {
+                    "title": "Parameter modifiers",
+                    "explanation": "Using tilde modifiers for path manipulation",
+                    "code": "ECHO Full path: %~f0\nECHO Drive: %~d0\nECHO Path: %~p0\nECHO File name: %~n0"
+                }
+            ]
+        },
+        "cli_parameters": {
+            "description": "Handling command-line arguments with both - and -- syntax",
+            "examples": [
+                {
+                    "title": "Basic Argument Access",
+                    "explanation": "Accessing positional parameters and raw arguments",
+                    "code": ":: Access arguments by position\nECHO First argument: %1\nECHO Second argument: %2\n\n:: All arguments\nECHO Full command: %0\nECHO All arguments: %*"
+                },
+                {
+                    "title": "Named Parameter Parsing",
+                    "explanation": "Processing - and -- style arguments with values",
+                    "code": "@ECHO OFF\nSETLOCAL\n\n:parse\nIF \"%~1\"==\"\" GOTO endparse\n\n:: Handle -- options\nIF \"%~1\"==\"--name\" (\n    SET \"name=%~2\"\n    SHIFT\n) ELSE IF \"%~1\"==\"--verbose\" (\n    SET \"verbose=true\"\n)\n\n:: Handle - shortcuts\nIF \"%~1\"==\"-n\" (\n    SET \"name=%~2\"\n    SHIFT\n) ELSE IF \"%~1\"==\"-v\" (\n    SET \"verbose=true\"\n)\n\nSHIFT\nGOTO parse\n:endparse\n\nECHO Name: %name%\nIF DEFINED verbose ECHO [VERBOSE] Mode enabled"
+                },
+                {
+                    "title": "Flag Handling",
+                    "explanation": "Detecting boolean flags without values",
+                    "code": "@ECHO OFF\nSETLOCAL\n\n:: Default values\nSET \"debug=false\"\nSET \"force=false\"\n\n:loop\nIF \"%~1\"==\"\" GOTO endloop\n\nIF /I \"%~1\"==\"--debug\" SET \"debug=true\"\nIF /I \"%~1\"==\"-d\" SET \"debug=true\"\nIF /I \"%~1\"==\"--force\" SET \"force=true\"\nIF /I \"%~1\"==\"-f\" SET \"force=true\"\n\nSHIFT\nGOTO loop\n:endloop\n\nIF %debug%==true ECHO Debug mode activated\nIF %force%==true ECHO Force mode enabled"
+                },
+                {
+                    "title": "Required Parameters",
+                    "explanation": "Validating mandatory arguments",
+                    "code": "@ECHO OFF\nSETLOCAL\n\nSET \"input_file=\"\nSET \"output_dir=\"\n\n:parse\nIF \"%~1\"==\"\" GOTO validate\n\nIF \"%~1\"==\"--input\" (\n    SET \"input_file=%~2\"\n    SHIFT\n) ELSE IF \"%~1\"==\"-i\" (\n    SET \"input_file=%~2\"\n    SHIFT\n)\n\nIF \"%~1\"==\"--output\" (\n    SET \"output_dir=%~2\"\n    SHIFT\n) ELSE IF \"%~1\"==\"-o\" (\n    SET \"output_dir=%~2\"\n    SHIFT\n)\n\nSHIFT\nGOTO parse\n\n:validate\nIF NOT DEFINED input_file (\n    ECHO Error: Input file required\n    ECHO Usage: %~n0 --input <file> [--output <dir>]\n    EXIT /B 1\n)\n\nIF NOT DEFINED output_dir SET \"output_dir=%CD%\""
+                },
+                {
+                    "title": "Advanced Argument Processing",
+                    "explanation": "Handling complex scenarios with SHIFT",
+                    "code": "@ECHO OFF\nSETLOCAL ENABLEDELAYEDEXPANSION\n\n:: Initialize array\nSET \"args_count=0\"\n\n:collect_args\nIF \"%~1\"==\"\" GOTO process_args\n\n:: Store arguments in pseudo-array\nSET /A args_count+=1\nSET \"args[!args_count!]=%~1\"\nSHIFT\nGOTO collect_args\n\n:process_args\nFOR /L %%i IN (1,1,%args_count%) DO (\n    ECHO Processing argument %%i: !args[%%i]!\n    \n    IF \"!args[%%i]!\"==\"--help\" (\n        CALL :show_help\n        EXIT /B 0\n    )\n)\n\nEXIT /B 0\n\n:show_help\nECHO Usage: %~n0 [OPTIONS]\nECHO Options:\nECHO   -h, --help     Show this help\nECHO   -i, --input    Specify input file\nECHO   -o, --output   Specify output directory\nGOTO :EOF"
+                },
+                {
+                    "title": "Practical Example: Backup Script",
+                    "explanation": "Real-world parameter handling with both syntax styles",
+                    "code": "@ECHO OFF\nSETLOCAL\n\n:: Default values\nSET \"source=C:\\Data\"\nSET \"dest=D:\\Backup\"\nSET \"compress=false\"\nSET \"log=false\"\n\n:parse\nIF \"%~1\"==\"\" GOTO validate\n\nIF \"%~1\"==\"--source\" (\n    SET \"source=%~2\"\n    SHIFT\n) ELSE IF \"%~1\"==\"-s\" (\n    SET \"source=%~2\"\n    SHIFT\n)\n\nIF \"%~1\"==\"--dest\" (\n    SET \"dest=%~2\"\n    SHIFT\n) ELSE IF \"%~1\"==\"-d\" (\n    SET \"dest=%~2\"\n    SHIFT\n)\n\nIF \"%~1\"==\"--compress\" SET \"compress=true\"\nIF \"%~1\"==\"-c\" SET \"compress=true\"\n\nIF \"%~1\"==\"--log\" (\n    SET \"log=true\"\n    SET \"logfile=%~2\"\n    SHIFT\n) ELSE IF \"%~1\"==\"-l\" (\n    SET \"log=true\"\n    SET \"logfile=%~2\"\n    SHIFT\n)\n\nSHIFT\nGOTO parse\n\n:validate\nIF NOT EXIST \"%source%\" (\n    ECHO Error: Source directory does not exist\n    EXIT /B 1\n)\n\nROBOCOPY \"%source%\" \"%dest%\" /MIR /NP\n\nIF %compress%==true (\n    powershell -Command \"Compress-Archive -Path '%dest%' -DestinationPath '%dest%.zip'\"\n)\n\nIF %log%==true (\n    ECHO Backup completed: %DATE% %TIME% >> \"%logfile%\"\n)"
+                }
+            ]
+        },
+        "file_operations": {
+            "description": "File and directory management",
+            "examples": [
+                {
+                    "title": "Basic file operations",
+                    "explanation": "Common file management commands",
+                    "code": "COPY source.txt dest.txt\nRENAME old.txt new.txt\nDEL file.txt\nMKDIR new_folder"
+                },
+                {
+                    "title": "File content processing",
+                    "explanation": "Reading and processing files",
+                    "code": "FOR /F \"tokens=*\" %%G IN (data.txt) DO (\n    ECHO Processing: %%G\n)\n\nFINDSTR /C:\"error\" log.txt > errors.log"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error detection and handling",
+            "examples": [
+                {
+                    "title": "Error checking",
+                    "explanation": "Checking command success/failure",
+                    "code": "COPY file.txt backup\\\nIF %ERRORLEVEL% NEQ 0 (\n    ECHO Copy failed!\n    EXIT /B 1\n)"
+                },
+                {
+                    "title": "Logging",
+                    "explanation": "Redirecting output and errors",
+                    "code": "CALL script.bat >> log.txt 2>&1"
+                }
+            ]
+        },
+        "advanced_features": {
+            "description": "Advanced Batch scripting techniques",
+            "examples": [
+                {
+                    "title": "Registry operations",
+                    "explanation": "Interacting with Windows Registry",
+                    "code": "REG ADD HKCU\\Software\\MyApp /v Version /t REG_SZ /d 1.0\nREG QUERY HKCU\\Software\\MyApp /v Version"
+                },
+                {
+                    "title": "API calls",
+                    "explanation": "Using PowerShell interoperability",
+                    "code": "FOR /F %%G IN ('powershell -Command \"Get-Date -Format yyyy-MM-dd\"') DO SET today=%%G\nECHO Today is %today%"
+                }
+            ]
+        },
+        "practical_examples": {
+            "description": "Real-world Batch script examples",
+            "examples": [
+                {
+                    "title": "Backup script",
+                    "explanation": "Simple file backup script",
+                    "code": "@ECHO OFF\nSET source=C:\\Data\nSET dest=D:\\Backup\\%DATE:~-4%-%DATE:~-7,2%-%DATE:~-10,2%\n\nIF NOT EXIST \"%dest%\" MKDIR \"%dest%\"\nXCOPY \"%source%\" \"%dest%\" /E /H /C /I\nECHO Backup completed to %dest%"
+                },
+                {
+                    "title": "Menu system",
+                    "explanation": "Interactive text-based menu",
+                    "code": "@ECHO OFF\n:menu\nCLS\nECHO 1. Show system info\nECHO 2. List files\nECHO 3. Exit\nSET /P choice=Enter option: \n\nIF %choice%==1 (\n    SYSTEMINFO\n    PAUSE\n    GOTO menu\n) ELSE IF %choice%==2 (\n    DIR\n    PAUSE\n    GOTO menu\n) ELSE IF %choice%==3 (\n    EXIT\n) ELSE (\n    ECHO Invalid choice\n    PAUSE\n    GOTO menu\n)"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,150 @@
+{
+    "name": "Rust",
+    "sections": {
+        "basic_syntax": {
+            "description": "Fundamental Rust syntax and memory safety features",
+            "examples": [
+                {
+                    "title": "Variables and Mutability",
+                    "explanation": "Immutable by default, explicit mutability",
+                    "code": "let x = 5; // Immutable\nlet mut y = 10; // Mutable\ny += 1;"
+                },
+                {
+                    "title": "Data Types",
+                    "explanation": "Static typing with type inference",
+                    "code": "let i: i32 = 42; // Signed 32-bit integer\nlet f: f64 = 3.14; // 64-bit float\nlet b: bool = true;\nlet c = 'z'; // Char (Unicode scalar)"
+                }
+            ]
+        },
+        "ownership": {
+            "description": "Rust's unique ownership system",
+            "examples": [
+                {
+                    "title": "Ownership Transfer",
+                    "explanation": "Move semantics for heap-allocated data",
+                    "code": "let s1 = String::from(\"hello\");\nlet s2 = s1; // s1 is invalidated\n// println!(\"{}\", s1); Would cause compile error"
+                },
+                {
+                    "title": "Borrowing",
+                    "explanation": "References and borrowing rules",
+                    "code": "fn calculate_length(s: &String) -> usize {\n    s.len()\n}\nlet s = String::from(\"hello\");\nlet len = calculate_length(&s);"
+                }
+            ]
+        },
+        "structs_enums": {
+            "description": "Custom data types and pattern matching",
+            "examples": [
+                {
+                    "title": "Structs and Methods",
+                    "explanation": "Data structures with associated functions",
+                    "code": "struct Rectangle {\n    width: u32,\n    height: u32,\n}\n\nimpl Rectangle {\n    fn area(&self) -> u32 {\n        self.width * self.height\n    }\n}"
+                },
+                {
+                    "title": "Enums and Pattern Matching",
+                    "explanation": "Algebraic data types and exhaustive matching",
+                    "code": "enum Message {\n    Quit,\n    Move { x: i32, y: i32 },\n    Write(String),\n}\n\nfn handle_message(msg: Message) {\n    match msg {\n        Message::Quit => println!(\"Quit\"),\n        Message::Move { x, y } => println!(\"Move to ({}, {})\", x, y),\n        Message::Write(text) => println!(\"Text: {}\", text),\n    }\n}"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Rust's error handling philosophy",
+            "examples": [
+                {
+                    "title": "Result Type",
+                    "explanation": "Explicit error handling with Result<T, E>",
+                    "code": "fn divide(numerator: f64, denominator: f64) -> Result<f64, String> {\n    if denominator == 0.0 {\n        Err(String::from(\"Cannot divide by zero\"))\n    } else {\n        Ok(numerator / denominator)\n    }\n}"
+                },
+                {
+                    "title": "Option Type",
+                    "explanation": "Handling absence of values safely",
+                    "code": "fn find(haystack: &str, needle: char) -> Option<usize> {\n    haystack.find(needle)\n}\n\nmatch find(\"hello\", 'e') {\n    Some(i) => println!(\"Found at index {}\", i),\n    None => println!(\"Not found\"),\n}"
+                }
+            ]
+        },
+        "concurrency": {
+            "description": "Fearless concurrency in Rust",
+            "examples": [
+                {
+                    "title": "Threads and Channels",
+                    "explanation": "Message passing between threads",
+                    "code": "use std::thread;\nuse std::sync::mpsc;\n\nlet (tx, rx) = mpsc::channel();\n\nthread::spawn(move || {\n    tx.send(String::from(\"Hello from thread\")).unwrap();\n});\n\nlet received = rx.recv().unwrap();\nprintln!(\"{}\", received);"
+                }
+            ]
+        },
+        "traits": {
+            "description": "Shared behavior through traits",
+            "examples": [
+                {
+                    "title": "Trait Definition",
+                    "explanation": "Defining and implementing traits",
+                    "code": "trait Summary {\n    fn summarize(&self) -> String;\n}\n\nstruct NewsArticle {\n    headline: String,\n    location: String,\n}\n\nimpl Summary for NewsArticle {\n    fn summarize(&self) -> String {\n        format!(\"{}, {}\", self.headline, self.location)\n    }\n}"
+                }
+            ]
+        },
+        "macros": {
+            "description": "Metaprogramming with macros",
+            "examples": [
+                {
+                    "title": "Declarative Macros",
+                    "explanation": "Pattern-based code generation",
+                    "code": "macro_rules! vec {\n    ( $( $x:expr ),* ) => {\n        {\n            let mut temp_vec = Vec::new();\n            $(\n                temp_vec.push($x);\n            )*\n            temp_vec\n        }\n    };\n}\n\nlet v = vec![1, 2, 3];"
+                }
+            ]
+        },
+        "modules": {
+            "description": "Package and module system",
+            "examples": [
+                {
+                    "title": "Module Structure",
+                    "explanation": "Organizing code with modules",
+                    "code": "// src/lib.rs\nmod front_of_house {\n    pub mod hosting {\n        pub fn add_to_waitlist() {}\n    }\n}\n\npub use crate::front_of_house::hosting;\n\n// Usage\nhosting::add_to_waitlist();"
+                }
+            ]
+        },
+        "advanced_features": {
+            "description": "Advanced Rust concepts",
+            "examples": [
+                {
+                    "title": "Unsafe Rust",
+                    "explanation": "Bypassing the borrow checker when necessary",
+                    "code": "let mut num = 5;\nlet r1 = &num as *const i32;\nlet r2 = &mut num as *mut i32;\n\nunsafe {\n    println!(\"r1 is: {}\", *r1);\n    *r2 = 10;\n}"
+                },
+                {
+                    "title": "Foreign Function Interface",
+                    "explanation": "Interoperability with C",
+                    "code": "extern \"C\" {\n    fn abs(input: i32) -> i32;\n}\n\nunsafe {\n    println!(\"Absolute value of -3 according to C: {}\", abs(-3));\n}"
+                }
+            ]
+        },
+        "async_await": {
+            "description": "Asynchronous programming",
+            "examples": [
+                {
+                    "title": "Async/Await",
+                    "explanation": "Non-blocking operations",
+                    "code": "async fn fetch_data() -> Result<String, reqwest::Error> {\n    reqwest::get(\"https://example.com\")\n        .await?\n        .text()\n        .await\n}\n\n#[tokio::main]\nasync fn main() {\n    match fetch_data().await {\n        Ok(data) => println!(\"Data: {}\", data),\n        Err(e) => println!(\"Error: {}\", e),\n    }\n}"
+                }
+            ]
+        },
+        "testing": {
+            "description": "Built-in testing framework",
+            "examples": [
+                {
+                    "title": "Unit Tests",
+                    "explanation": "Test-driven development support",
+                    "code": "#[cfg(test)]\nmod tests {\n    #[test]\n    fn it_works() {\n        assert_eq!(2 + 2, 4);\n    }\n\n    #[test]\n    #[should_panic]\n    fn intentional_failure() {\n        panic!(\"This test should fail\");\n    }\n}"
+                }
+            ]
+        },
+        "cargo": {
+            "description": "Package management and build system",
+            "examples": [
+                {
+                    "title": "Cargo.toml",
+                    "explanation": "Package manifest configuration",
+                    "code": "[package]\nname = \"my_project\"\nversion = \"0.1.0\"\nedition = \"2021\"\n\n[dependencies]\nserde = { version = \"1.0\", features = [\"derive\"] }\nreqwest = { version = \"0.11\", features = [\"json\"] }"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,160 @@
+{
+    "name": "PHP",
+    "sections": {
+        "basic_syntax": {
+            "description": "Fundamental PHP syntax and variables",
+            "examples": [
+                {
+                    "title": "Variables and Output",
+                    "explanation": "Variable declaration and echoing output",
+                    "code": "<?php\n$name = 'John';\n$age = 30;\necho \"Hello $name, you are $age years old!\";"
+                },
+                {
+                    "title": "Constants",
+                    "explanation": "Defining and using constants",
+                    "code": "define('MAX_SIZE', 1024);\nconst MIN_VALUE = 0;\necho MAX_SIZE;"
+                }
+            ]
+        },
+        "arrays": {
+            "description": "Array manipulation in PHP",
+            "examples": [
+                {
+                    "title": "Indexed and Associative Arrays",
+                    "explanation": "Different array types and access methods",
+                    "code": "$fruits = ['Apple', 'Banana', 'Orange'];\n$person = [\n    'name' => 'John',\n    'age' => 30\n];\necho $fruits[1]; // Banana\necho $person['name']; // John"
+                },
+                {
+                    "title": "Array Functions",
+                    "explanation": "Common array manipulation functions",
+                    "code": "$numbers = [1, 2, 3, 4];\narray_push($numbers, 5);\n$filtered = array_filter($numbers, fn($n) => $n > 2);\n$mapped = array_map(fn($n) => $n * 2, $numbers);"
+                }
+            ]
+        },
+        "functions": {
+            "description": "Function declaration and usage",
+            "examples": [
+                {
+                    "title": "Basic Function",
+                    "explanation": "Function with parameters and return type",
+                    "code": "function add(int $a, int $b): int {\n    return $a + $b;\n}\necho add(2, 3); // 5"
+                },
+                {
+                    "title": "Variable Arguments",
+                    "explanation": "Handling variable number of arguments",
+                    "code": "function sum(...$numbers) {\n    return array_sum($numbers);\n}\necho sum(1, 2, 3, 4); // 10"
+                }
+            ]
+        },
+        "oop": {
+            "description": "Object-Oriented Programming in PHP",
+            "examples": [
+                {
+                    "title": "Class Definition",
+                    "explanation": "Classes with properties and methods",
+                    "code": "class User {\n    public string $name;\n    private int $age;\n\n    public function __construct(string $name, int $age) {\n        $this->name = $name;\n        $this->age = $age;\n    }\n\n    public function getAge(): int {\n        return $this->age;\n    }\n}"
+                },
+                {
+                    "title": "Inheritance and Traits",
+                    "explanation": "Class inheritance and horizontal reuse",
+                    "code": "trait Loggable {\n    public function log(string $message) {\n        echo \"Log: $message\";\n    }\n}\n\nclass Admin extends User {\n    use Loggable;\n\n    public function promote() {\n        $this->log('User promoted');\n    }\n}"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error and exception handling",
+            "examples": [
+                {
+                    "title": "Try/Catch Blocks",
+                    "explanation": "Exception handling structure",
+                    "code": "try {\n    $file = fopen('missing.txt', 'r');\n} catch (Exception $e) {\n    echo \"Error: \" . $e->getMessage();\n}"
+                },
+                {
+                    "title": "Custom Exceptions",
+                    "explanation": "Creating custom exception classes",
+                    "code": "class ValidationException extends Exception {\n    public function __construct(string $message) {\n        parent::__construct(\"Validation error: $message\");\n    }\n}\n\nthrow new ValidationException('Invalid email format');"
+                }
+            ]
+        },
+        "database": {
+            "description": "Database interaction with PDO",
+            "examples": [
+                {
+                    "title": "PDO Connection",
+                    "explanation": "Secure database connection",
+                    "code": "$pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');\n$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);"
+                },
+                {
+                    "title": "Prepared Statements",
+                    "explanation": "Safe database queries",
+                    "code": "$stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email');\n$stmt->execute(['email' => $email]);\n$user = $stmt->fetch();"
+                }
+            ]
+        },
+        "web_features": {
+            "description": "PHP web development features",
+            "examples": [
+                {
+                    "title": "Form Handling",
+                    "explanation": "Processing form data",
+                    "code": "<?php\nif ($_SERVER['REQUEST_METHOD'] === 'POST') {\n    $name = htmlspecialchars($_POST['name']);\n    // Process form data\n}\n?>\n<form method=\"POST\">\n    <input name=\"name\">\n    <button>Submit</button>\n</form>"
+                },
+                {
+                    "title": "Sessions and Cookies",
+                    "explanation": "Managing user state",
+                    "code": "session_start();\n$_SESSION['user_id'] = 123;\n\nsetcookie('prefs', 'dark_mode', time() + 86400);"
+                }
+            ]
+        },
+        "modern_php": {
+            "description": "Modern PHP features (PHP 7.4+)",
+            "examples": [
+                {
+                    "title": "Arrow Functions",
+                    "explanation": "Short closure syntax",
+                    "code": "$numbers = [1, 2, 3];\n$doubled = array_map(fn($n) => $n * 2, $numbers);"
+                },
+                {
+                    "title": "Null Coalescing Operator",
+                    "explanation": "Simplified null checking",
+                    "code": "$username = $_GET['user'] ?? 'guest';"
+                }
+            ]
+        },
+        "composer": {
+            "description": "Dependency management with Composer",
+            "examples": [
+                {
+                    "title": "Package Installation",
+                    "explanation": "Managing dependencies",
+                    "code": "{\n    \"require\": {\n        \"monolog/monolog\": \"^2.0\"\n    }\n}"
+                },
+                {
+                    "title": "Autoloading",
+                    "explanation": "PSR-4 autoloading",
+                    "code": "{\n    \"autoload\": {\n        \"psr-4\": {\n            \"MyApp\\\\\": \"src/\"\n        }\n    }\n}"
+                }
+            ]
+        },
+        "security": {
+            "description": "Security best practices",
+            "examples": [
+                {
+                    "title": "Password Hashing",
+                    "explanation": "Secure password handling",
+                    "code": "$password = 'secret';\n$hash = password_hash($password, PASSWORD_DEFAULT);\nif (password_verify($password, $hash)) {\n    // Valid password\n}"
+                }
+            ]
+        },
+        "api": {
+            "description": "Building REST APIs",
+            "examples": [
+                {
+                    "title": "JSON Responses",
+                    "explanation": "Creating API endpoints",
+                    "code": "header('Content-Type: application/json');\necho json_encode([\n    'status' => 'success',\n    'data' => $results\n]);"
+                }
+            ]
+        }
+    }
+}

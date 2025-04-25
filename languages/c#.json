@@ -1,0 +1,125 @@
+{
+    "name": "C#",
+    "sections": {
+        "basic_syntax": {
+            "description": "Fundamental syntax and program structure",
+            "examples": [
+                {
+                    "title": "Hello World",
+                    "explanation": "Basic program structure with top-level statements (C# 9+)",
+                    "code": "// Traditional\nusing System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine(\"Hello World\");\n    }\n}\n\n// C# 9+ Top-level statements\nSystem.Console.WriteLine(\"Hello Modern C#\");"
+                },
+                {
+                    "title": "Type System",
+                    "explanation": "Value types vs reference types",
+                    "code": "int number = 42; // Value type\nstring name = \"Alice\"; // Reference type\nobject obj = new(); // Base object type"
+                }
+            ]
+        },
+        "oop": {
+            "description": "Object-oriented programming features",
+            "examples": [
+                {
+                    "title": "Class Definition",
+                    "explanation": "Classes with properties and methods",
+                    "code": "public class Person {\n    // Auto-property\n    public string Name { get; set; }\n\n    // Full property with backing field\n    private int _age;\n    public int Age {\n        get => _age;\n        set => _age = value >= 0 ? value : throw new ArgumentException();\n    }\n\n    public Person(string name) => Name = name;\n}"
+                },
+                {
+                    "title": "Inheritance & Polymorphism",
+                    "explanation": "Class inheritance and virtual/override",
+                    "code": "public abstract class Shape {\n    public abstract double Area { get; }\n}\n\npublic class Circle : Shape {\n    public double Radius { get; }\n    \n    public Circle(double radius) => Radius = radius;\n\n    public override double Area => Math.PI * Radius * Radius;\n}"
+                }
+            ]
+        },
+        "modern_features": {
+            "description": "Modern C# features (C# 7.0+)",
+            "examples": [
+                {
+                    "title": "Records",
+                    "explanation": "Immutable data types (C# 9+)",
+                    "code": "public record Person(string FirstName, string LastName);\n\nvar person = new Person(\"John\", \"Doe\");\nvar newPerson = person with { LastName = \"Smith\" };"
+                },
+                {
+                    "title": "Pattern Matching",
+                    "explanation": "Advanced switch expressions (C# 8+)",
+                    "code": "public string GetShapeDescription(Shape shape) => shape switch {\n    Circle c => $\"Circle with radius {c.Radius}\",\n    Rectangle r => $\"Rectangle {r.Width}x{r.Height}\",\n    _ => \"Unknown shape\"\n};"
+                }
+            ]
+        },
+        "async_await": {
+            "description": "Asynchronous programming patterns",
+            "examples": [
+                {
+                    "title": "Async/Await",
+                    "explanation": "Modern asynchronous programming",
+                    "code": "public async Task<string> GetWebContentAsync() {\n    using var client = new HttpClient();\n    return await client.GetStringAsync(\"https://example.com\");\n}"
+                }
+            ]
+        },
+        "linq": {
+            "description": "Language Integrated Query",
+            "examples": [
+                {
+                    "title": "Query Syntax",
+                    "explanation": "SQL-like query expressions",
+                    "code": "var numbers = new[] { 1, 2, 3, 4, 5 };\nvar evenNumbers = \n    from n in numbers\n    where n % 2 == 0\n    select n * 2;"
+                },
+                {
+                    "title": "Method Syntax",
+                    "explanation": "Fluent API approach",
+                    "code": "var names = people\n    .Where(p => p.Age > 18)\n    .OrderBy(p => p.LastName)\n    .Select(p => p.FullName);"
+                }
+            ]
+        },
+        "generics": {
+            "description": "Generic programming",
+            "examples": [
+                {
+                    "title": "Generic Classes",
+                    "explanation": "Type-safe reusable components",
+                    "code": "public class Repository<T> where T : class {\n    public T GetById(int id) { /* ... */ }\n    public void Add(T entity) { /* ... */ }\n}"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Exception handling mechanisms",
+            "examples": [
+                {
+                    "title": "Try/Catch/Finally",
+                    "explanation": "Exception handling blocks",
+                    "code": "try {\n    File.ReadAllText(\"missing.txt\");\n}\ncatch (FileNotFoundException ex) {\n    Console.WriteLine($\"File not found: {ex.FileName}\");\n}\nfinally {\n    Console.WriteLine(\"Cleanup complete\");\n}"
+                }
+            ]
+        },
+        "dotnet_ecosystem": {
+            "description": ".NET Framework integrations",
+            "examples": [
+                {
+                    "title": "ASP.NET Core Web API",
+                    "explanation": "Building RESTful services",
+                    "code": "var builder = WebApplication.CreateBuilder(args);\nvar app = builder.Build();\n\napp.MapGet(\"/api/items\", () => {\n    return Results.Ok(new[] { \"item1\", \"item2\" });\n});\n\napp.Run();"
+                },
+                {
+                    "title": "Entity Framework Core",
+                    "explanation": "Database ORM usage",
+                    "code": "public class BlogContext : DbContext {\n    public DbSet<Blog> Blogs { get; set; }\n}\n\npublic class Blog {\n    public int Id { get; set; }\n    public string Title { get; set; }\n}"
+                }
+            ]
+        },
+        "advanced_concepts": {
+            "description": "Advanced C# features",
+            "examples": [
+                {
+                    "title": "Reflection",
+                    "explanation": "Runtime type inspection",
+                    "code": "Type type = typeof(DateTime);\nobject instance = Activator.CreateInstance(type);\nMethodInfo method = type.GetMethod(\"ToString\");\nstring result = (string)method.Invoke(instance, null);"
+                },
+                {
+                    "title": "Source Generators",
+                    "explanation": "Compile-time code generation",
+                    "code": "[Generator]\npublic class HelloWorldGenerator : ISourceGenerator {\n    public void Execute(GeneratorExecutionContext context) {\n        context.AddSource(\"HelloWorld.g.cs\", \n            \"public static class HelloWorld { public static void SayHello() => System.Console.WriteLine(\\\"Hello!\\\"); }\");\n    }\n}"
+                }
+            ]
+        }
+    }
+}

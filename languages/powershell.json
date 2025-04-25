@@ -1,0 +1,215 @@
+{
+    "name": "PowerShell",
+    "sections": {
+        "basics": {
+            "description": "Core PowerShell syntax and constructs",
+            "examples": [
+                {
+                    "title": "Variables",
+                    "explanation": "Variable declaration and scope in PowerShell",
+                    "code": "$name = \"John\"\n$age = 30\n$global:globalVar = \"Accessible everywhere\"\n\n# Strongly typed variables\n[datetime]$birthdate = '1990-01-01'"
+                },
+                {
+                    "title": "Pipeline",
+                    "explanation": "Using the | operator to pass objects between commands",
+                    "code": "Get-Process | Where-Object { $_.CPU -gt 100 } | Sort-Object CPU -Descending | Select-Object -First 5"
+                },
+                {
+                    "title": "Loops",
+                    "explanation": "Looping constructs in PowerShell",
+                    "code": "# For loop\nfor ($i=0; $i -lt 5; $i++) { Write-Host \"Number: $i\" }\n\n# Foreach loop\n$services = Get-Service\nforeach ($service in $services) { $service.Status }\n\n# While loop\n$count = 0\nwhile ($count -lt 5) { $count++ }"
+                },
+                {
+                    "title": "Conditionals",
+                    "explanation": "Conditional statements and comparison operators",
+                    "code": "if ($age -ge 18) {\n    Write-Host \"Adult\"\n}\nelseif ($age -gt 12) {\n    Write-Host \"Teen\"\n}\nelse {\n    Write-Host \"Child\"\n}\n\n# Switch statement\nswitch ($day) {\n    'Monday'    { \"Start of week\" }\n    'Friday'    { \"Weekend coming\" }\n    default     { \"Mid week\" }\n}"
+                }
+            ]
+        },
+        "functions": {
+            "description": "Function creation and advanced features",
+            "examples": [
+                {
+                    "title": "Basic Function",
+                    "explanation": "Function declaration with parameters",
+                    "code": "function Get-Greeting {\n    param(\n        [Parameter(Mandatory=$true)]\n        [string]$Name\n    )\n    \"Hello, $Name!\"\n}"
+                },
+                {
+                    "title": "Pipeline Input",
+                    "explanation": "Processing pipeline input with ValueFromPipeline",
+                    "code": "function Get-ProcessInfo {\n    param(\n        [Parameter(ValueFromPipeline=$true)]\n        [string]$ProcessName\n    )\n    process {\n        Get-Process $ProcessName | Select-Object Name, CPU, Memory\n    }\n}\n\n'notepad', 'explorer' | Get-ProcessInfo"
+                }
+            ]
+        },
+        "parameters": {
+            "description": "Advanced parameter declaration and validation in PowerShell",
+            "examples": [
+                {
+                    "title": "Basic Parameter Declaration",
+                    "explanation": "Mandatory parameters and basic validation attributes",
+                    "code": "function Get-UserInfo {\n    [CmdletBinding()]\n    param(\n        [Parameter(Mandatory=$true)]\n        [ValidateSet('Active','Inactive','Disabled')]\n        [string]$Status,\n\n        [Parameter(ValueFromPipeline=$true)]\n        [ValidateRange(18,120)]\n        [int]$Age\n    )\n    process {\n        # Function logic\n    }\n}"
+                },
+                {
+                    "title": "Advanced Validation Attributes",
+                    "explanation": "Using validation attributes for complex scenarios",
+                    "code": "function Set-Configuration {\n    param(\n        [ValidateScript({Test-Path $_ -PathType 'Container'})]\n        [string]$Path,\n\n        [ValidatePattern('^[A-Z]{2}\\d{4}$')]\n        [string]$Code,\n\n        [ValidateNotNullOrEmpty()]\n        [DateTime]$StartDate\n    )\n    # Function logic\n}"
+                },
+                {
+                    "title": "Parameter Sets",
+                    "explanation": "Creating mutually exclusive parameter groups",
+                    "code": "function Get-EmployeeData {\n    [CmdletBinding(DefaultParameterSetName='ByName')]\n    param(\n        [Parameter(ParameterSetName='ByName', Mandatory=$true)]\n        [string]$UserName,\n\n        [Parameter(ParameterSetName='ById', Mandatory=$true)]\n        [int]$UserId,\n\n        [Parameter(ParameterSetName='ByDepartment')]\n        [string]$Department\n    )\n    process {\n        switch ($PSCmdlet.ParameterSetName) {\n            'ByName'       { /* Logic */ }\n            'ById'         { /* Logic */ }\n            'ByDepartment' { /* Logic */ }\n        }\n    }\n}"
+                },
+                {
+                    "title": "Dynamic Parameters",
+                    "explanation": "Parameters that appear conditionally at runtime",
+                    "code": "function Invoke-FileOperation {\n    [CmdletBinding()]\n    param(\n        [Parameter(Mandatory=$true)]\n        [ValidateSet('Copy','Delete','Rename')]\n        [string]$Operation\n    )\n\n    DynamicParam {\n        # Create parameter dictionary\n        $paramDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary\n\n        # Add conditional parameter for Rename operation\n        if ($Operation -eq 'Rename') {\n            $attributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]\n            $paramAttribute = New-Object System.Management.Automation.ParameterAttribute\n            $paramAttribute.Mandatory = $true\n            $attributeCollection.Add($paramAttribute)\n\n            $validateSet = New-Object System.Management.Automation.ValidateSetAttribute('Text','Binary','All')\n            $attributeCollection.Add($validateSet)\n\n            $dynParam = New-Object System.Management.Automation.RuntimeDefinedParameter(\n                'FileType',\n                [string],\n                $attributeCollection\n            )\n\n            $paramDictionary.Add('FileType', $dynParam)\n        }\n        return $paramDictionary\n    }\n\n    process {\n        # Access dynamic parameter value\n        $fileType = $PSBoundParameters.FileType\n        # Function logic\n    }\n}"
+                },
+                {
+                    "title": "Pipeline Binding",
+                    "explanation": "Advanced pipeline input handling",
+                    "code": "function Process-Data {\n    [CmdletBinding()]\n    param(\n        [Parameter(ValueFromPipeline=$true,\n                   ValueFromPipelineByPropertyName=$true)]\n        [Alias('FullName')]\n        [string[]]$Path,\n\n        [Parameter(ValueFromPipelineByPropertyName=$true)]\n        [datetime]$CreationDate\n    )\n    begin { /* Initialization */ }\n    process {\n        foreach ($item in $Path) {\n            # Process each item\n        }\n    }\n    end { /* Cleanup */ }\n}"
+                },
+                {
+                    "title": "Parameter Aliases and Help",
+                    "explanation": "Creating parameter aliases and help messages",
+                    "code": "function Send-Message {\n    param(\n        [Parameter(Mandatory=$true)]\n        [Alias('Recipient','To')]\n        [string]$Destination,\n\n        [Parameter(HelpMessage='Enter message body text')]\n        [string]$Body,\n\n        [Alias('Urgent')]\n        [switch]$HighPriority\n    )\n    # Function logic\n}"
+                },
+                {
+                    "title": "Positional and Named Parameters",
+                    "explanation": "Controlling parameter position and naming",
+                    "code": "function Set-ItemProperty {\n    [CmdletBinding(PositionalBinding=$false)]\n    param(\n        [Parameter(Position=0)]\n        [string]$Name,\n\n        [Parameter(Position=1)]\n        [string]$Value,\n\n        [Parameter()]\n        [string]$Category\n    )\n    # Function logic\n}"
+                },
+                {
+                    "title": "Dependent Parameters",
+                    "explanation": "Parameters that depend on other parameter values",
+                    "code": "function New-Resource {\n    param(\n        [Parameter(Mandatory=$true)]\n        [ValidateSet('VM','Storage','Network')]\n        [string]$Type,\n\n        [Parameter(Mandatory=$true, ParameterSetName='VMParams')]\n        [string]$VMSize,\n\n        [Parameter(Mandatory=$true, ParameterSetName='StorageParams')]\n        [ValidateRange(1, 4096)]\n        [int]$SizeGB\n    )\n\n    dynamicparam {\n        # Add parameters based on selected type\n        $paramDictionary = New-Object RuntimeDefinedParameterDictionary\n        \n        if ($Type -eq 'VM') {\n            $attributes = New-Object System.Collections.ObjectModel.Collection[System.Attribute]\n            $paramAttribute = New-Object ParameterAttribute\n            $paramAttribute.Mandatory = $true\n            $attributes.Add($paramAttribute)\n            \n            $validateSet = New-Object ValidateSetAttribute('Windows','Linux')\n            $attributes.Add($validateSet)\n            \n            $dynParam = New-Object RuntimeDefinedParameter('OSType', [string], $attributes)\n            $paramDictionary.Add('OSType', $dynParam)\n        }\n        return $paramDictionary\n    }\n}"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error management in PowerShell",
+            "examples": [
+                {
+                    "title": "Try/Catch",
+                    "explanation": "Handling exceptions with try/catch blocks",
+                    "code": "try {\n    Get-Item 'C:\\NonexistentFile' -ErrorAction Stop\n}\ncatch [System.Management.Automation.ItemNotFoundException] {\n    Write-Warning \"File not found: $($_.Exception.Message)\"\n}\nfinally {\n    Write-Host \"Cleanup complete\"\n}"
+                },
+                {
+                    "title": "Error Preferences",
+                    "explanation": "Controlling error behavior with $ErrorActionPreference",
+                    "code": "$ErrorActionPreference = 'Stop'\n$ErrorView = 'NormalView'\n$Error.Clear()"
+                }
+            ]
+        },
+        "api_calls": {
+            "description": "Making REST API calls and handling responses",
+            "examples": [
+                {
+                    "title": "Invoke-RestMethod",
+                    "explanation": "Basic API calls with authentication",
+                    "code": "$uri = 'https://api.example.com/users'\n$headers = @{\n    'Authorization' = 'Bearer token123'\n    'Content-Type' = 'application/json'\n}\n$body = @{ name = 'John'; age = 30 } | ConvertTo-Json\n\n$response = Invoke-RestMethod -Uri $uri -Method Post -Headers $headers -Body $body"
+                },
+                {
+                    "title": "Paginated Responses",
+                    "explanation": "Handling paginated API responses",
+                    "code": "$baseUrl = 'https://api.example.com/data'\n$allResults = @()\n$page = 1\n\ndo {\n    $response = Invoke-RestMethod \"$baseUrl?page=$page\"\n    $allResults += $response.results\n    $page++\n} while ($response.next_page)"
+                }
+            ]
+        },
+        "msgraph": {
+            "description": "Working with Microsoft Graph API",
+            "examples": [
+                {
+                    "title": "Authentication",
+                    "explanation": "Connecting to Microsoft Graph",
+                    "code": "Install-Module Microsoft.Graph\nConnect-MgGraph -Scopes 'User.Read.All', 'Mail.Read'"
+                },
+                {
+                    "title": "User Operations",
+                    "explanation": "Working with user objects",
+                    "code": "# Get all users\nGet-MgUser -All\n\n# Create new user\n$params = @{\n    accountEnabled = $true\n    displayName = 'John Doe'\n    mailNickname = 'johnd'\n    userPrincipalName = 'johnd@contoso.com'\n    passwordProfile = @{\n        password = 'P@ssw0rd!'\n        forceChangePasswordNextSignIn = $true\n    }\n}\nNew-MgUser -BodyParameter $params"
+                },
+                {
+                    "title": "Advanced Queries",
+                    "explanation": "Using OData queries with Microsoft Graph",
+                    "code": "Get-MgUser -Filter \"startsWith(displayName,'John')\" -Select displayName,mail -Top 10 -OrderBy displayName"
+                }
+            ]
+        },
+        "posh_ssh": {
+            "description": "SSH and SFTP operations with Posh-SSH",
+            "examples": [
+                {
+                    "title": "Module Setup",
+                    "explanation": "Installing and importing Posh-SSH",
+                    "code": "Install-Module Posh-SSH\nImport-Module Posh-SSH"
+                },
+                {
+                    "title": "SSH Sessions",
+                    "explanation": "Creating and using SSH sessions",
+                    "code": "$cred = Get-Credential\n$session = New-SSHSession -ComputerName 'server.example.com' -Credential $cred\n\nInvoke-SSHCommand -Index $session.SessionId -Command 'df -h'\n\nRemove-SSHSession -SessionId $session.SessionId"
+                },
+                {
+                    "title": "SFTP Transfers",
+                    "explanation": "Secure file transfers with SFTP",
+                    "code": "$sftp = New-SFTPSession -ComputerName 'sftp.example.com' -Credential $cred\n\nSet-SFTPItem -SessionId $sftp.SessionId -Path '/uploads/file.txt' -Destination '/remote/path/'\n\nGet-SFTPChildItem -SessionId $sftp.SessionId -Path '/remote/path/'"
+                }
+            ]
+        },
+        "modules": {
+            "description": "Module management and creation",
+            "examples": [
+                {
+                    "title": "Module Operations",
+                    "explanation": "Finding and managing PowerShell modules",
+                    "code": "Find-Module -Name *Azure*\nInstall-Module -Name Az -Force\nImport-Module Az.Compute\nGet-Command -Module Az.Compute"
+                },
+                {
+                    "title": "Custom Modules",
+                    "explanation": "Creating and distributing modules",
+                    "code": "# Module structure\nMyModule/\n├── MyModule.psd1\n└── Public/\n    └── Get-MyFunction.ps1\n\n# Manifest file\n@{\n    ModuleVersion = '1.0'\n    RootModule = 'MyModule.psm1'\n    FunctionsToExport = @('Get-MyFunction')\n}"
+                }
+            ]
+        },
+        "remoting": {
+            "description": "PowerShell Remoting and CIM",
+            "examples": [
+                {
+                    "title": "Remote Sessions",
+                    "explanation": "Creating and using remote sessions",
+                    "code": "$session = New-PSSession -ComputerName 'server01'\nInvoke-Command -Session $session -ScriptBlock { Get-Service }\nEnter-PSSession -Session $session"
+                },
+                {
+                    "title": "CIM Operations",
+                    "explanation": "Using CIM/WMI for system management",
+                    "code": "Get-CimInstance -ClassName Win32_Process\nInvoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine='notepad.exe'}"
+                }
+            ]
+        },
+        "string_manipulation": {
+            "description": "String operations and regular expressions",
+            "examples": [
+                {
+                    "title": "String Methods",
+                    "explanation": "Using built-in string methods and operators",
+                    "code": "$str = 'Hello World'\n$str.Replace('World','PowerShell')\n$str.Substring(0,5)\n$str -match '^Hello'\n$str -split ' '"
+                },
+                {
+                    "title": "Regex Operations",
+                    "explanation": "Advanced pattern matching with regular expressions",
+                    "code": "if ('user@example.com' -match '^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$') {\n    \"Valid email: $($matches[0])\"\n}"
+                }
+            ]
+        },
+        "classes": {
+            "description": "PowerShell class definitions (v5+)",
+            "examples": [
+                {
+                    "title": "Class Declaration",
+                    "explanation": "Creating custom classes with methods",
+                    "code": "class Person {\n    [string]$Name\n    [int]$Age\n\n    Person([string]$name, [int]$age) {\n        $this.Name = $name\n        $this.Age = $age\n    }\n\n    [string]GetGreeting() {\n        return \"Hello, my name is $($this.Name)\"\n    }\n}\n\n$person = [Person]::new('John', 30)\n$person.GetGreeting()"
+                }
+            ]
+        }
+    }
+}

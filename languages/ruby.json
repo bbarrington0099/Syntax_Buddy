@@ -1,0 +1,145 @@
+{
+    "name": "Ruby",
+    "sections": {
+        "basic_syntax": {
+            "description": "Fundamental Ruby syntax and conventions",
+            "examples": [
+                {
+                    "title": "Variables and Data Types",
+                    "explanation": "Dynamic typing and variable declaration",
+                    "code": "# Basic types\nname = \"Alice\"\nage = 30\nprice = 19.99\nis_valid = true\nsymbol = :status\n\n# Collections\narray = [1, 2, 3]\nhash = { key: \"value\", count: 5 }"
+                },
+                {
+                    "title": "String Interpolation",
+                    "explanation": "Embedding expressions in strings",
+                    "code": "puts \"Hello #{name}, you're #{age} years old!\""
+                }
+            ]
+        },
+        "control_structures": {
+            "description": "Conditionals and loops",
+            "examples": [
+                {
+                    "title": "Conditionals",
+                    "explanation": "If/else and case statements",
+                    "code": "if age >= 18\n  puts \"Adult\"\nelsif age > 12\n  puts \"Teen\"\nelse\n  puts \"Child\"\nend\n\n# Ternary operator\nstatus = age >= 18 ? :adult : :minor"
+                },
+                {
+                    "title": "Loops and Iterators",
+                    "explanation": "Looping constructs and collection iteration",
+                    "code": "3.times { |i| puts i }\n\n(1..5).each do |num|\n  puts num * 2\nend\n\narray.each { |item| puts item }"
+                }
+            ]
+        },
+        "methods": {
+            "description": "Method definition and usage",
+            "examples": [
+                {
+                    "title": "Method Definition",
+                    "explanation": "Defining methods with optional parameters",
+                    "code": "def greet(name = \"Stranger\")\n  \"Hello, #{name}!\"\nend\n\nputs greet(\"Alice\")"
+                },
+                {
+                    "title": "Method Conventions",
+                    "explanation": "Special method naming conventions",
+                    "code": "# Predicate method\ndef valid?\n  # returns true/false\nend\n\n# Dangerous method\ndef update!\n  # performs dangerous operation\nend"
+                }
+            ]
+        },
+        "oop": {
+            "description": "Object-Oriented Programming features",
+            "examples": [
+                {
+                    "title": "Classes and Inheritance",
+                    "explanation": "Class definition and inheritance",
+                    "code": "class Animal\n  attr_accessor :name\n\n  def initialize(name)\n    @name = name\n  end\n\n  def speak\n    \"#{@name} makes a sound\"\n  end\nend\n\nclass Dog < Animal\n  def speak\n    \"#{@name} barks!\"\n  end\nend"
+                },
+                {
+                    "title": "Modules and Mixins",
+                    "explanation": "Namespace creation and mixin functionality",
+                    "code": "module Loggable\n  def log(message)\n    puts \"[LOG] #{message}\"\n  end\nend\n\nclass Service\n  include Loggable\nend"
+                }
+            ]
+        },
+        "blocks_procs": {
+            "description": "Ruby's block and lambda functionality",
+            "examples": [
+                {
+                    "title": "Blocks and Yield",
+                    "explanation": "Using blocks with methods",
+                    "code": "def with_timing\n  start = Time.now\n  yield\n  puts \"Time taken: #{Time.now - start} seconds\"\nend\n\nwith_timing { sleep(1) }"
+                },
+                {
+                    "title": "Procs and Lambdas",
+                    "explanation": "First-class function objects",
+                    "code": "doubler = Proc.new { |x| x * 2 }\nadder = lambda { |a, b| a + b }\n\nputs [1, 2, 3].map(&doubler)\nputs adder.call(5, 3)"
+                }
+            ]
+        },
+        "metaprogramming": {
+            "description": "Runtime code generation and modification",
+            "examples": [
+                {
+                    "title": "Dynamic Methods",
+                    "explanation": "Creating methods at runtime",
+                    "code": "class MyClass\n  %w[one two three].each do |name|\n    define_method(name) do\n      \"Method #{name}\"\n    end\n  end\nend"
+                },
+                {
+                    "title": "Method Missing",
+                    "explanation": "Handling undefined methods",
+                    "code": "class Flexible\n  def method_missing(name, *args)\n    \"Called #{name} with #{args.inspect}\"\n  end\nend"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Exception handling in Ruby",
+            "examples": [
+                {
+                    "title": "Begin/Rescue",
+                    "explanation": "Catching and handling exceptions",
+                    "code": "begin\n  File.open(\"missing.txt\")\nrescue StandardError => e\n  puts \"Error: #{e.message}\"\nensure\n  puts \"Cleanup complete\"\nend"
+                }
+            ]
+        },
+        "testing": {
+            "description": "Testing with RSpec",
+            "examples": [
+                {
+                    "title": "Spec File",
+                    "explanation": "Writing RSpec tests",
+                    "code": "describe Calculator do\n  describe '#add' do\n    it 'returns sum of two numbers' do\n      expect(Calculator.new.add(2, 3)).to eq(5)\n    end\n  end\nend"
+                }
+            ]
+        },
+        "web_frameworks": {
+            "description": "Ruby web development frameworks",
+            "examples": [
+                {
+                    "title": "Sinatra Route",
+                    "explanation": "Basic web server setup",
+                    "code": "require 'sinatra'\n\nget '/' do\n  'Hello World!'\nend\n\nget '/:name' do\n  \"Hello #{params['name']}!\"\nend"
+                },
+                {
+                    "title": "Rails Model",
+                    "explanation": "ActiveRecord model example",
+                    "code": "class User < ApplicationRecord\n  has_many :posts\n  validates :email, presence: true, uniqueness: true\nend"
+                }
+            ]
+        },
+        "modern_features": {
+            "description": "Modern Ruby features (2.7+)",
+            "examples": [
+                {
+                    "title": "Pattern Matching",
+                    "explanation": "Advanced matching syntax",
+                    "code": "case { a: 1, b: 2 }\nin a: Integer => x, b: 2\n  puts \"Matched: #{x}\"\nend"
+                },
+                {
+                    "title": "Numbered Parameters",
+                    "explanation": "Short block parameter syntax",
+                    "code": "array.map { _1 * 2 }\n[[1,2], [3,4]].each { puts _1 + _2 }"
+                }
+            ]
+        }
+    }
+}

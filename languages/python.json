@@ -1,0 +1,470 @@
+{
+    "name": "Python",
+    "sections": {
+        "variables": {
+            "description": "Variable declaration and initialization in Python",
+            "examples": [
+                {
+                    "title": "Basic variable declaration",
+                    "explanation": "Python variables are dynamically typed and don't require explicit type declaration. They are created when first assigned a value.",
+                    "code": "name = \"John\"\nage = 30"
+                },
+                {
+                    "title": "Multiple assignment",
+                    "explanation": "Python allows multiple variables to be assigned values in a single line. This is useful for swapping values or initializing multiple variables.",
+                    "code": "name, age = \"John\", 30"
+                }
+            ]
+        },
+        "types": {
+            "description": "Python types and type conversion",
+            "examples": [
+                {
+                    "title": "Basic Types",
+                    "explanation": "Python has several built-in types: int, float, str, bool, list, tuple, set, dict, and None. Python 3.6+ supports type hints.",
+                    "code": "# Numeric types\nnum_int = 42\nnum_float = 3.14\n\n# String type\nname = \"John\"\n\n# Boolean type\nis_valid = True\n\n# Collection types\nmy_list = [1, 2, 3]\nmy_tuple = (1, 2, 3)\nmy_set = {1, 2, 3}\nmy_dict = {\"key\": \"value\"}\n\n# None type\nresult = None"
+                },
+                {
+                    "title": "Type Conversion",
+                    "explanation": "Python provides built-in functions for type conversion. Some conversions may raise exceptions if the conversion is not possible.",
+                    "code": "# String to number\nnum = int(\"42\")\nfloat_num = float(\"3.14\")\n\n# Number to string\nstr_num = str(42)\n\n# List to tuple and set\ntuple_list = tuple([1, 2, 3])\nset_list = set([1, 2, 3])\n\n# Type checking\nisinstance(42, int)  # True\nisinstance(\"hello\", str)  # True"
+                },
+                {
+                    "title": "Type Hints",
+                    "explanation": "Python 3.6+ supports type hints for better code documentation and IDE support. These are not enforced at runtime.",
+                    "code": "from typing import List, Dict, Optional\n\ndef greet(name: str) -> str:\n    return f\"Hello, {name}\"\n\n# Complex type hints\ndef process_data(data: List[Dict[str, int]]) -> Optional[float]:\n    if not data:\n        return None\n    return sum(item['value'] for item in data) / len(data)"
+                }
+            ]
+        },
+        "constants": {
+            "description": "Constants in Python (conventionally uppercase)",
+            "examples": [
+                {
+                    "title": "Constant declaration",
+                    "explanation": "Python doesn't have true constants. By convention, variables in ALL_CAPS are treated as constants and shouldn't be modified.",
+                    "code": "PI = 3.14\nLANGUAGE = \"Python\""
+                }
+            ]
+        },
+        "conditionals": {
+            "description": "Conditional statements in Python",
+            "examples": [
+                {
+                    "title": "If statement",
+                    "explanation": "Python uses indentation to define code blocks. The if statement evaluates a condition and executes the indented block if true.",
+                    "code": "if age > 18:\n    print(\"Adult\")"
+                },
+                {
+                    "title": "If-else statement",
+                    "explanation": "The else block executes when the if condition is false. Python's indentation makes the code structure clear.",
+                    "code": "if age > 18:\n    print(\"Adult\")\nelse:\n    print(\"Minor\")"
+                },
+                {
+                    "title": "Ternary operator",
+                    "explanation": "Python's ternary operator is more readable than other languages. It follows the pattern: value_if_true if condition else value_if_false",
+                    "code": "status = \"Adult\" if age > 18 else \"Minor\""
+                }
+            ]
+        },
+        "loops": {
+            "description": "Loop constructs in Python",
+            "examples": [
+                {
+                    "title": "For loop",
+                    "explanation": "Python's for loop iterates over sequences (lists, strings, etc.). The range() function is commonly used to generate number sequences.",
+                    "code": "for i in range(5):\n    print(i)"
+                },
+                {
+                    "title": "While loop",
+                    "explanation": "While loops continue as long as the condition is true. Be careful to avoid infinite loops by ensuring the condition eventually becomes false.",
+                    "code": "i = 0\nwhile i < 5:\n    print(i)\n    i += 1"
+                }
+            ]
+        },
+        "functions": {
+            "description": "Function declaration in Python",
+            "examples": [
+                {
+                    "title": "Basic function",
+                    "explanation": "Python functions are defined using the def keyword. They can return multiple values (as a tuple) and have optional parameters with default values.",
+                    "code": "def greet(name):\n    return f\"Hello, {name}\""
+                },
+                {
+                    "title": "Lambda function",
+                    "explanation": "Lambda functions are anonymous functions defined with a single expression. They're often used for simple operations or as arguments to higher-order functions.",
+                    "code": "square = lambda x: x * x"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error handling in Python",
+            "examples": [
+                {
+                    "title": "Try-except block",
+                    "explanation": "Python uses try-except blocks to handle exceptions. You can catch specific exceptions or use a general except clause.",
+                    "code": "try:\n    result = 10 / 0\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero\")"
+                },
+                {
+                    "title": "Try-except-finally",
+                    "explanation": "The finally block always executes, making it ideal for cleanup operations like closing files or database connections.",
+                    "code": "try:\n    result = 10 / 0\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero\")\nfinally:\n    print(\"Cleanup code\")"
+                }
+            ]
+        },
+        "classes": {
+            "description": "Class declaration in Python",
+            "examples": [
+                {
+                    "title": "Class definition",
+                    "explanation": "Python classes support inheritance, encapsulation, and polymorphism. The __init__ method is the constructor, and self refers to the instance.",
+                    "code": "class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def greet(self):\n        return f\"Hello, my name is {self.name}\""
+                }
+            ]
+        },
+        "data_structures": {
+            "description": "Python's built-in data structures and their operations",
+            "examples": [
+                {
+                    "title": "Lists",
+                    "explanation": "Lists are mutable sequences that can hold mixed types. They support various operations and methods.",
+                    "code": "# List creation\nlst = [1, 2, 3]\nmixed = [1, 'two', True, {'name': 'John'}]\n\n# List operations\nlst.append(4)        # Add to end\nlst.insert(0, 0)     # Insert at index\nlst.extend([5, 6])   # Extend with another list\nlst.remove(3)        # Remove first occurrence\nlst.pop()            # Remove and return last item\n\n# List slicing\nlst[1:3]             # [2, 3]\nlst[::-1]            # Reverse list\n\n# List comprehension\nsquares = [x**2 for x in range(5)]\nfiltered = [x for x in lst if x > 2]"
+                },
+                {
+                    "title": "Tuples",
+                    "explanation": "Tuples are immutable sequences. They're often used for fixed collections of items and as dictionary keys.",
+                    "code": "# Tuple creation\ntup = (1, 2, 3)\nsingle = (1,)        # Note the comma\nempty = ()\n\n# Tuple unpacking\nx, y, z = tup\nfirst, *rest = tup\n\n# Tuple as dictionary key\nlocations = {\n    (35.6895, 139.6917): 'Tokyo',\n    (40.7128, -74.0060): 'New York'\n}"
+                },
+                {
+                    "title": "Sets",
+                    "explanation": "Sets are unordered collections of unique elements. They support mathematical set operations.",
+                    "code": "# Set creation\ns1 = {1, 2, 3}\ns2 = set([1, 2, 3, 4])\n\n# Set operations\ns1.add(4)            # Add element\ns1.remove(1)         # Remove element\ns1.discard(5)        # Remove if exists\n\n# Set operations\ns1 | s2              # Union\ns1 & s2              # Intersection\ns1 - s2              # Difference\ns1 ^ s2              # Symmetric difference"
+                },
+                {
+                    "title": "Dictionaries",
+                    "explanation": "Dictionaries are key-value mappings. Keys must be hashable (immutable).",
+                    "code": "# Dictionary creation\ndct = {'name': 'John', 'age': 30}\ndct2 = dict(name='John', age=30)\n\n# Dictionary operations\ndct['name']          # Access\ndct['city'] = 'NY'   # Add/update\ndct.get('name')      # Safe access\ndct.pop('age')       # Remove and return\n\n# Dictionary comprehension\nsquares = {x: x**2 for x in range(5)}\nfiltered = {k: v for k, v in dct.items() if v > 20}"
+                }
+            ]
+        },
+        "generators": {
+            "description": "Generators and generator expressions in Python",
+            "examples": [
+                {
+                    "title": "Generator Functions",
+                    "explanation": "Generator functions use yield to produce values one at a time, saving memory.",
+                    "code": "def fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        yield a\n        a, b = b, a + b\n\n# Using generator\nfor num in fibonacci(10):\n    print(num)\n\n# Converting to list\nfib_list = list(fibonacci(10))"
+                },
+                {
+                    "title": "Generator Expressions",
+                    "explanation": "Generator expressions are similar to list comprehensions but produce values lazily.",
+                    "code": "# Generator expression\nsquares = (x**2 for x in range(5))\n\n# Using generator expression\nfor square in squares:\n    print(square)\n\n# Generator pipeline\nnumbers = (x for x in range(10))\nsquares = (x**2 for x in numbers)\neven_squares = (x for x in squares if x % 2 == 0)"
+                }
+            ]
+        },
+        "decorators": {
+            "description": "Decorators in Python",
+            "examples": [
+                {
+                    "title": "Function Decorators",
+                    "explanation": "Decorators modify the behavior of functions or classes. They're functions that take functions as arguments.",
+                    "code": "def timer(func):\n    def wrapper(*args, **kwargs):\n        import time\n        start = time.time()\n        result = func(*args, **kwargs)\n        end = time.time()\n        print(f'{func.__name__} took {end - start} seconds')\n        return result\n    return wrapper\n\n@timer\ndef slow_function():\n    import time\n    time.sleep(1)\n    return 'Done'"
+                },
+                {
+                    "title": "Class Decorators",
+                    "explanation": "Decorators can also be applied to classes to modify their behavior.",
+                    "code": "def singleton(cls):\n    instances = {}\n    def get_instance(*args, **kwargs):\n        if cls not in instances:\n            instances[cls] = cls(*args, **kwargs)\n        return instances[cls]\n    return get_instance\n\n@singleton\nclass Database:\n    def __init__(self):\n        print('Database initialized')"
+                }
+            ]
+        },
+        "context_managers": {
+            "description": "Context managers in Python",
+            "examples": [
+                {
+                    "title": "Using Context Managers",
+                    "explanation": "Context managers handle resource setup and teardown automatically using the with statement.",
+                    "code": "# Using built-in context managers\nwith open('file.txt', 'r') as f:\n    content = f.read()\n\n# Multiple context managers\nwith open('input.txt', 'r') as infile, open('output.txt', 'w') as outfile:\n    outfile.write(infile.read())"
+                },
+                {
+                    "title": "Creating Context Managers",
+                    "explanation": "Context managers can be created using classes with __enter__ and __exit__ methods or using the contextmanager decorator.",
+                    "code": "from contextlib import contextmanager\n\n# Class-based context manager\nclass Timer:\n    def __enter__(self):\n        self.start = time.time()\n        return self\n\n    def __exit__(self, *args):\n        self.end = time.time()\n        print(f'Time taken: {self.end - self.start} seconds')\n\n# Function-based context manager\n@contextmanager\ndef timer():\n    start = time.time()\n    yield\n    end = time.time()\n    print(f'Time taken: {end - start} seconds')"
+                }
+            ]
+        },
+        "async_await": {
+            "description": "Asynchronous programming in Python",
+            "examples": [
+                {
+                    "title": "Async/Await Basics",
+                    "explanation": "Python's async/await syntax allows for concurrent execution of coroutines.",
+                    "code": "import asyncio\n\nasync def fetch_data(url):\n    # Simulate network request\n    await asyncio.sleep(1)\n    return f'Data from {url}'\n\nasync def main():\n    # Run coroutines concurrently\n    results = await asyncio.gather(\n        fetch_data('url1'),\n        fetch_data('url2'),\n        fetch_data('url3')\n    )\n    print(results)\n\n# Run the async function\nasyncio.run(main())"
+                },
+                {
+                    "title": "Async Context Managers",
+                    "explanation": "Async context managers handle asynchronous resource setup and teardown.",
+                    "code": "class AsyncDatabase:\n    async def __aenter__(self):\n        await self.connect()\n        return self\n\n    async def __aexit__(self, *args):\n        await self.close()\n\nasync def use_database():\n    async with AsyncDatabase() as db:\n        await db.query('SELECT * FROM users')"
+                }
+            ]
+        },
+        "io": {
+            "description": "Standard Input/Output in Python",
+            "examples": [
+                {
+                    "title": "Console Input/Output",
+                    "explanation": "Python provides input() for reading input and print() for writing output. The input() function always returns a string.",
+                    "code": "# Reading input\nname = input(\"Enter your name: \")\nage = int(input(\"Enter your age: \"))  # Convert to int\n\n# Reading multiple values\nnumbers = input(\"Enter two numbers: \").split()\nnum1, num2 = map(float, numbers)  # Convert to float\n\n# Writing output\nprint(\"Hello,\", name)\nprint(f\"You are {age} years old\")\nprint(f\"Sum: {num1 + num2:.2f}\")\n\n# Formatted output\nprint(\"Name: {0}, Age: {1}\".format(name, age))\nprint(\"Sum: {sum:.2f}\".format(sum=num1 + num2))"
+                },
+                {
+                    "title": "File I/O",
+                    "explanation": "Python provides simple file I/O operations using the open() function. Files can be opened in different modes (read, write, append).",
+                    "code": "# Writing to file\nwith open(\"output.txt\", \"w\") as f:\n    f.write(\"Hello, World!\\n\")\n    f.write(f\"Number: {42}\\n\")\n\n# Reading from file\nwith open(\"input.txt\", \"r\") as f:\n    content = f.read()  # Read entire file\n    # or\n    for line in f:      # Read line by line\n        print(line.strip())\n\n# Appending to file\nwith open(\"output.txt\", \"a\") as f:\n    f.write(\"Additional content\\n\")"
+                },
+                {
+                    "title": "Advanced File Operations",
+                    "explanation": "Python's pathlib and os modules provide more advanced file operations and path manipulation.",
+                    "code": "from pathlib import Path\nimport os\n\n# Using pathlib\npath = Path(\"data.txt\")\n\n# Reading\ncontent = path.read_text()\nlines = path.read_text().splitlines()\n\n# Writing\npath.write_text(\"New content\")\n\n# Path manipulation\nparent = path.parent\nfilename = path.name\nstem = path.stem\nsuffix = path.suffix\n\n# File operations\nif path.exists():\n    print(f\"File size: {path.stat().st_size} bytes\")\n\n# Creating directories\nPath(\"new_dir\").mkdir(exist_ok=True)\n\n# Listing files\nfor file in Path(\".\").glob(\"*.txt\"):\n    print(file)"
+                }
+            ]
+        },
+        "http": {
+            "description": "HTTP requests and handling in Python",
+            "examples": [
+                {
+                    "title": "Requests Library",
+                    "explanation": "The requests library is the most popular HTTP client for Python. It provides a simple and elegant API for making HTTP requests.",
+                    "code": "import requests\n\n# GET request\nresponse = requests.get('https://api.example.com/data')\nif response.status_code == 200:\n    data = response.json()\n    print(data)\n\n# POST request with JSON\nheaders = {\n    'Content-Type': 'application/json',\n    'Authorization': 'Bearer token123'\n}\ndata = {'name': 'John', 'age': 30}\n\nresponse = requests.post('https://api.example.com/users', \n                         json=data, \n                         headers=headers)\nif response.status_code == 201:\n    print(response.json())\n\n# Query parameters\nparams = {'page': 1, 'limit': 10}\nresponse = requests.get('https://api.example.com/users', \n                        params=params)\n\n# File upload\nfiles = {'file': open('document.pdf', 'rb')}\nresponse = requests.post('https://api.example.com/upload', \n                         files=files)\n\n# Session for persistent cookies\nsession = requests.Session()\nsession.get('https://api.example.com/login', \n            auth=('username', 'password'))\nresponse = session.get('https://api.example.com/protected')"
+                },
+                {
+                    "title": "HTTP Server",
+                    "explanation": "Python's built-in http.server module provides basic HTTP server capabilities. For production use, consider frameworks like Flask or Django.",
+                    "code": "from http.server import HTTPServer, BaseHTTPRequestHandler\nimport json\n\nclass SimpleHandler(BaseHTTPRequestHandler):\n    def do_GET(self):\n        if self.path == '/':\n            self.send_response(200)\n            self.send_header('Content-type', 'text/html')\n            self.end_headers()\n            self.wfile.write(b'Hello, World!')\n        elif self.path == '/api/data':\n            self.send_response(200)\n            self.send_header('Content-type', 'application/json')\n            self.end_headers()\n            data = {'message': 'Hello, World!'}\n            self.wfile.write(json.dumps(data).encode())\n        else:\n            self.send_response(404)\n            self.end_headers()\n\n    def do_POST(self):\n        if self.path == '/api/submit':\n            content_length = int(self.headers['Content-Length'])\n            post_data = self.rfile.read(content_length)\n            data = json.loads(post_data)\n            \n            self.send_response(201)\n            self.send_header('Content-type', 'application/json')\n            self.end_headers()\n            response = {'status': 'success', 'data': data}\n            self.wfile.write(json.dumps(response).encode())\n\nif __name__ == '__main__':\n    server = HTTPServer(('localhost', 8000), SimpleHandler)\n    print('Server starting on port 8000...')\n    server.serve_forever()"
+                },
+                {
+                    "title": "Flask Web Framework",
+                    "explanation": "Flask is a lightweight web framework that makes it easy to create web applications and APIs.",
+                    "code": "from flask import Flask, request, jsonify\nfrom flask_cors import CORS\n\napp = Flask(__name__)\nCORS(app)  # Enable CORS for all routes\n\n@app.route('/')\ndef home():\n    return 'Hello, World!'\n\n@app.route('/api/data', methods=['GET'])\ndef get_data():\n    return jsonify({'message': 'Hello, World!'})\n\n@app.route('/api/users', methods=['POST'])\ndef create_user():\n    data = request.get_json()\n    # Process the data\n    return jsonify({'status': 'success', 'data': data}), 201\n\n@app.route('/api/users/<int:user_id>', methods=['GET'])\ndef get_user(user_id):\n    # Fetch user from database\n    return jsonify({'id': user_id, 'name': 'John'})\n\n# Error handling\n@app.errorhandler(404)\ndef not_found(error):\n    return jsonify({'error': 'Not found'}), 404\n\n@app.errorhandler(500)\ndef server_error(error):\n    return jsonify({'error': 'Server error'}), 500\n\nif __name__ == '__main__':\n    app.run(debug=True)"
+                },
+                {
+                    "title": "FastAPI Framework",
+                    "explanation": "FastAPI is a modern, fast web framework for building APIs with Python 3.6+ based on standard Python type hints.",
+                    "code": "from fastapi import FastAPI, HTTPException\nfrom pydantic import BaseModel\nfrom typing import Optional\n\napp = FastAPI()\n\n# Define data models\nclass User(BaseModel):\n    name: str\n    age: int\n    email: Optional[str] = None\n\n# In-memory database\nusers = []\n\n@app.get('/')\ndef read_root():\n    return {'message': 'Hello, World!'}\n\n@app.get('/api/users')\ndef get_users():\n    return users\n\n@app.post('/api/users')\ndef create_user(user: User):\n    users.append(user)\n    return user\n\n@app.get('/api/users/{user_id}')\ndef get_user(user_id: int):\n    if user_id >= len(users):\n        raise HTTPException(status_code=404, detail='User not found')\n    return users[user_id]\n\n# Run with: uvicorn main:app --reload"
+                }
+            ]
+        },
+        "string_manipulation": {
+            "description": "String manipulation in Python",
+            "examples": [
+                {
+                    "title": "Basic String Operations",
+                    "explanation": "Python provides a rich set of string operations through built-in methods and string formatting.",
+                    "code": "# String concatenation\nstr1 = \"Hello\"\nstr2 = \"World\"\nresult = str1 + \" \" + str2\nprint(result)\n\n# String formatting\nname = \"John\"\nage = 30\nformatted = f\"Name: {name}, Age: {age}\"\nprint(formatted)\n\n# String length\nlength = len(\"Hello\")\nprint(length)\n\n# String comparison\nequal = \"hello\" == \"HELLO\"\nprint(equal)\n\n# String contains\ncontains = \"World\" in \"Hello World\"\nprint(contains)\n\n# String splitting\nparts = \"Hello,World,Python\".split(\",\")\nprint(parts)\n\n# String joining\njoined = \" \".join([\"Hello\", \"World\", \"Python\"])\nprint(joined)\n\n# String replacement\nreplaced = \"Hello World\".replace(\"World\", \"Python\")\nprint(replaced)\n\n# String stripping\nstripped = \"  Hello World  \".strip()\nprint(stripped)\n\n# String case conversion\nupper = \"hello\".upper()\nlower = \"HELLO\".lower()\nprint(upper, lower)\n\n# String slicing\nsubstring = \"Hello World\"[0:5]\nprint(substring)"
+                },
+                {
+                    "title": "Regular Expressions",
+                    "explanation": "Python's re module provides regular expression functionality for pattern matching and text manipulation.",
+                    "code": "import re\n\n# Create pattern\npattern = r'\\d+'\n\n# Match string\nmatched = bool(re.match(pattern, \"123\"))\nprint(matched)\n\n# Find all matches\nmatches = re.findall(pattern, \"123 abc 456 def\")\nprint(matches)\n\n# Replace matches\nreplaced = re.sub(pattern, \"#\", \"123 abc 456 def\")\nprint(replaced)\n\n# Capture groups\nemail_pattern = r'(\\w+)@(\\w+)\\.(\\w+)'\nemail = \"john@example.com\"\ngroups = re.match(email_pattern, email).groups()\nprint(groups)\n\n# Split by pattern\nsplit = re.split(pattern, \"123abc456def\")\nprint(split)"
+                }
+            ]
+        },
+        "date_time": {
+            "description": "Date and time handling in Python",
+            "examples": [
+                {
+                    "title": "Basic Date/Time Operations",
+                    "explanation": "Python's datetime module provides comprehensive date and time functionality.",
+                    "code": "from datetime import datetime, timedelta\nimport pytz\n\n# Current time\nnow = datetime.now()\nprint(\"Current time:\", now)\n\n# Format time\nformatted = now.strftime(\"%Y-%m-%d %H:%M:%S\")\nprint(\"Formatted time:\", formatted)\n\n# Parse time\nparsed = datetime.strptime(\"2023-01-01\", \"%Y-%m-%d\")\nprint(\"Parsed time:\", parsed)\n\n# Time arithmetic\ntomorrow = now + timedelta(days=1)\nprint(\"Tomorrow:\", tomorrow)\n\n# Time comparison\nis_after = tomorrow > now\nprint(\"Is tomorrow after now?\", is_after)\n\n# Timezone\nny_tz = pytz.timezone('America/New_York')\nny_time = now.astimezone(ny_tz)\nprint(\"New York time:\", ny_time)\n\n# Unix timestamp\ntimestamp = now.timestamp()\nprint(\"Unix timestamp:\", timestamp)\n\n# Time components\nprint(f\"Components: {now.year}-{now.month}-{now.day} {now.hour}:{now.minute}:{now.second}\")"
+                }
+            ]
+        },
+        "collections": {
+            "description": "Collections and data structures in Python",
+            "examples": [
+                {
+                    "title": "Lists and Tuples",
+                    "explanation": "Lists are mutable sequences, while tuples are immutable sequences in Python.",
+                    "code": "# List declaration\nlst = []\n\n# List initialization\nlst2 = [1, 2, 3]\nprint(\"Initialized list:\", lst2)\n\n# List operations\nlst2.append(4)  # Add to end\nprint(\"After append:\", lst2)\n\nlst2.pop()  # Remove from end\nprint(\"After pop:\", lst2)\n\nlst2.insert(0, 0)  # Add to start\nprint(\"After insert:\", lst2)\n\nlst2.remove(0)  # Remove from start\nprint(\"After remove:\", lst2)\n\n# List methods\nmapped = list(map(lambda x: x * 2, lst2))\nprint(\"Mapped:\", mapped)\n\nfiltered = list(filter(lambda x: x > 1, lst2))\nprint(\"Filtered:\", filtered)\n\n# List comprehension\nsquared = [x**2 for x in lst2]\nprint(\"Squared:\", squared)\n\n# Tuple declaration\ntup = (1, 2, 3)\nprint(\"Tuple:\", tup)\n\n# Tuple unpacking\nfirst, second, third = tup\nprint(\"Unpacked:\", first, second, third)"
+                },
+                {
+                    "title": "Dictionaries and Sets",
+                    "explanation": "Dictionaries store key-value pairs, while sets store unique values.",
+                    "code": "# Dictionary declaration\nd = {}\n\n# Dictionary initialization\nd2 = {\"one\": 1, \"two\": 2}\nprint(\"Initialized dictionary:\", d2)\n\n# Dictionary operations\nd[\"one\"] = 1  # Add/update\nprint(\"After update:\", d)\n\nvalue = d.get(\"one\")  # Get value\nprint(\"Value:\", value)\n\n# Dictionary methods\nkeys = d2.keys()\nvalues = d2.values()\nitems = d2.items()\nprint(\"Keys:\", keys)\nprint(\"Values:\", values)\nprint(\"Items:\", items)\n\n# Set declaration\ns = set()\n\n# Set initialization\ns2 = {1, 2, 3}\nprint(\"Initialized set:\", s2)\n\n# Set operations\ns2.add(4)  # Add element\nprint(\"After add:\", s2)\n\ns2.remove(2)  # Remove element\nprint(\"After remove:\", s2)\n\n# Set operations\ns3 = {3, 4, 5}\nunion = s2 | s3  # Union\nintersection = s2 & s3  # Intersection\ndifference = s2 - s3  # Difference\nprint(\"Union:\", union)\nprint(\"Intersection:\", intersection)\nprint(\"Difference:\", difference)"
+                },
+                {
+                    "title": "Custom Collections",
+                    "explanation": "Python allows creating custom collections using classes.",
+                    "code": "class Stack:\n    def __init__(self):\n        self.items = []\n    \n    def push(self, item):\n        self.items.append(item)\n    \n    def pop(self):\n        if not self.is_empty():\n            return self.items.pop()\n        return None\n    \n    def peek(self):\n        if not self.is_empty():\n            return self.items[-1]\n        return None\n    \n    def is_empty(self):\n        return len(self.items) == 0\n\nclass Queue:\n    def __init__(self):\n        self.items = []\n    \n    def enqueue(self, item):\n        self.items.append(item)\n    \n    def dequeue(self):\n        if not self.is_empty():\n            return self.items.pop(0)\n        return None\n    \n    def front(self):\n        if not self.is_empty():\n            return self.items[0]\n        return None\n    \n    def is_empty(self):\n        return len(self.items) == 0\n\n# Usage\nstack = Stack()\nstack.push(1)\nstack.push(2)\nprint(\"Stack pop:\", stack.pop())\n\nqueue = Queue()\nqueue.enqueue(1)\nqueue.enqueue(2)\nprint(\"Queue dequeue:\", queue.dequeue())"
+                }
+            ]
+        },
+        "database": {
+            "description": "Database operations in Python",
+            "examples": [
+                {
+                    "title": "SQLite Basics",
+                    "explanation": "SQLite is built into Python and provides a simple way to work with databases.",
+                    "code": "import sqlite3\n\n# Connect to database\nconn = sqlite3.connect('example.db')\n\n# Create cursor\ncursor = conn.cursor()\n\n# Create table\ncursor.execute('''CREATE TABLE IF NOT EXISTS users\n                 (id INTEGER PRIMARY KEY, name TEXT, email TEXT)''')\n\n# Insert data\ncursor.execute('INSERT INTO users (name, email) VALUES (?, ?)',\n               ('John', 'john@example.com'))\n\n# Query data\ncursor.execute('SELECT * FROM users')\nfor row in cursor.fetchall():\n    print(row)\n\n# Commit changes\nconn.commit()\n\n# Close connection\nconn.close()"
+                },
+                {
+                    "title": "SQLAlchemy ORM",
+                    "explanation": "SQLAlchemy is a popular ORM that provides a Pythonic way to work with databases.",
+                    "code": "from sqlalchemy import create_engine, Column, Integer, String\nfrom sqlalchemy.ext.declarative import declarative_base\nfrom sqlalchemy.orm import sessionmaker\n\n# Create engine\nengine = create_engine('sqlite:///example.db')\n\n# Create base class\nBase = declarative_base()\n\n# Define model\nclass User(Base):\n    __tablename__ = 'users'\n    \n    id = Column(Integer, primary_key=True)\n    name = Column(String)\n    email = Column(String)\n    \n    def __repr__(self):\n        return f\"<User(name='{self.name}', email='{self.email}')>\"\n\n# Create tables\nBase.metadata.create_all(engine)\n\n# Create session\nSession = sessionmaker(bind=engine)\nsession = Session()\n\n# Add user\nuser = User(name='John', email='john@example.com')\nsession.add(user)\nsession.commit()\n\n# Query users\nusers = session.query(User).all()\nfor user in users:\n    print(user)\n\n# Close session\nsession.close()"
+                },
+                {
+                    "title": "Transactions",
+                    "explanation": "Python's DB-API 2.0 provides transaction support through connection objects.",
+                    "code": "import sqlite3\n\ntry:\n    conn = sqlite3.connect('example.db')\n    cursor = conn.cursor()\n    \n    # Begin transaction\n    cursor.execute('BEGIN TRANSACTION')\n    \n    # Execute multiple operations\n    cursor.execute('UPDATE accounts SET balance = balance - ? WHERE id = ?',\n                  (100.0, 1))\n    cursor.execute('UPDATE accounts SET balance = balance + ? WHERE id = ?',\n                  (100.0, 2))\n    \n    # Commit transaction\n    conn.commit()\n\nexcept sqlite3.Error as e:\n    # Rollback on error\n    conn.rollback()\n    print(f'Error: {e}')\n\nfinally:\n    conn.close()"
+                }
+            ]
+        },
+        "json_xml": {
+            "description": "JSON and XML handling in Python",
+            "examples": [
+                {
+                    "title": "JSON Processing",
+                    "explanation": "Python's json module provides simple JSON processing capabilities.",
+                    "code": "import json\n\n# JSON string\njson_str = '{\"name\": \"John\", \"age\": 30}'\n\n# Parse JSON\ndata = json.loads(json_str)\nprint(data['name'])  # John\n\n# Convert to JSON\nperson = {'name': 'John', 'age': 30}\njson_output = json.dumps(person, indent=2)\nprint(json_output)\n\n# JSON Schema validation\nfrom jsonschema import validate\n\nschema = {\n    \"type\": \"object\",\n    \"properties\": {\n        \"name\": {\"type\": \"string\"},\n        \"age\": {\"type\": \"number\"}\n    },\n    \"required\": [\"name\", \"age\"]\n}\n\nvalidate(instance=person, schema=schema)"
+                },
+                {
+                    "title": "XML Processing",
+                    "explanation": "Python provides several modules for XML processing, including xml.etree.ElementTree.",
+                    "code": "import xml.etree.ElementTree as ET\n\n# Parse XML\ntree = ET.parse('data.xml')\nroot = tree.getroot()\n\n# Access elements\nfor user in root.findall('user'):\n    name = user.find('name').text\n    age = user.find('age').text\n    print(f'Name: {name}, Age: {age}')\n\n# Create XML\nroot = ET.Element('users')\nuser = ET.SubElement(root, 'user')\nname = ET.SubElement(user, 'name')\nname.text = 'John'\nage = ET.SubElement(user, 'age')\nage.text = '30'\n\n# Write XML\ntree = ET.ElementTree(root)\ntree.write('output.xml')"
+                }
+            ]
+        },
+        "command_line": {
+            "description": "Command line argument handling in Python",
+            "examples": [
+                {
+                    "title": "Basic Argument Parsing",
+                    "explanation": "Python's sys.argv provides basic command line argument access.",
+                    "code": "import sys\n\n# Basic argument access\nif len(sys.argv) > 1:\n    print(f'First argument: {sys.argv[1]}')\n\n# Argument parsing\nfor i, arg in enumerate(sys.argv[1:], 1):\n    if arg == '--name':\n        name = sys.argv[i + 1]\n        print(f'Name: {name}')\n    elif arg == '--age':\n        age = int(sys.argv[i + 1])\n        print(f'Age: {age}')"
+                },
+                {
+                    "title": "argparse Module",
+                    "explanation": "The argparse module provides a more robust way to handle command line arguments.",
+                    "code": "import argparse\n\n# Create parser\nparser = argparse.ArgumentParser(description='Process some integers.')\n\n# Add arguments\nparser.add_argument('--name', help='User name')\nparser.add_argument('--age', type=int, help='User age')\nparser.add_argument('--verbose', action='store_true', help='Enable verbose output')\n\n# Parse arguments\nargs = parser.parse_args()\n\n# Use arguments\nif args.name:\n    print(f'Name: {args.name}')\nif args.age:\n    print(f'Age: {args.age}')\nif args.verbose:\n    print('Verbose mode enabled')"
+                },
+                {
+                    "title": "Environment Variables",
+                    "explanation": "Python provides access to environment variables through the os module.",
+                    "code": "import os\n\n# Environment variables\npath = os.getenv('PATH')\nhome = os.getenv('HOME')\n\n# Set environment variable\nos.environ['MYAPP_CONFIG'] = 'config.ini'\n\n# Configuration file\nimport configparser\n\nconfig = configparser.ConfigParser()\nconfig.read('config.ini')\n\ndb_url = config['database']['url']\ndb_user = config['database']['user']"
+                },
+                {
+                    "title": "Exit Codes and Handling",
+                    "explanation": "Exit codes are used to indicate the success or failure of a script. A code of 0 typically means success, while non-zero codes indicate errors. The sys.exit() function allows setting the exit code.",
+                    "code": "import sys\n\ndef main():\n    try:\n        # Simulate some operation\n        value = int(input('Enter a number: '))\n        if value < 0:\n            print('Error: Negative number not allowed.')\n            sys.exit(1)  # Exit with error code\n        print(f'Success! You entered: {value}')\n        sys.exit(0)  # Success\n    except ValueError:\n        print('Error: Invalid input. Please enter a number.')\n        sys.exit(2)\n\nif __name__ == '__main__':\n    main()"
+                },
+                {
+                    "title": "Progress Indication and Console Coloring",
+                    "explanation": "You can use libraries like tqdm for progress bars and colorama for colored console output to enhance user experience in the terminal.",
+                    "code": "from time import sleep\nfrom tqdm import tqdm\nfrom colorama import init, Fore, Style\n\n# Initialize colorama\ninit(autoreset=True)\n\n# Progress bar using tqdm\nprint(Fore.CYAN + 'Starting process...')\nfor i in tqdm(range(10), desc='Processing'):\n    sleep(0.2)\n\n# Colored messages\nprint(Fore.GREEN + 'Process completed successfully!')\nprint(Fore.YELLOW + 'Warning: Low disk space.')\nprint(Fore.RED + 'Error: Operation failed.')"
+                }                                
+            ]
+        },
+        "testing": {
+            "description": "Testing in Python",
+            "examples": [
+                {
+                    "title": "unittest Basics",
+                    "explanation": "Python's built-in unittest module provides a testing framework.",
+                    "code": "import unittest\n\nclass TestCalculator(unittest.TestCase):\n    def setUp(self):\n        self.calc = Calculator()\n    \n    def test_addition(self):\n        self.assertEqual(self.calc.add(2, 2), 4)\n    \n    def test_division(self):\n        with self.assertRaises(ZeroDivisionError):\n            self.calc.divide(1, 0)\n    \n    def test_multiple_operations(self):\n        self.assertEqual(self.calc.add(2, 2), 4)\n        self.assertEqual(self.calc.subtract(2, 2), 0)\n        self.assertEqual(self.calc.multiply(2, 2), 4)\n\nif __name__ == '__main__':\n    unittest.main()"
+                },
+                {
+                    "title": "pytest Basics",
+                    "explanation": "pytest is a popular testing framework that provides more features than unittest.",
+                    "code": "import pytest\n\nclass Calculator:\n    def add(self, a, b):\n        return a + b\n    \n    def divide(self, a, b):\n        return a / b\n\n# Test functions\ndef test_addition():\n    calc = Calculator()\n    assert calc.add(2, 2) == 4\n\ndef test_division():\n    calc = Calculator()\n    with pytest.raises(ZeroDivisionError):\n        calc.divide(1, 0)\n\n# Fixtures\n@pytest.fixture\ndef calculator():\n    return Calculator()\n\ndef test_with_fixture(calculator):\n    assert calculator.add(2, 2) == 4"
+                }
+            ]
+        },
+        "logging": {
+            "description": "Logging in Python",
+            "examples": [
+                {
+                    "title": "Basic Logging",
+                    "explanation": "Python's logging module provides a flexible logging system.",
+                    "code": "import logging\n\n# Basic configuration\nlogging.basicConfig(\n    level=logging.INFO,\n    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'\n)\n\n# Create logger\nlogger = logging.getLogger(__name__)\n\n# Log messages\nlogger.debug('Debug message')\nlogger.info('Info message')\nlogger.warning('Warning message')\nlogger.error('Error message')\nlogger.critical('Critical message')\n\n# Log with context\nname = 'John'\nage = 30\nlogger.info('User %s is %d years old', name, age)\n\n# Log exception\ntry:\n    1 / 0\nexcept Exception as e:\n    logger.exception('An error occurred')"
+                },
+                {
+                    "title": "Log Configuration",
+                    "explanation": "Logging can be configured using a configuration file or dictionary.",
+                    "code": "import logging.config\n\n# Dictionary configuration\nLOGGING_CONFIG = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {\n        'standard': {\n            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'\n        },\n    },\n    'handlers': {\n        'console': {\n            'class': 'logging.StreamHandler',\n            'level': 'INFO',\n            'formatter': 'standard',\n            'stream': 'ext://sys.stdout'\n        },\n        'file': {\n            'class': 'logging.handlers.RotatingFileHandler',\n            'level': 'DEBUG',\n            'formatter': 'standard',\n            'filename': 'app.log',\n            'maxBytes': 10485760,\n            'backupCount': 5\n        }\n    },\n    'loggers': {\n        '': {\n            'handlers': ['console', 'file'],\n            'level': 'DEBUG',\n            'propagate': True\n        }\n    }\n}\n\n# Apply configuration\nlogging.config.dictConfig(LOGGING_CONFIG)\n\n# Use logger\nlogger = logging.getLogger(__name__)\nlogger.info('Application started')"
+                }
+            ]
+        },
+        "package_management": {
+            "description": "Package and dependency management in Python",
+            "examples": [
+                {
+                    "title": "pip Basics",
+                    "explanation": "pip is Python's package installer and manager.",
+                    "code": "# Install package\n# pip install requests\n\n# Install specific version\n# pip install requests==2.25.1\n\n# Install from requirements file\n# pip install -r requirements.txt\n\n# Create requirements file\n# pip freeze > requirements.txt\n\n# Install in development mode\n# pip install -e ."
+                },
+                {
+                    "title": "setup.py",
+                    "explanation": "setup.py is used to define package metadata and dependencies.",
+                    "code": "from setuptools import setup, find_packages\n\nsetup(\n    name='myapp',\n    version='0.1.0',\n    packages=find_packages(),\n    install_requires=[\n        'requests>=2.25.1',\n        'flask>=2.0.0',\n    ],\n    extras_require={\n        'dev': [\n            'pytest>=6.0.0',\n            'black>=21.0.0',\n        ],\n    },\n    python_requires='>=3.6',\n)"
+                },
+                {
+                    "title": "pyproject.toml",
+                    "explanation": "pyproject.toml is a modern way to define project metadata and build requirements.",
+                    "code": "[build-system]\nrequires = [\"setuptools>=42\", \"wheel\"]\nbuild-backend = \"setuptools.build_meta\"\n\n[project]\nname = \"myapp\"\nversion = \"0.1.0\"\ndescription = \"My Python application\"\nrequires-python = \">=3.6\"\ndependencies = [\n    \"requests>=2.25.1\",\n    \"flask>=2.0.0\",\n]\n\n[project.optional-dependencies]\ndev = [\n    \"pytest>=6.0.0\",\n    \"black>=21.0.0\",\n]\n\n[tool.pytest.ini_options]\nminversion = \"6.0\"\naddopts = \"-ra -q\"\ntestpaths = [\n    \"tests\",\n]"
+                }
+            ]
+        },
+        "gui_development": {
+            "description": "GUI development in Python using Tkinter, the standard built-in GUI toolkit. Tkinter provides a wide range of widgets and layout management options for building desktop apps.",
+            "examples": [
+                {
+                    "title": "Basic Window with Button",
+                    "explanation": "This example creates a basic window with a button that changes a label when clicked.",
+                    "code": "import tkinter as tk\n\ndef on_click():\n    label.config(text=\"Button Clicked!\")\n\nroot = tk.Tk()\nroot.title(\"Basic GUI\")\n\nlabel = tk.Label(root, text=\"Hello, Tkinter!\")\nlabel.pack(pady=10)\n\nbutton = tk.Button(root, text=\"Click Me\", command=on_click)\nbutton.pack(pady=5)\n\nroot.mainloop()"
+                },
+                {
+                    "title": "Input Form",
+                    "explanation": "This GUI accepts input from the user and shows it in a label.",
+                    "code": "import tkinter as tk\n\ndef submit():\n    output_label.config(text=f\"Hello, {entry.get()}!\")\n\nroot = tk.Tk()\nroot.title(\"Input Form\")\n\nentry = tk.Entry(root)\nentry.pack(pady=5)\n\nsubmit_btn = tk.Button(root, text=\"Submit\", command=submit)\nsubmit_btn.pack(pady=5)\n\noutput_label = tk.Label(root, text=\"\")\noutput_label.pack(pady=5)\n\nroot.mainloop()"
+                },
+                {
+                    "title": "Using Frames and Layout",
+                    "explanation": "Tkinter's Frame widget allows grouping of widgets and better layout control.",
+                    "code": "import tkinter as tk\n\nroot = tk.Tk()\nroot.title(\"Frames Example\")\n\nframe_top = tk.Frame(root)\nframe_top.pack(pady=10)\n\ntk.Label(frame_top, text=\"Top Frame\").pack()\ntk.Button(frame_top, text=\"Click\").pack()\n\nframe_bottom = tk.Frame(root)\nframe_bottom.pack(pady=10)\n\ntk.Entry(frame_bottom).pack()\ntk.Label(frame_bottom, text=\"Bottom Frame\").pack()\n\nroot.mainloop()"
+                },
+                {
+                    "title": "Displaying a Table (Treeview)",
+                    "explanation": "Use ttk.Treeview to create a table-like view of data.",
+                    "code": "import tkinter as tk\nfrom tkinter import ttk\n\nroot = tk.Tk()\nroot.title(\"Table Example\")\n\ntree = ttk.Treeview(root, columns=(\"Name\", \"Age\"), show=\"headings\")\ntree.heading(\"Name\", text=\"Name\")\ntree.heading(\"Age\", text=\"Age\")\ntree.insert(\"\", tk.END, values=(\"Alice\", 30))\ntree.insert(\"\", tk.END, values=(\"Bob\", 25))\ntree.pack()\n\nroot.mainloop()"
+                },
+                {
+                    "title": "Drawing on Canvas",
+                    "explanation": "Canvas lets you draw shapes, images, and custom graphics.",
+                    "code": "import tkinter as tk\n\nroot = tk.Tk()\nroot.title(\"Canvas Example\")\n\ncanvas = tk.Canvas(root, width=200, height=200, bg=\"white\")\ncanvas.pack()\n\ncanvas.create_rectangle(50, 50, 150, 150, fill=\"blue\")\ncanvas.create_oval(60, 60, 140, 140, fill=\"red\")\ncanvas.create_text(100, 100, text=\"Hello\", fill=\"white\")\n\nroot.mainloop()"
+                },
+                {
+                    "title": "File Dialogs (Open/Save)",
+                    "explanation": "Tkinter's filedialog module allows users to choose files for opening or saving.",
+                    "code": "import tkinter as tk\nfrom tkinter import filedialog\n\ndef open_file():\n    file_path = filedialog.askopenfilename()\n    if file_path:\n        with open(file_path, 'r') as file:\n            content = file.read()\n            text_widget.delete(\"1.0\", tk.END)\n            text_widget.insert(tk.END, content)\n\nroot = tk.Tk()\nroot.title(\"Open File\")\n\nbtn = tk.Button(root, text=\"Open File\", command=open_file)\nbtn.pack()\n\ntext_widget = tk.Text(root)\ntext_widget.pack()\n\nroot.mainloop()"
+                },
+                {
+                    "title": "Creating a Menu Bar",
+                    "explanation": "Menus can be added using Tkinter’s Menu widget for standard file, edit, help menus etc.",
+                    "code": "import tkinter as tk\n\ndef hello():\n    print(\"Menu clicked\")\n\nroot = tk.Tk()\nroot.title(\"Menu Example\")\n\nmenubar = tk.Menu(root)\nfile_menu = tk.Menu(menubar, tearoff=0)\nfile_menu.add_command(label=\"Open\", command=hello)\nfile_menu.add_command(label=\"Exit\", command=root.quit)\nmenubar.add_cascade(label=\"File\", menu=file_menu)\n\nroot.config(menu=menubar)\nroot.mainloop()"
+                },
+                {
+                    "title": "Multi-Window Application",
+                    "explanation": "You can open additional windows using Toplevel.",
+                    "code": "import tkinter as tk\n\ndef open_window():\n    new_win = tk.Toplevel(root)\n    new_win.title(\"New Window\")\n    tk.Label(new_win, text=\"This is a new window\").pack(pady=10)\n\nroot = tk.Tk()\nroot.title(\"Main Window\")\n\nbtn = tk.Button(root, text=\"Open New Window\", command=open_window)\nbtn.pack(pady=10)\n\nroot.mainloop()"
+                },
+                {
+                    "title": "Key and Mouse Event Binding",
+                    "explanation": "Bind keyboard and mouse events to functions for interactivity.",
+                    "code": "import tkinter as tk\n\ndef on_key(event):\n    label.config(text=f\"Key pressed: {event.char}\")\n\ndef on_click(event):\n    label.config(text=f\"Clicked at {event.x}, {event.y}\")\n\nroot = tk.Tk()\nroot.title(\"Event Binding\")\n\nlabel = tk.Label(root, text=\"Press a key or click\")\nlabel.pack(pady=20)\n\nroot.bind(\"<Key>\", on_key)\nroot.bind(\"<Button-1>\", on_click)\n\nroot.mainloop()"
+                },
+                {
+                    "title": "SQLite Database Integration",
+                    "explanation": "Connect to SQLite database, insert and fetch records using Tkinter.",
+                    "code": "import tkinter as tk\nimport sqlite3\n\nconn = sqlite3.connect('people.db')\nc = conn.cursor()\nc.execute('''CREATE TABLE IF NOT EXISTS person (name TEXT)''')\nconn.commit()\n\ndef add_name():\n    name = entry.get()\n    c.execute(\"INSERT INTO person VALUES (?)\", (name,))\n    conn.commit()\n    entry.delete(0, tk.END)\n    refresh()\n\ndef refresh():\n    listbox.delete(0, tk.END)\n    for row in c.execute(\"SELECT * FROM person\"):\n        listbox.insert(tk.END, row[0])\n\nroot = tk.Tk()\nroot.title(\"SQLite Example\")\n\nentry = tk.Entry(root)\nentry.pack(pady=5)\ntk.Button(root, text=\"Add\", command=add_name).pack()\n\nlistbox = tk.Listbox(root)\nlistbox.pack(pady=5)\n\nrefresh()\nroot.mainloop()"
+                }
+            ]
+        }
+    }
+} 

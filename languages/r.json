@@ -1,0 +1,130 @@
+{
+    "name": "R",
+    "sections": {
+        "basic_syntax": {
+            "description": "Fundamental R syntax and operations",
+            "examples": [
+                {
+                    "title": "Variables and Vectors",
+                    "explanation": "Basic data assignment and vector operations",
+                    "code": "# Atomic vectors\nnumbers <- c(1, 2, 3, 4, 5)\nnames <- c(\"Alice\", \"Bob\", \"Charlie\")\n\n# Factor vectors\ncategories <- factor(c(\"Low\", \"High\", \"Medium\", \"High\"))"
+                },
+                {
+                    "title": "Data Frames",
+                    "explanation": "Creating and working with data frames",
+                    "code": "df <- data.frame(\n  id = 1:3,\n  name = c(\"Alice\", \"Bob\", \"Charlie\"),\n  score = c(89.5, 92.0, 78.5)\n)\nhead(df)"
+                }
+            ]
+        },
+        "data_manipulation": {
+            "description": "Data manipulation with base R and Tidyverse",
+            "examples": [
+                {
+                    "title": "dplyr Verbs",
+                    "explanation": "Common data manipulation operations",
+                    "code": "library(dplyr)\n\nmtcars %>%\n  filter(mpg > 20) %>%\n  select(mpg, cyl, hp) %>%\n  mutate(kpl = mpg * 0.425144) %>%\n  group_by(cyl) %>%\n  summarise(avg_hp = mean(hp))"
+                },
+                {
+                    "title": "tidyr Pivoting",
+                    "explanation": "Reshaping data between wide/long formats",
+                    "code": "library(tidyr)\n\ntable4a %>% \n  pivot_longer(cols = c(`1999`, `2000`), \n               names_to = \"year\", \n               values_to = \"cases\")"
+                }
+            ]
+        },
+        "visualization": {
+            "description": "Data visualization with ggplot2",
+            "examples": [
+                {
+                    "title": "Basic Plotting",
+                    "explanation": "Creating layered visualizations",
+                    "code": "library(ggplot2)\n\nggplot(mtcars, aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(title = \"MPG vs Weight\", x = \"Weight (1000 lbs)\", y = \"MPG\")"
+                }
+            ]
+        },
+        "statistical_analysis": {
+            "description": "Statistical modeling and tests",
+            "examples": [
+                {
+                    "title": "Linear Regression",
+                    "explanation": "Fitting and analyzing linear models",
+                    "code": "model <- lm(mpg ~ wt + cyl, data = mtcars)\nsummary(model)\nconfint(model)\npredict(model, newdata = data.frame(wt = 3, cyl = 4))"
+                },
+                {
+                    "title": "Hypothesis Testing",
+                    "explanation": "Common statistical tests",
+                    "code": "t.test(extra ~ group, data = sleep)\n\nchisq.test(table(mtcars$cyl, mtcars$am))"
+                }
+            ]
+        },
+        "control_structures": {
+            "description": "Flow control and iteration",
+            "examples": [
+                {
+                    "title": "Loops and Apply",
+                    "explanation": "Iteration methods in R",
+                    "code": "# For loop\nfor(i in 1:5) {\n  print(i^2)\n}\n\n# Apply family\nsapply(mtcars, mean)\nlapply(list(1:3, 4:6), sum))"
+                }
+            ]
+        },
+        "functions": {
+            "description": "Function creation and usage",
+            "examples": [
+                {
+                    "title": "Custom Functions",
+                    "explanation": "Creating reusable functions",
+                    "code": "calculate_bmi <- function(weight_kg, height_m) {\n  bmi <- weight_kg / (height_m^2)\n  round(bmi, 1)\n}\n\ncalculate_bmi(70, 1.75))"
+                }
+            ]
+        },
+        "r_markdown": {
+            "description": "Reproducible reporting",
+            "examples": [
+                {
+                    "title": "Basic Document",
+                    "explanation": "Structure of an R Markdown document",
+                    "code": "---\ntitle: \"Analysis Report\"\noutput: html_document\n---\n\n```{r setup}\nlibrary(tidyverse)\n```\n\n## Exploratory Analysis\n\n```{r plot}\nggplot(mtcars, aes(mpg)) + geom_histogram()\n```"
+                }
+            ]
+        },
+        "package_development": {
+            "description": "Creating R packages",
+            "examples": [
+                {
+                    "title": "Package Structure",
+                    "explanation": "Essential components of an R package",
+                    "code": "# In R console:\nusethis::create_package(\"myPackage\")\nusethis::use_r(\"myFunction\")\nusethis::use_testthat()\nusethis::use_mit_license())"
+                }
+            ]
+        },
+        "advanced_features": {
+            "description": "Advanced R programming concepts",
+            "examples": [
+                {
+                    "title": "Environments",
+                    "explanation": "Working with R environments",
+                    "code": "env <- new.env()\nenv$x <- 10\nget(\"x\", envir = env))"
+                },
+                {
+                    "title": "S3/S4 Classes",
+                    "explanation": "Object-oriented programming in R",
+                    "code": "# S3 class\nstructure(list(value = 42), class = \"myClass\")\n\n# S4 class\nsetClass(\"Person\", slots = list(name = \"character\", age = \"numeric\"))\nnew(\"Person\", name = \"Alice\", age = 30))"
+                }
+            ]
+        },
+        "modern_ecosystem": {
+            "description": "Modern R packages and features",
+            "examples": [
+                {
+                    "title": "Shiny Apps",
+                    "explanation": "Interactive web applications",
+                    "code": "library(shiny)\n\nui <- fluidPage(\n  sliderInput(\"n\", \"Number of points\", 10, 100, 50),\n  plotOutput(\"plot\")\n)\n\nserver <- function(input, output) {\n  output$plot <- renderPlot({\n    plot(rnorm(input$n))\n  })\n}\n\nshinyApp(ui, server))"
+                },
+                {
+                    "title": "R6 Classes",
+                    "explanation": "Modern object-oriented programming",
+                    "code": "library(R6)\n\nCounter <- R6Class(\"Counter\",\n  public = list(\n    value = 0,\n    increment = function() { self$value <- self$value + 1 },\n    get_value = function() { self$value }\n  )\n)\n\ncounter <- Counter$new()\ncounter$increment())"
+                }
+            ]
+        }
+    }
+}

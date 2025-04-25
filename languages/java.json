@@ -1,0 +1,565 @@
+{
+    "name": "Java",
+    "sections": {
+        "variables": {
+            "description": "Variable declaration and initialization in Java",
+            "examples": [
+                {
+                    "title": "Basic variable declaration",
+                    "explanation": "Java is statically typed, so variables must be declared with their type. Variables can be initialized at declaration or later.",
+                    "code": "String name = \"John\";\nint age = 30;"
+                },
+                {
+                    "title": "Multiple variable declaration",
+                    "explanation": "Multiple variables of the same type can be declared in a single statement. This is less common in modern Java code.",
+                    "code": "String firstName = \"John\", lastName = \"Doe\";"
+                }
+            ]
+        },
+        "types": {
+            "description": "Java types and type conversion",
+            "examples": [
+                {
+                    "title": "Primitive Types",
+                    "explanation": "Java has 8 primitive types: byte (8-bit), short (16-bit), int (32-bit), long (64-bit), float (32-bit), double (64-bit), char (16-bit), and boolean. They are stored by value.",
+                    "code": "byte b = 127;\nshort s = 32767;\nint i = 2147483647;\nlong l = 9223372036854775807L;\nfloat f = 3.14f;\ndouble d = 3.14;\nchar c = 'A';\nboolean bool = true;"
+                },
+                {
+                    "title": "Wrapper Classes",
+                    "explanation": "Each primitive type has a corresponding wrapper class (Byte, Short, Integer, Long, Float, Double, Character, Boolean) that provides methods and allows null values.",
+                    "code": "Integer num = 42;\nDouble pi = 3.14;\nCharacter letter = 'A';\nBoolean isValid = true;"
+                },
+                {
+                    "title": "Type Conversion",
+                    "explanation": "Java performs automatic widening conversions (e.g., int to long) but requires explicit casting for narrowing conversions (e.g., double to int).",
+                    "code": "// Widening conversion (automatic)\nint i = 42;\nlong l = i;\n\n// Narrowing conversion (requires casting)\ndouble d = 3.14;\nint i = (int) d;  // i = 3\n\n// String to number\nint num = Integer.parseInt(\"42\");\ndouble pi = Double.parseDouble(\"3.14\");\n\n// Number to string\nString str = String.valueOf(42);"
+                }
+            ]
+        },
+        "constants": {
+            "description": "Constants in Java (using final)",
+            "examples": [
+                {
+                    "title": "Constant declaration",
+                    "explanation": "The final keyword makes a variable constant. For class-level constants, static final is used. Constants are typically in UPPER_CASE.",
+                    "code": "final double PI = 3.14;\nfinal String LANGUAGE = \"Java\";"
+                }
+            ]
+        },
+        "conditionals": {
+            "description": "Conditional statements in Java",
+            "examples": [
+                {
+                    "title": "If statement",
+                    "explanation": "If statements evaluate a boolean expression. The condition must be a boolean value, not a number like in some other languages.",
+                    "code": "if (age > 18) {\n    System.out.println(\"Adult\");\n}"
+                },
+                {
+                    "title": "If-else statement",
+                    "explanation": "The else block executes when the if condition is false. Java uses curly braces to define code blocks.",
+                    "code": "if (age > 18) {\n    System.out.println(\"Adult\");\n} else {\n    System.out.println(\"Minor\");\n}"
+                },
+                {
+                    "title": "Ternary operator",
+                    "explanation": "The ternary operator is a shorthand for if-else. It returns one of two values based on a boolean condition.",
+                    "code": "String status = age > 18 ? \"Adult\" : \"Minor\";"
+                },
+                {
+                    "title": "Switch statement",
+                    "explanation": "Switch statements compare a value against multiple cases. Java 12+ supports switch expressions. Break statements prevent fall-through.",
+                    "code": "switch (day) {\n    case \"Monday\":\n        System.out.println(\"Start of week\");\n        break;\n    case \"Friday\":\n        System.out.println(\"End of week\");\n        break;\n    default:\n        System.out.println(\"Mid week\");\n}"
+                }
+            ]
+        },
+        "loops": {
+            "description": "Loop constructs in Java",
+            "examples": [
+                {
+                    "title": "For loop",
+                    "explanation": "Traditional for loops have initialization, condition, and increment/decrement. They're good for when you know the number of iterations.",
+                    "code": "for (int i = 0; i < 5; i++) {\n    System.out.println(i);\n}"
+                },
+                {
+                    "title": "While loop",
+                    "explanation": "While loops continue as long as the condition is true. The condition is checked before each iteration.",
+                    "code": "int i = 0;\nwhile (i < 5) {\n    System.out.println(i);\n    i++;\n}"
+                },
+                {
+                    "title": "For-each loop",
+                    "explanation": "For-each loops iterate over arrays and collections. They're simpler and safer than traditional for loops for collections.",
+                    "code": "String[] names = {\"John\", \"Jane\", \"Doe\"};\nfor (String name : names) {\n    System.out.println(name);\n}"
+                }
+            ]
+        },
+        "functions": {
+            "description": "Method declaration in Java",
+            "examples": [
+                {
+                    "title": "Basic method",
+                    "explanation": "Java methods must be declared within a class. They specify return type, name, parameters, and can throw exceptions.",
+                    "code": "public String greet(String name) {\n    return \"Hello, \" + name;\n}"
+                },
+                {
+                    "title": "Method with multiple parameters",
+                    "explanation": "Methods can take multiple parameters of different types. Parameters are passed by value in Java.",
+                    "code": "public int add(int a, int b) {\n    return a + b;\n}"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error handling in Java",
+            "examples": [
+                {
+                    "title": "Try-catch block",
+                    "explanation": "Java uses try-catch blocks to handle exceptions. Checked exceptions must be caught or declared in the method signature.",
+                    "code": "try {\n    int result = 10 / 0;\n} catch (ArithmeticException e) {\n    System.out.println(\"Cannot divide by zero\");\n}"
+                },
+                {
+                    "title": "Try-catch-finally",
+                    "explanation": "The finally block always executes, making it ideal for resource cleanup. Java 7+ introduced try-with-resources for automatic resource management.",
+                    "code": "try {\n    int result = 10 / 0;\n} catch (ArithmeticException e) {\n    System.out.println(\"Cannot divide by zero\");\n} finally {\n    System.out.println(\"Cleanup code\");\n}"
+                }
+            ]
+        },
+        "classes": {
+            "description": "Class declaration in Java",
+            "examples": [
+                {
+                    "title": "Class definition",
+                    "explanation": "Java classes support encapsulation, inheritance, and polymorphism. Fields are typically private with public getters/setters.",
+                    "code": "public class Person {\n    private String name;\n    private int age;\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    public String greet() {\n        return \"Hello, my name is \" + name;\n    }\n}"
+                }
+            ]
+        },
+        "arrays": {
+            "description": "Arrays in Java",
+            "examples": [
+                {
+                    "title": "Array Declaration and Initialization",
+                    "explanation": "Java arrays are fixed-length and can hold either primitives or objects. Arrays are zero-indexed and their length is fixed at creation.",
+                    "code": "// Array declaration\nint[] numbers = new int[5];\nString[] names = new String[3];\n\n// Array initialization\nint[] primes = {2, 3, 5, 7, 11};\nString[] colors = {\"red\", \"green\", \"blue\"};\n\n// Multi-dimensional arrays\nint[][] matrix = new int[3][3];\nint[][] triangle = {{1}, {1, 2}, {1, 2, 3}};"
+                },
+                {
+                    "title": "Array Operations",
+                    "explanation": "Java provides several ways to work with arrays, including the Arrays utility class and System.arraycopy for efficient copying.",
+                    "code": "import java.util.Arrays;\n\nint[] numbers = {3, 1, 4, 1, 5};\n\n// Sorting\nArrays.sort(numbers);\n\n// Searching\nint index = Arrays.binarySearch(numbers, 4);\n\n// Copying\nint[] copy = Arrays.copyOf(numbers, numbers.length);\nint[] range = Arrays.copyOfRange(numbers, 1, 3);\n\n// Filling\nArrays.fill(numbers, 0);\n\n// Comparing\nboolean equal = Arrays.equals(numbers, copy);"
+                }
+            ]
+        },
+        "collections": {
+            "description": "Collections and data structures in Java",
+            "examples": [
+                {
+                    "title": "Lists and Arrays",
+                    "explanation": "Java provides various list implementations and array operations.",
+                    "code": "// Array declaration\nint[] arr = new int[5];\narr[0] = 1;\n\n// Array initialization\nint[] arr2 = {1, 2, 3};\nSystem.out.println(\"Initialized array: \" + Arrays.toString(arr2));\n\n// List declaration\nList<Integer> list = new ArrayList<>();\n\n// List initialization\nList<Integer> list2 = new ArrayList<>(Arrays.asList(1, 2, 3));\nSystem.out.println(\"Initialized list: \" + list2);\n\n// List operations\nlist2.add(4);  // Add to end\nSystem.out.println(\"After add: \" + list2);\n\nlist2.remove(list2.size() - 1);  // Remove from end\nSystem.out.println(\"After remove: \" + list2);\n\nlist2.add(0, 0);  // Add to start\nSystem.out.println(\"After add at start: \" + list2);\n\nlist2.remove(0);  // Remove from start\nSystem.out.println(\"After remove from start: \" + list2);\n\n// List methods\nList<Integer> mapped = list2.stream()\n    .map(x -> x * 2)\n    .collect(Collectors.toList());\nSystem.out.println(\"Mapped: \" + mapped);\n\nList<Integer> filtered = list2.stream()\n    .filter(x -> x > 1)\n    .collect(Collectors.toList());\nSystem.out.println(\"Filtered: \" + filtered);\n\n// List to array\nInteger[] array = list2.toArray(new Integer[0]);\nSystem.out.println(\"Array: \" + Arrays.toString(array));"
+                },
+                {
+                    "title": "Maps and Sets",
+                    "explanation": "Java provides various Map and Set implementations.",
+                    "code": "// Map declaration\nMap<String, Integer> map = new HashMap<>();\n\n// Map initialization\nMap<String, Integer> map2 = new HashMap<>();\nmap2.put(\"one\", 1);\nmap2.put(\"two\", 2);\nSystem.out.println(\"Initialized map: \" + map2);\n\n// Map operations\nmap.put(\"one\", 1);  // Add/update\nSystem.out.println(\"After put: \" + map);\n\nInteger value = map.get(\"one\");  // Get value\nSystem.out.println(\"Value: \" + value);\n\n// Map methods\nSet<String> keys = map2.keySet();\nCollection<Integer> values = map2.values();\nSet<Map.Entry<String, Integer>> entries = map2.entrySet();\nSystem.out.println(\"Keys: \" + keys);\nSystem.out.println(\"Values: \" + values);\nSystem.out.println(\"Entries: \" + entries);\n\n// Set declaration\nSet<Integer> set = new HashSet<>();\n\n// Set initialization\nSet<Integer> set2 = new HashSet<>(Arrays.asList(1, 2, 3));\nSystem.out.println(\"Initialized set: \" + set2);\n\n// Set operations\nset2.add(4);  // Add element\nSystem.out.println(\"After add: \" + set2);\n\nset2.remove(2);  // Remove element\nSystem.out.println(\"After remove: \" + set2);\n\n// Set operations\nSet<Integer> set3 = new HashSet<>(Arrays.asList(3, 4, 5));\nSet<Integer> union = new HashSet<>(set2);\nunion.addAll(set3);  // Union\nSet<Integer> intersection = new HashSet<>(set2);\nintersection.retainAll(set3);  // Intersection\nSet<Integer> difference = new HashSet<>(set2);\ndifference.removeAll(set3);  // Difference\nSystem.out.println(\"Union: \" + union);\nSystem.out.println(\"Intersection: \" + intersection);\nSystem.out.println(\"Difference: \" + difference);"
+                },
+                {
+                    "title": "Custom Collections",
+                    "explanation": "Java allows creating custom collections by implementing collection interfaces.",
+                    "code": "// Stack implementation\nclass Stack<T> {\n    private List<T> items;\n    \n    public Stack() {\n        items = new ArrayList<>();\n    }\n    \n    public void push(T item) {\n        items.add(item);\n    }\n    \n    public T pop() {\n        if (isEmpty()) {\n            return null;\n        }\n        return items.remove(items.size() - 1);\n    }\n    \n    public T peek() {\n        if (isEmpty()) {\n            return null;\n        }\n        return items.get(items.size() - 1);\n    }\n    \n    public boolean isEmpty() {\n        return items.isEmpty();\n    }\n}\n\n// Queue implementation\nclass Queue<T> {\n    private List<T> items;\n    \n    public Queue() {\n        items = new ArrayList<>();\n    }\n    \n    public void enqueue(T item) {\n        items.add(item);\n    }\n    \n    public T dequeue() {\n        if (isEmpty()) {\n            return null;\n        }\n        return items.remove(0);\n    }\n    \n    public T front() {\n        if (isEmpty()) {\n            return null;\n        }\n        return items.get(0);\n    }\n    \n    public boolean isEmpty() {\n        return items.isEmpty();\n    }\n}\n\n// Usage\nStack<Integer> stack = new Stack<>();\nstack.push(1);\nstack.push(2);\nSystem.out.println(\"Stack pop: \" + stack.pop());\n\nQueue<Integer> queue = new Queue<>();\nqueue.enqueue(1);\nqueue.enqueue(2);\nSystem.out.println(\"Queue dequeue: \" + queue.dequeue());"
+                }
+            ]
+        },
+        "generics": {
+            "description": "Generics in Java",
+            "examples": [
+                {
+                    "title": "Generic Classes and Methods",
+                    "explanation": "Generics provide type safety and eliminate the need for casting. They are implemented using type erasure at runtime.",
+                    "code": "// Generic class\nclass Box<T> {\n    private T value;\n\n    public void set(T value) {\n        this.value = value;\n    }\n\n    public T get() {\n        return value;\n    }\n}\n\n// Generic method\npublic static <T> T getFirst(List<T> list) {\n    return list.get(0);\n}\n\n// Bounded type parameter\npublic static <T extends Comparable<T>> T max(T a, T b) {\n    return a.compareTo(b) > 0 ? a : b;\n}"
+                },
+                {
+                    "title": "Wildcards",
+                    "explanation": "Wildcards provide flexibility when working with generic types. They can be upper-bounded or lower-bounded.",
+                    "code": "// Upper-bounded wildcard\npublic static double sum(List<? extends Number> numbers) {\n    double sum = 0.0;\n    for (Number n : numbers) {\n        sum += n.doubleValue();\n    }\n    return sum;\n}\n\n// Lower-bounded wildcard\npublic static void addNumbers(List<? super Integer> list) {\n    list.add(1);\n    list.add(2);\n}\n\n// Unbounded wildcard\npublic static void printList(List<?> list) {\n    for (Object elem : list) {\n        System.out.println(elem);\n    }\n}"
+                }
+            ]
+        },
+        "concurrency": {
+            "description": "Concurrency in Java",
+            "examples": [
+                {
+                    "title": "Threads",
+                    "explanation": "Java threads can be created by extending Thread or implementing Runnable. Threads share the same memory space.",
+                    "code": "// Extending Thread\nclass MyThread extends Thread {\n    public void run() {\n        System.out.println(\"Thread running\");\n    }\n}\n\n// Implementing Runnable\nclass MyRunnable implements Runnable {\n    public void run() {\n        System.out.println(\"Runnable running\");\n    }\n}\n\n// Creating and starting threads\nThread thread1 = new MyThread();\nThread thread2 = new Thread(new MyRunnable());\nthread1.start();\nthread2.start();"
+                },
+                {
+                    "title": "Synchronization",
+                    "explanation": "Synchronization prevents multiple threads from accessing shared resources simultaneously.",
+                    "code": "class Counter {\n    private int count = 0;\n\n    // Synchronized method\n    public synchronized void increment() {\n        count++;\n    }\n\n    // Synchronized block\n    public void decrement() {\n        synchronized(this) {\n            count--;\n        }\n    }\n}\n\n// Using atomic variables\nimport java.util.concurrent.atomic.AtomicInteger;\n\nclass AtomicCounter {\n    private AtomicInteger count = new AtomicInteger(0);\n\n    public void increment() {\n        count.incrementAndGet();\n    }\n}"
+                },
+                {
+                    "title": "Executors and Futures",
+                    "explanation": "The Executor framework provides a higher-level replacement for working directly with threads.",
+                    "code": "import java.util.concurrent.*;\n\n// Creating an executor\nExecutorService executor = Executors.newFixedThreadPool(4);\n\n// Submitting tasks\nFuture<Integer> future = executor.submit(() -> {\n    Thread.sleep(1000);\n    return 42;\n});\n\n// Getting results\ntry {\n    Integer result = future.get(2, TimeUnit.SECONDS);\n} catch (TimeoutException e) {\n    future.cancel(true);\n}\n\n// CompletableFuture\nCompletableFuture<String> cf = CompletableFuture\n    .supplyAsync(() -> \"Hello\")\n    .thenApply(s -> s + \" World\")\n    .thenAccept(System.out::println);"
+                }
+            ]
+        },
+        "streams": {
+            "description": "Java Streams API",
+            "examples": [
+                {
+                    "title": "Stream Operations",
+                    "explanation": "Streams provide a functional approach to processing collections of data.",
+                    "code": "List<String> names = Arrays.asList(\"John\", \"Jane\", \"Doe\");\n\n// Filtering and mapping\nList<String> filtered = names.stream()\n    .filter(name -> name.length() > 3)\n    .map(String::toUpperCase)\n    .collect(Collectors.toList());\n\n// Reducing\nint sum = IntStream.range(1, 5)\n    .reduce(0, (a, b) -> a + b);\n\n// Grouping\nMap<Integer, List<String>> byLength = names.stream()\n    .collect(Collectors.groupingBy(String::length));"
+                },
+                {
+                    "title": "Parallel Streams",
+                    "explanation": "Parallel streams can improve performance for large datasets by utilizing multiple cores.",
+                    "code": "List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);\n\n// Sequential stream\nint sequentialSum = numbers.stream()\n    .mapToInt(Integer::intValue)\n    .sum();\n\n// Parallel stream\nint parallelSum = numbers.parallelStream()\n    .mapToInt(Integer::intValue)\n    .sum();"
+                }
+            ]
+        },
+        "memory_management": {
+            "description": "Memory Management in Java",
+            "examples": [
+                {
+                    "title": "Garbage Collection",
+                    "explanation": "Java's garbage collector automatically manages memory by reclaiming objects that are no longer reachable.",
+                    "code": "class MemoryExample {\n    private byte[] largeObject = new byte[1000000];\n\n    public void createGarbage() {\n        // Object becomes eligible for GC after method returns\n        byte[] temp = new byte[1000000];\n    }\n\n    // Finalizer (deprecated in Java 9)\n    protected void finalize() throws Throwable {\n        try {\n            // Cleanup code\n        } finally {\n            super.finalize();\n        }\n    }\n}"
+                },
+                {
+                    "title": "Memory Leaks",
+                    "explanation": "Even with garbage collection, memory leaks can occur when objects are unintentionally kept reachable.",
+                    "code": "class MemoryLeakExample {\n    private static final List<Object> CACHE = new ArrayList<>();\n\n    public void addToCache(Object obj) {\n        CACHE.add(obj);  // Objects never removed\n    }\n\n    // Better approach using WeakReference\n    private static final List<WeakReference<Object>> WEAK_CACHE = new ArrayList<>();\n\n    public void addToWeakCache(Object obj) {\n        WEAK_CACHE.add(new WeakReference<>(obj));\n    }\n}"
+                }
+            ]
+        },
+        "annotations": {
+            "description": "Annotations in Java",
+            "examples": [
+                {
+                    "title": "Built-in Annotations",
+                    "explanation": "Java provides several built-in annotations for common use cases like overriding methods, suppressing warnings, and marking deprecated code.",
+                    "code": "// Override annotation\n@Override\npublic String toString() {\n    return \"Custom toString\";\n}\n\n// Deprecated annotation\n@Deprecated\npublic void oldMethod() {\n    // Old implementation\n}\n\n// SuppressWarnings annotation\n@SuppressWarnings(\"unchecked\")\npublic void uncheckedCast() {\n    List list = new ArrayList();\n    list.add(\"string\");\n}\n\n// FunctionalInterface annotation\n@FunctionalInterface\ninterface MyFunction {\n    void apply();\n}"
+                },
+                {
+                    "title": "Custom Annotations",
+                    "explanation": "Java allows creating custom annotations with retention policies and target elements.",
+                    "code": "import java.lang.annotation.*;\n\n// Define annotation\n@Retention(RetentionPolicy.RUNTIME)\n@Target({ElementType.METHOD, ElementType.TYPE})\npublic @interface MyAnnotation {\n    String value() default \"\";\n    int priority() default 0;\n}\n\n// Using custom annotation\n@MyAnnotation(value = \"Test\", priority = 1)\npublic class MyClass {\n    @MyAnnotation(\"Important\")\n    public void importantMethod() {}\n}"
+                }
+            ]
+        },
+        "reflection": {
+            "description": "Reflection in Java",
+            "examples": [
+                {
+                    "title": "Class Reflection",
+                    "explanation": "Reflection allows examining and modifying the runtime behavior of classes, methods, and fields.",
+                    "code": "// Get class information\nClass<?> clazz = String.class;\nString className = clazz.getName();\nClass<?> superClass = clazz.getSuperclass();\nClass<?>[] interfaces = clazz.getInterfaces();\n\n// Get method information\nMethod[] methods = clazz.getDeclaredMethods();\nMethod toStringMethod = clazz.getMethod(\"toString\");\n\n// Get field information\nField[] fields = clazz.getDeclaredFields();\nField valueField = clazz.getDeclaredField(\"value\");\nvalueField.setAccessible(true);"
+                },
+                {
+                    "title": "Dynamic Method Invocation",
+                    "explanation": "Reflection allows invoking methods and accessing fields dynamically at runtime.",
+                    "code": "class MyClass {\n    private String name;\n\n    public MyClass(String name) {\n        this.name = name;\n    }\n\n    private String getName() {\n        return name;\n    }\n}\n\n// Using reflection\nMyClass obj = new MyClass(\"Test\");\nClass<?> clazz = obj.getClass();\n\n// Access private field\nField nameField = clazz.getDeclaredField(\"name\");\nnameField.setAccessible(true);\nString name = (String) nameField.get(obj);\n\n// Invoke private method\nMethod getNameMethod = clazz.getDeclaredMethod(\"getName\");\ngetNameMethod.setAccessible(true);\nString result = (String) getNameMethod.invoke(obj);"
+                }
+            ]
+        },
+        "modules": {
+            "description": "Java Module System (JPMS)",
+            "examples": [
+                {
+                    "title": "Module Declaration",
+                    "explanation": "Java modules provide strong encapsulation and explicit dependencies between components.",
+                    "code": "// module-info.java\nmodule com.example.myapp {\n    // Required modules\n    requires java.base;\n    requires java.sql;\n    requires transitive com.example.utils;\n\n    // Exported packages\n    exports com.example.myapp.api;\n    exports com.example.myapp.internal to com.example.tests;\n\n    // Opened packages for reflection\n    opens com.example.myapp.model;\n}"
+                },
+                {
+                    "title": "Module Usage",
+                    "explanation": "Modules can be used to create modular applications with clear boundaries and dependencies.",
+                    "code": "// Using modules in code\nmodule com.example.utils {\n    exports com.example.utils;\n}\n\n// In another module\nmodule com.example.myapp {\n    requires com.example.utils;\n}\n\n// Using the module\nimport com.example.utils.StringUtils;\n\npublic class Main {\n    public static void main(String[] args) {\n        String result = StringUtils.capitalize(\"hello\");\n    }\n}"
+                }
+            ]
+        },
+        "native_interface": {
+            "description": "Java Native Interface (JNI)",
+            "examples": [
+                {
+                    "title": "Native Method Declaration",
+                    "explanation": "JNI allows Java code to call and be called by native applications and libraries written in other languages.",
+                    "code": "public class NativeExample {\n    // Load native library\n    static {\n        System.loadLibrary(\"nativeLib\");\n    }\n\n    // Declare native method\n    public native void nativeMethod();\n\n    // Native method with parameters\n    public native int processData(byte[] data, int length);\n\n    // Native method returning object\n    public native String getNativeString();\n}"
+                },
+                {
+                    "title": "Native Implementation",
+                    "explanation": "Native methods are implemented in C/C++ and must follow JNI naming and type conventions.",
+                    "code": "/* native.c */\n#include <jni.h>\n#include \"NativeExample.h\"\n\nJNIEXPORT void JNICALL\nJava_NativeExample_nativeMethod(JNIEnv *env, jobject obj) {\n    // Native implementation\n}\n\nJNIEXPORT jint JNICALL\nJava_NativeExample_processData(JNIEnv *env, jobject obj,\n                             jbyteArray data, jint length) {\n    jbyte *elements = (*env)->GetByteArrayElements(env, data, NULL);\n    // Process data\n    (*env)->ReleaseByteArrayElements(env, data, elements, 0);\n    return result;\n}\n\nJNIEXPORT jstring JNICALL\nJava_NativeExample_getNativeString(JNIEnv *env, jobject obj) {\n    return (*env)->NewStringUTF(env, \"Hello from native code\");\n}"
+                }
+            ]
+        },
+        "serialization": {
+            "description": "Object Serialization in Java",
+            "examples": [
+                {
+                    "title": "Basic Serialization",
+                    "explanation": "Java's serialization mechanism allows objects to be converted to a byte stream and reconstructed later.",
+                    "code": "import java.io.*;\n\nclass Person implements Serializable {\n    private static final long serialVersionUID = 1L;\n    private String name;\n    private transient int age; // Won't be serialized\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    // Custom serialization\n    private void writeObject(ObjectOutputStream out) throws IOException {\n        out.defaultWriteObject();\n        // Custom serialization code\n    }\n\n    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {\n        in.defaultReadObject();\n        // Custom deserialization code\n    }\n}\n\n// Serializing object\nPerson person = new Person(\"John\", 30);\ntry (ObjectOutputStream out = new ObjectOutputStream(\n        new FileOutputStream(\"person.ser\"))) {\n    out.writeObject(person);\n}\n\n// Deserializing object\ntry (ObjectInputStream in = new ObjectInputStream(\n        new FileInputStream(\"person.ser\"))) {\n    Person restored = (Person) in.readObject();\n}"
+                },
+                {
+                    "title": "Externalizable Interface",
+                    "explanation": "The Externalizable interface provides more control over the serialization process than Serializable.",
+                    "code": "class CustomSerialization implements Externalizable {\n    private String data;\n\n    public CustomSerialization() {} // Required for Externalizable\n\n    @Override\n    public void writeExternal(ObjectOutput out) throws IOException {\n        out.writeUTF(data);\n    }\n\n    @Override\n    public void readExternal(ObjectInput in) throws IOException {\n        data = in.readUTF();\n    }\n}"
+                }
+            ]
+        },
+        "io": {
+            "description": "Standard Input/Output in Java",
+            "examples": [
+                {
+                    "title": "Console Input/Output",
+                    "explanation": "Java provides System.in, System.out, and System.err for basic console I/O. Scanner is commonly used for reading input.",
+                    "code": "import java.util.Scanner;\n\n// Reading input\nScanner scanner = new Scanner(System.in);\nSystem.out.print(\"Enter your name: \");\nString name = scanner.nextLine();\n\n// Reading numbers\nSystem.out.print(\"Enter your age: \");\nint age = scanner.nextInt();\n\n// Reading multiple values\nSystem.out.print(\"Enter two numbers: \");\ndouble num1 = scanner.nextDouble();\ndouble num2 = scanner.nextDouble();\n\n// Writing output\nSystem.out.println(\"Hello, \" + name);\nSystem.out.printf(\"You are %d years old%n\", age);\nSystem.out.printf(\"Sum: %.2f%n\", num1 + num2);\n\n// Error output\nSystem.err.println(\"Error message\");\n\n// Closing scanner\nscanner.close();"
+                },
+                {
+                    "title": "Formatted Output",
+                    "explanation": "Java provides printf and format methods for formatted output using format specifiers.",
+                    "code": "// Basic formatting\nSystem.out.printf(\"String: %s, Number: %d, Float: %.2f%n\", \n    \"Hello\", 42, 3.14159);\n\n// Width and alignment\nSystem.out.printf(\"|%10s|%-10s|%n\", \"Right\", \"Left\");\n\n// Number formatting\nSystem.out.printf(\"Decimal: %d, Hex: %x, Octal: %o%n\", 255, 255, 255);\n\n// Date formatting\nimport java.time.LocalDateTime;\nLocalDateTime now = LocalDateTime.now();\nSystem.out.printf(\"Date: %tF, Time: %tT%n\", now, now);"
+                },
+                {
+                    "title": "File I/O",
+                    "explanation": "Java provides various classes for file I/O operations, including reading and writing text and binary files.",
+                    "code": "import java.io.*;\nimport java.nio.file.*;\n\n// Writing to file\ntry (PrintWriter writer = new PrintWriter(\"output.txt\")) {\n    writer.println(\"Hello, World!\");\n    writer.printf(\"Number: %d%n\", 42);\n}\n\n// Reading from file\ntry (BufferedReader reader = new BufferedReader(\n        new FileReader(\"input.txt\"))) {\n    String line;\n    while ((line = reader.readLine()) != null) {\n        System.out.println(line);\n    }\n}\n\n// Using NIO for file operations\nPath path = Paths.get(\"data.txt\");\nList<String> lines = Files.readAllLines(path);\nFiles.write(path, lines, StandardOpenOption.APPEND);"
+                }
+            ]
+        },
+        "http": {
+            "description": "HTTP client and server in Java",
+            "examples": [
+                {
+                    "title": "HttpURLConnection",
+                    "explanation": "Java's built-in HttpURLConnection class provides basic HTTP client functionality. It's part of the standard library but can be verbose to use.",
+                    "code": "import java.io.*;\nimport java.net.*;\n\n// GET request\nURL url = new URL(\"https://api.example.com/data\");\nHttpURLConnection conn = (HttpURLConnection) url.openConnection();\nconn.setRequestMethod(\"GET\");\n\nint responseCode = conn.getResponseCode();\nif (responseCode == HttpURLConnection.HTTP_OK) {\n    BufferedReader in = new BufferedReader(\n        new InputStreamReader(conn.getInputStream()));\n    String inputLine;\n    StringBuilder response = new StringBuilder();\n\n    while ((inputLine = in.readLine()) != null) {\n        response.append(inputLine);\n    }\n    in.close();\n\n    System.out.println(response.toString());\n}\n\n// POST request with JSON\nURL postUrl = new URL(\"https://api.example.com/users\");\nHttpURLConnection postConn = (HttpURLConnection) postUrl.openConnection();\npostConn.setRequestMethod(\"POST\");\npostConn.setRequestProperty(\"Content-Type\", \"application/json\");\npostConn.setRequestProperty(\"Authorization\", \"Bearer token123\");\npostConn.setDoOutput(true);\n\nString jsonInputString = \"{\\\"name\\\":\\\"John\\\",\\\"age\\\":30}\";\n\ntry(OutputStream os = postConn.getOutputStream()) {\n    byte[] input = jsonInputString.getBytes(\"utf-8\");\n    os.write(input, 0, input.length);\n}\n\nint postResponseCode = postConn.getResponseCode();\nif (postResponseCode == HttpURLConnection.HTTP_CREATED) {\n    try(BufferedReader br = new BufferedReader(\n        new InputStreamReader(postConn.getInputStream(), \"utf-8\"))) {\n        StringBuilder response = new StringBuilder();\n        String responseLine = null;\n        while ((responseLine = br.readLine()) != null) {\n            response.append(responseLine.trim());\n        }\n        System.out.println(response.toString());\n    }\n}"
+                },
+                {
+                    "title": "HttpClient (Java 11+)",
+                    "explanation": "Java 11 introduced a new HttpClient API that provides a more modern and flexible way to make HTTP requests.",
+                    "code": "import java.net.URI;\nimport java.net.http.*;\nimport java.net.http.HttpResponse.BodyHandlers;\n\n// GET request\nHttpClient client = HttpClient.newHttpClient();\nHttpRequest request = HttpRequest.newBuilder()\n    .uri(URI.create(\"https://api.example.com/data\"))\n    .build();\n\nHttpResponse<String> response = client.send(request, BodyHandlers.ofString());\nSystem.out.println(response.body());\n\n// POST request with JSON\nString json = \"{\\\"name\\\":\\\"John\\\",\\\"age\\\":30}\";\n\nHttpRequest postRequest = HttpRequest.newBuilder()\n    .uri(URI.create(\"https://api.example.com/users\"))\n    .header(\"Content-Type\", \"application/json\")\n    .header(\"Authorization\", \"Bearer token123\")\n    .POST(HttpRequest.BodyPublishers.ofString(json))\n    .build();\n\nHttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());\nSystem.out.println(postResponse.body());\n\n// Async request\nclient.sendAsync(request, BodyHandlers.ofString())\n    .thenApply(HttpResponse::body)\n    .thenAccept(System.out::println);"
+                },
+                {
+                    "title": "Spring WebClient",
+                    "explanation": "Spring's WebClient is a reactive HTTP client that provides a fluent API and supports both synchronous and asynchronous operations.",
+                    "code": "import org.springframework.web.reactive.function.client.WebClient;\nimport reactor.core.publisher.Mono;\n\n// Create WebClient\nWebClient client = WebClient.builder()\n    .baseUrl(\"https://api.example.com\")\n    .defaultHeader(\"Authorization\", \"Bearer token123\")\n    .build();\n\n// GET request\nMono<String> response = client.get()\n    .uri(\"/data\")\n    .retrieve()\n    .bodyToMono(String.class);\n\nresponse.subscribe(System.out::println);\n\n// POST request with JSON\nMono<String> postResponse = client.post()\n    .uri(\"/users\")\n    .contentType(MediaType.APPLICATION_JSON)\n    .bodyValue(\"{\\\"name\\\":\\\"John\\\",\\\"age\\\":30}\")\n    .retrieve()\n    .bodyToMono(String.class);\n\npostResponse.subscribe(System.out::println);\n\n// Error handling\nclient.get()\n    .uri(\"/data\")\n    .retrieve()\n    .onStatus(HttpStatus::is4xxClientError, response -> {\n        return Mono.error(new RuntimeException(\"Client error\"));\n    })\n    .onStatus(HttpStatus::is5xxServerError, response -> {\n        return Mono.error(new RuntimeException(\"Server error\"));\n    })\n    .bodyToMono(String.class);"
+                },
+                {
+                    "title": "Spring Boot REST Controller",
+                    "explanation": "Spring Boot makes it easy to create RESTful web services with its @RestController annotation and various HTTP method annotations.",
+                    "code": "import org.springframework.web.bind.annotation.*;\nimport org.springframework.http.*;\n\n@RestController\n@RequestMapping(\"/api\")\npublic class UserController {\n\n    @GetMapping(\"/users\")\n    public ResponseEntity<List<User>> getUsers() {\n        List<User> users = userService.getAllUsers();\n        return ResponseEntity.ok(users);\n    }\n\n    @GetMapping(\"/users/{id}\")\n    public ResponseEntity<User> getUser(@PathVariable Long id) {\n        User user = userService.getUserById(id);\n        if (user == null) {\n            return ResponseEntity.notFound().build();\n        }\n        return ResponseEntity.ok(user);\n    }\n\n    @PostMapping(\"/users\")\n    public ResponseEntity<User> createUser(@RequestBody User user) {\n        User createdUser = userService.createUser(user);\n        return ResponseEntity\n            .created(URI.create(\"/api/users/\" + createdUser.getId()))\n            .body(createdUser);\n    }\n\n    @PutMapping(\"/users/{id}\")\n    public ResponseEntity<User> updateUser(\n            @PathVariable Long id, \n            @RequestBody User user) {\n        User updatedUser = userService.updateUser(id, user);\n        if (updatedUser == null) {\n            return ResponseEntity.notFound().build();\n        }\n        return ResponseEntity.ok(updatedUser);\n    }\n\n    @DeleteMapping(\"/users/{id}\")\n    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {\n        if (userService.deleteUser(id)) {\n            return ResponseEntity.noContent().build();\n        }\n        return ResponseEntity.notFound().build();\n    }\n}"
+                }
+            ]
+        },
+        "string_manipulation": {
+            "description": "String manipulation in Java",
+            "examples": [
+                {
+                    "title": "Basic String Operations",
+                    "explanation": "Java's String class provides a rich set of string operations. Strings are immutable in Java.",
+                    "code": "// String concatenation\nString str1 = \"Hello\";\nString str2 = \"World\";\nString result = str1 + \" \" + str2;\nSystem.out.println(result);\n\n// String formatting\nString name = \"John\";\nint age = 30;\nString formatted = String.format(\"Name: %s, Age: %d\", name, age);\nSystem.out.println(formatted);\n\n// String length\nint length = \"Hello\".length();\nSystem.out.println(length);\n\n// String comparison\nboolean equal = \"hello\".equals(\"HELLO\");\nboolean equalIgnoreCase = \"hello\".equalsIgnoreCase(\"HELLO\");\nSystem.out.println(equal + \" \" + equalIgnoreCase);\n\n// String contains\nboolean contains = \"Hello World\".contains(\"World\");\nSystem.out.println(contains);\n\n// String splitting\nString[] parts = \"Hello,World,Java\".split(\",\");\nSystem.out.println(Arrays.toString(parts));\n\n// String joining (Java 8+)\nString joined = String.join(\" \", \"Hello\", \"World\", \"Java\");\nSystem.out.println(joined);\n\n// String replacement\nString replaced = \"Hello World\".replace(\"World\", \"Java\");\nSystem.out.println(replaced);\n\n// String trimming\nString trimmed = \"  Hello World  \".trim();\nSystem.out.println(trimmed);\n\n// String case conversion\nString upper = \"hello\".toUpperCase();\nString lower = \"HELLO\".toLowerCase();\nSystem.out.println(upper + \" \" + lower);\n\n// String substring\nString substring = \"Hello World\".substring(0, 5);\nSystem.out.println(substring);"
+                },
+                {
+                    "title": "Regular Expressions",
+                    "explanation": "Java's Pattern and Matcher classes provide regular expression functionality.",
+                    "code": "import java.util.regex.*;\n\n// Create pattern\nPattern pattern = Pattern.compile(\"\\\\d+\");\n\n// Match string\nMatcher matcher = pattern.matcher(\"123\");\nboolean matched = matcher.matches();\nSystem.out.println(matched);\n\n// Find all matches\nString input = \"123 abc 456 def\";\nmatcher = pattern.matcher(input);\nwhile (matcher.find()) {\n    System.out.println(\"Match: \" + matcher.group());\n}\n\n// Replace matches\nString replaced = input.replaceAll(\"\\\\d+\", \"#\");\nSystem.out.println(replaced);\n\n// Capture groups\nPattern emailPattern = Pattern.compile(\"(\\\\w+)@(\\\\w+)\\\\.(\\\\w+)\");\nString email = \"john@example.com\";\nmatcher = emailPattern.matcher(email);\nif (matcher.matches()) {\n    for (int i = 1; i <= matcher.groupCount(); i++) {\n        System.out.println(\"Group \" + i + \": \" + matcher.group(i));\n    }\n}\n\n// Split by pattern\nString[] split = pattern.split(\"123abc456def\");\nSystem.out.println(Arrays.toString(split));"
+                }
+            ]
+        },
+        "date_time": {
+            "description": "Date and time handling in Java",
+            "examples": [
+                {
+                    "title": "Basic Date/Time Operations",
+                    "explanation": "Java 8+ provides the java.time package for comprehensive date and time handling.",
+                    "code": "import java.time.*;\nimport java.time.format.DateTimeFormatter;\nimport java.time.temporal.ChronoUnit;\n\n// Current time\nLocalDateTime now = LocalDateTime.now();\nSystem.out.println(\"Current time: \" + now);\n\n// Format time\nDateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\");\nString formatted = now.format(formatter);\nSystem.out.println(\"Formatted time: \" + formatted);\n\n// Parse time\nLocalDate parsed = LocalDate.parse(\"2023-01-01\");\nSystem.out.println(\"Parsed date: \" + parsed);\n\n// Time arithmetic\nLocalDateTime tomorrow = now.plusDays(1);\nSystem.out.println(\"Tomorrow: \" + tomorrow);\n\n// Time comparison\nboolean isAfter = tomorrow.isAfter(now);\nSystem.out.println(\"Is tomorrow after now? \" + isAfter);\n\n// Timezone\nZoneId nyZone = ZoneId.of(\"America/New_York\");\nZonedDateTime nyTime = now.atZone(nyZone);\nSystem.out.println(\"New York time: \" + nyTime);\n\n// Unix timestamp\nlong timestamp = now.toEpochSecond(ZoneOffset.UTC);\nSystem.out.println(\"Unix timestamp: \" + timestamp);\n\n// Time components\nSystem.out.printf(\"Components: %d-%02d-%02d %02d:%02d:%02d%n\",\n    now.getYear(), now.getMonthValue(), now.getDayOfMonth(),\n    now.getHour(), now.getMinute(), now.getSecond());\n\n// Duration\nDuration duration = Duration.between(now, tomorrow);\nSystem.out.println(\"Duration: \" + duration.toHours() + \" hours\");\n\n// Period\nPeriod period = Period.between(parsed, LocalDate.now());\nSystem.out.println(\"Period: \" + period.getYears() + \" years\");"
+                }
+            ]
+        },
+        "database": {
+            "description": "Database operations in Java",
+            "examples": [
+                {
+                    "title": "JDBC Basics",
+                    "explanation": "Java Database Connectivity (JDBC) provides a standard API for database operations.",
+                    "code": "import java.sql.*;\n\n// Connection setup\nString url = \"jdbc:mysql://localhost:3306/mydb\";\nString username = \"user\";\nString password = \"pass\";\n\ntry (Connection conn = DriverManager.getConnection(url, username, password)) {\n    // Create statement\n    Statement stmt = conn.createStatement();\n    \n    // Execute query\n    ResultSet rs = stmt.executeQuery(\"SELECT * FROM users\");\n    \n    // Process results\n    while (rs.next()) {\n        int id = rs.getInt(\"id\");\n        String name = rs.getString(\"name\");\n        System.out.println(id + \": \" + name);\n    }\n    \n    // Prepared statement\n    PreparedStatement pstmt = conn.prepareStatement(\n        \"INSERT INTO users (name, email) VALUES (?, ?)\");\n    pstmt.setString(1, \"John\");\n    pstmt.setString(2, \"john@example.com\");\n    pstmt.executeUpdate();\n}"
+                },
+                {
+                    "title": "Transactions",
+                    "explanation": "JDBC supports transactions for ensuring data consistency.",
+                    "code": "try (Connection conn = DriverManager.getConnection(url, username, password)) {\n    // Disable auto-commit\n    conn.setAutoCommit(false);\n    \n    try {\n        // Execute multiple operations\n        PreparedStatement pstmt1 = conn.prepareStatement(\n            \"UPDATE accounts SET balance = balance - ? WHERE id = ?\");\n        pstmt1.setDouble(1, 100.0);\n        pstmt1.setInt(2, 1);\n        pstmt1.executeUpdate();\n        \n        PreparedStatement pstmt2 = conn.prepareStatement(\n            \"UPDATE accounts SET balance = balance + ? WHERE id = ?\");\n        pstmt2.setDouble(1, 100.0);\n        pstmt2.setInt(2, 2);\n        pstmt2.executeUpdate();\n        \n        // Commit transaction\n        conn.commit();\n    } catch (SQLException e) {\n        // Rollback on error\n        conn.rollback();\n        throw e;\n    }\n}"
+                },
+                {
+                    "title": "Hibernate ORM",
+                    "explanation": "Hibernate is a popular ORM framework that simplifies database operations.",
+                    "code": "import org.hibernate.*;\nimport javax.persistence.*;\n\n// Entity class\n@Entity\n@Table(name = \"users\")\nclass User {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    \n    @Column(name = \"name\")\n    private String name;\n    \n    @Column(name = \"email\")\n    private String email;\n    \n    // Getters and setters\n}\n\n// Using Hibernate\nSessionFactory factory = new Configuration()\n    .configure()\n    .addAnnotatedClass(User.class)\n    .buildSessionFactory();\n\ntry (Session session = factory.openSession()) {\n    // Begin transaction\n    session.beginTransaction();\n    \n    // Create user\n    User user = new User();\n    user.setName(\"John\");\n    user.setEmail(\"john@example.com\");\n    session.save(user);\n    \n    // Query users\n    List<User> users = session.createQuery(\"FROM User\", User.class)\n        .getResultList();\n    \n    // Commit transaction\n    session.getTransaction().commit();\n}"
+                }
+            ]
+        },
+        "json_xml": {
+            "description": "JSON and XML handling in Java",
+            "examples": [
+                {
+                    "title": "JSON Processing",
+                    "explanation": "Java provides several libraries for JSON processing, including Jackson and Gson.",
+                    "code": "import com.fasterxml.jackson.databind.ObjectMapper;\n\n// JSON to Object\nObjectMapper mapper = new ObjectMapper();\nString json = \"{\\\"name\\\":\\\"John\\\",\\\"age\\\":30}\";\n\n// Parse JSON\nUser user = mapper.readValue(json, User.class);\n\n// Object to JSON\nString jsonOutput = mapper.writeValueAsString(user);\n\n// JSON Schema validation\nJsonSchemaFactory factory = JsonSchemaFactory.byDefault();\nJsonSchema schema = factory.getSchema(\n    new URL(\"file:schema.json\"));\nJsonNode jsonNode = mapper.readTree(json);\nValidationReport report = schema.validate(jsonNode);"
+                },
+                {
+                    "title": "XML Processing",
+                    "explanation": "Java provides several APIs for XML processing, including DOM, SAX, and JAXB.",
+                    "code": "import javax.xml.parsers.*;\nimport org.w3c.dom.*;\n\n// DOM parsing\nDocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();\nDocumentBuilder builder = factory.newDocumentBuilder();\nDocument doc = builder.parse(new File(\"data.xml\"));\n\n// Get elements\nNodeList users = doc.getElementsByTagName(\"user\");\nfor (int i = 0; i < users.getLength(); i++) {\n    Element user = (Element) users.item(i);\n    String name = user.getElementsByTagName(\"name\")\n        .item(0).getTextContent();\n    String age = user.getElementsByTagName(\"age\")\n        .item(0).getTextContent();\n}\n\n// JAXB (Java 11+)\nJAXBContext context = JAXBContext.newInstance(User.class);\nMarshaller marshaller = context.createMarshaller();\nmarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);\nmarshaller.marshal(user, new File(\"user.xml\"));"
+                }
+            ]
+        },
+        "command_line": {
+            "description": "Command line argument handling in Java",
+            "examples": [
+                {
+                    "title": "Basic Argument Parsing",
+                    "explanation": "Java provides basic command line argument handling through the main method's args parameter.",
+                    "code": "public class Main {\n    public static void main(String[] args) {\n        // Basic argument access\n        if (args.length > 0) {\n            System.out.println(\"First argument: \" + args[0]);\n        }\n        \n        // Argument parsing\n        for (int i = 0; i < args.length; i++) {\n            if (args[i].equals(\"--name\")) {\n                String name = args[++i];\n                System.out.println(\"Name: \" + name);\n            } else if (args[i].equals(\"--age\")) {\n                int age = Integer.parseInt(args[++i]);\n                System.out.println(\"Age: \" + age);\n            }\n        }\n    }\n}"
+                },
+                {
+                    "title": "Apache Commons CLI",
+                    "explanation": "Apache Commons CLI provides a more robust command line argument parsing.",
+                    "code": "import org.apache.commons.cli.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Options options = new Options();\n        \n        // Define options\n        options.addOption(\"n\", \"name\", true, \"User name\");\n        options.addOption(\"a\", \"age\", true, \"User age\");\n        options.addOption(\"h\", \"help\", false, \"Show help\");\n        \n        // Parse arguments\n        CommandLineParser parser = new DefaultParser();\n        try {\n            CommandLine cmd = parser.parse(options, args);\n            \n            if (cmd.hasOption(\"help\")) {\n                HelpFormatter formatter = new HelpFormatter();\n                formatter.printHelp(\"myapp\", options);\n                return;\n            }\n            \n            String name = cmd.getOptionValue(\"name\");\n            String age = cmd.getOptionValue(\"age\");\n            \n            System.out.println(\"Name: \" + name);\n            System.out.println(\"Age: \" + age);\n        } catch (ParseException e) {\n            System.err.println(\"Error: \" + e.getMessage());\n        }\n    }\n}"
+                },
+                {
+                    "title": "Environment Variables",
+                    "explanation": "Java provides access to environment variables and system properties.",
+                    "code": "// Environment variables\nString path = System.getenv(\"PATH\");\nString home = System.getenv(\"HOME\");\n\n// System properties\nString javaHome = System.getProperty(\"java.home\");\nString osName = System.getProperty(\"os.name\");\n\n// Setting properties\nSystem.setProperty(\"myapp.config\", \"config.properties\");\n\n// Reading properties file\ntry (InputStream input = new FileInputStream(\"config.properties\")) {\n    Properties prop = new Properties();\n    prop.load(input);\n    \n    String dbUrl = prop.getProperty(\"db.url\");\n    String dbUser = prop.getProperty(\"db.user\");\n}"
+                }
+            ]
+        },
+        "testing": {
+            "description": "Testing in Java",
+            "examples": [
+                {
+                    "title": "JUnit Basics",
+                    "explanation": "JUnit is the standard testing framework for Java.",
+                    "code": "import org.junit.jupiter.api.*;\nimport static org.junit.jupiter.api.Assertions.*;\n\nclass CalculatorTest {\n    private Calculator calculator;\n    \n    @BeforeEach\n    void setUp() {\n        calculator = new Calculator();\n    }\n    \n    @Test\n    void testAddition() {\n        assertEquals(4, calculator.add(2, 2));\n    }\n    \n    @Test\n    void testDivision() {\n        assertThrows(ArithmeticException.class, () -> {\n            calculator.divide(1, 0);\n        });\n    }\n    \n    @Test\n    @DisplayName(\"Test with multiple assertions\")\n    void testMultiple() {\n        assertAll(\n            () -> assertEquals(4, calculator.add(2, 2)),\n            () -> assertEquals(0, calculator.subtract(2, 2)),\n            () -> assertEquals(4, calculator.multiply(2, 2))\n        );\n    }\n}"
+                },
+                {
+                    "title": "Mocking with Mockito",
+                    "explanation": "Mockito is a popular mocking framework for Java.",
+                    "code": "import static org.mockito.Mockito.*;\n\nclass UserServiceTest {\n    @Mock\n    private UserRepository userRepository;\n    \n    @InjectMocks\n    private UserService userService;\n    \n    @BeforeEach\n    void setUp() {\n        MockitoAnnotations.openMocks(this);\n    }\n    \n    @Test\n    void testGetUser() {\n        // Setup mock\n        User mockUser = new User(\"John\", 30);\n        when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));\n        \n        // Test\n        User user = userService.getUser(1L);\n        \n        // Verify\n        assertEquals(\"John\", user.getName());\n        verify(userRepository).findById(1L);\n    }\n}"
+                }
+            ]
+        },
+        "logging": {
+            "description": "Logging in Java",
+            "examples": [
+                {
+                    "title": "SLF4J and Logback",
+                    "explanation": "SLF4J is a logging facade, and Logback is a popular implementation.",
+                    "code": "import org.slf4j.*;\n\nclass MyClass {\n    private static final Logger logger = LoggerFactory.getLogger(MyClass.class);\n    \n    public void doSomething() {\n        // Different log levels\n        logger.trace(\"Trace message\");\n        logger.debug(\"Debug message\");\n        logger.info(\"Info message\");\n        logger.warn(\"Warning message\");\n        logger.error(\"Error message\", new Exception(\"Something went wrong\"));\n        \n        // Parameterized logging\n        String name = \"John\";\n        int age = 30;\n        logger.info(\"User {} is {} years old\", name, age);\n        \n        // Structured logging\n        logger.info(\"User login\", kv(\"username\", name), kv(\"ip\", \"127.0.0.1\"));\n    }\n}"
+                },
+                {
+                    "title": "Log Configuration",
+                    "explanation": "Logback configuration for different appenders and log rotation.",
+                    "code": "<!-- logback.xml -->\n<configuration>\n    <appender name=\"CONSOLE\" class=\"ch.qos.logback.core.ConsoleAppender\">\n        <encoder>\n            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>\n        </encoder>\n    </appender>\n    \n    <appender name=\"FILE\" class=\"ch.qos.logback.core.rolling.RollingFileAppender\">\n        <file>logs/myapp.log</file>\n        <rollingPolicy class=\"ch.qos.logback.core.rolling.TimeBasedRollingPolicy\">\n            <fileNamePattern>logs/myapp.%d{yyyy-MM-dd}.log</fileNamePattern>\n            <maxHistory>30</maxHistory>\n        </rollingPolicy>\n        <encoder>\n            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>\n        </encoder>\n    </appender>\n    \n    <root level=\"INFO\">\n        <appender-ref ref=\"CONSOLE\" />\n        <appender-ref ref=\"FILE\" />\n    </root>\n</configuration>"
+                }
+            ]
+        },
+        "package_management": {
+            "description": "Package and dependency management in Java",
+            "examples": [
+                {
+                    "title": "Maven Basics",
+                    "explanation": "Maven is a popular build and dependency management tool for Java.",
+                    "code": "<!-- pom.xml -->\n<project>\n    <modelVersion>4.0.0</modelVersion>\n    <groupId>com.example</groupId>\n    <artifactId>myapp</artifactId>\n    <version>1.0-SNAPSHOT</version>\n    \n    <dependencies>\n        <dependency>\n            <groupId>org.springframework</groupId>\n            <artifactId>spring-web</artifactId>\n            <version>5.3.0</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-databind</artifactId>\n            <version>2.12.0</version>\n        </dependency>\n    </dependencies>\n    \n    <build>\n        <plugins>\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-compiler-plugin</artifactId>\n                <version>3.8.1</version>\n                <configuration>\n                    <source>11</source>\n                    <target>11</target>\n                </configuration>\n            </plugin>\n        </plugins>\n    </build>\n</project>"
+                },
+                {
+                    "title": "Gradle Basics",
+                    "explanation": "Gradle is another popular build tool that uses a Groovy-based DSL.",
+                    "code": "// build.gradle\nplugins {\n    id 'java'\n    id 'application'\n}\n\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    implementation 'org.springframework:spring-web:5.3.0'\n    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.0'\n    testImplementation 'junit:junit:4.13'\n}\n\njava {\n    sourceCompatibility = JavaVersion.VERSION_11\n    targetCompatibility = JavaVersion.VERSION_11\n}\n\napplication {\n    mainClass = 'com.example.Main'\n}"
+                },
+                {
+                    "title": "Module System",
+                    "explanation": "Java 9+ introduced a module system for better encapsulation and dependency management.",
+                    "code": "// module-info.java\nmodule com.example.myapp {\n    requires java.base;\n    requires java.sql;\n    requires transitive com.example.utils;\n    \n    exports com.example.myapp.api;\n    exports com.example.myapp.internal to com.example.tests;\n    \n    opens com.example.myapp.model;\n}"
+                }
+            ]
+        },
+        "gui_development": {
+            "description": "Building desktop GUIs in Java using Swing and JavaFX. Swing provides lightweight components with good portability, while JavaFX offers modern UI features and better styling capabilities.",
+            "examples": [
+                {
+                    "title": "Basic Swing Window with Button",
+                    "explanation": "A simple Swing application with a button that updates a label when clicked.",
+                    "code": "import javax.swing.*;\nimport java.awt.event.*;\n\npublic class HelloWorldGUI {\n    public static void main(String[] args) {\n        JFrame frame = new JFrame(\"Hello GUI\");\n        JButton button = new JButton(\"Click Me\");\n        JLabel label = new JLabel(\"Not clicked yet\");\n\n        button.addActionListener(e -> label.setText(\"Button Clicked!\"));\n\n        JPanel panel = new JPanel();\n        panel.add(button);\n        panel.add(label);\n\n        frame.setContentPane(panel);\n        frame.setSize(300, 100);\n        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        frame.setVisible(true);\n    }\n}"
+                },
+                {
+                    "title": "JavaFX Basic Window",
+                    "explanation": "A JavaFX window with a button and a label. JavaFX apps require launching via the Application class.",
+                    "code": "import javafx.application.Application;\nimport javafx.scene.Scene;\nimport javafx.scene.control.Button;\nimport javafx.scene.control.Label;\nimport javafx.scene.layout.VBox;\nimport javafx.stage.Stage;\n\npublic class HelloFX extends Application {\n    public static void main(String[] args) {\n        launch();\n    }\n\n    @Override\n    public void start(Stage stage) {\n        Label label = new Label(\"Welcome to JavaFX\");\n        Button button = new Button(\"Click Me\");\n        button.setOnAction(e -> label.setText(\"Clicked!\"));\n\n        VBox root = new VBox(10, label, button);\n        Scene scene = new Scene(root, 300, 150);\n        stage.setTitle(\"JavaFX App\");\n        stage.setScene(scene);\n        stage.show();\n    }\n}"
+                },
+                {
+                    "title": "Swing Table Example (JTable)",
+                    "explanation": "Using JTable to show tabular data in Swing.",
+                    "code": "import javax.swing.*;\n\npublic class TableExample {\n    public static void main(String[] args) {\n        JFrame frame = new JFrame(\"Table Example\");\n        String[] columns = {\"ID\", \"Name\", \"Age\"};\n        String[][] data = {\n            {\"1\", \"Alice\", \"30\"},\n            {\"2\", \"Bob\", \"25\"},\n            {\"3\", \"Carol\", \"27\"}\n        };\n        JTable table = new JTable(data, columns);\n        JScrollPane scrollPane = new JScrollPane(table);\n\n        frame.add(scrollPane);\n        frame.setSize(400, 200);\n        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        frame.setVisible(true);\n    }\n}"
+                },
+                {
+                    "title": "JavaFX Canvas Drawing",
+                    "explanation": "JavaFX allows drawing on a Canvas node using a GraphicsContext.",
+                    "code": "import javafx.application.Application;\nimport javafx.scene.Scene;\nimport javafx.scene.canvas.Canvas;\nimport javafx.scene.canvas.GraphicsContext;\nimport javafx.scene.layout.StackPane;\nimport javafx.scene.paint.Color;\nimport javafx.stage.Stage;\n\npublic class CanvasDemo extends Application {\n    public static void main(String[] args) {\n        launch();\n    }\n\n    @Override\n    public void start(Stage stage) {\n        Canvas canvas = new Canvas(300, 200);\n        GraphicsContext gc = canvas.getGraphicsContext2D();\n        gc.setFill(Color.LIGHTBLUE);\n        gc.fillRect(0, 0, 300, 200);\n        gc.setFill(Color.RED);\n        gc.fillOval(100, 50, 100, 100);\n\n        StackPane root = new StackPane(canvas);\n        Scene scene = new Scene(root);\n        stage.setScene(scene);\n        stage.setTitle(\"JavaFX Canvas\");\n        stage.show();\n    }\n}"
+                },
+                {
+                    "title": "Swing Dialogs (JOptionPane)",
+                    "explanation": "Swing provides easy-to-use modal dialogs for input, confirmation, and messages.",
+                    "code": "import javax.swing.*;\n\npublic class DialogExample {\n    public static void main(String[] args) {\n        String name = JOptionPane.showInputDialog(null, \"Enter your name:\");\n        if (name != null) {\n            JOptionPane.showMessageDialog(null, \"Hello, \" + name);\n        }\n    }\n}"
+                },
+                {
+                    "title": "Swing Layouts (BorderLayout and GridLayout)",
+                    "explanation": "Swing has several layout managers. Here’s an example using BorderLayout and GridLayout.",
+                    "code": "import javax.swing.*;\nimport java.awt.*;\n\npublic class LayoutExample {\n    public static void main(String[] args) {\n        JFrame frame = new JFrame(\"Layouts\");\n        frame.setLayout(new BorderLayout());\n\n        JButton north = new JButton(\"North\");\n        JButton south = new JButton(\"South\");\n        JButton east = new JButton(\"East\");\n        JButton west = new JButton(\"West\");\n        JPanel center = new JPanel(new GridLayout(2, 2));\n        center.add(new JButton(\"1\"));\n        center.add(new JButton(\"2\"));\n        center.add(new JButton(\"3\"));\n        center.add(new JButton(\"4\"));\n\n        frame.add(north, BorderLayout.NORTH);\n        frame.add(south, BorderLayout.SOUTH);\n        frame.add(east, BorderLayout.EAST);\n        frame.add(west, BorderLayout.WEST);\n        frame.add(center, BorderLayout.CENTER);\n\n        frame.setSize(400, 300);\n        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n        frame.setVisible(true);\n    }\n}"
+                },
+                {
+                    "title": "JavaFX Scene Switching",
+                    "explanation": "JavaFX supports swapping between scenes or updating root nodes to simulate navigation.",
+                    "code": "import javafx.application.Application;\nimport javafx.scene.Scene;\nimport javafx.scene.control.Button;\nimport javafx.scene.layout.StackPane;\nimport javafx.stage.Stage;\n\npublic class SceneSwitcher extends Application {\n    @Override\n    public void start(Stage stage) {\n        Button toSecond = new Button(\"Go to Second Scene\");\n        StackPane firstLayout = new StackPane(toSecond);\n        Scene firstScene = new Scene(firstLayout, 300, 200);\n\n        Button toFirst = new Button(\"Back to First Scene\");\n        StackPane secondLayout = new StackPane(toFirst);\n        Scene secondScene = new Scene(secondLayout, 300, 200);\n\n        toSecond.setOnAction(e -> stage.setScene(secondScene));\n        toFirst.setOnAction(e -> stage.setScene(firstScene));\n\n        stage.setTitle(\"Scene Switcher\");\n        stage.setScene(firstScene);\n        stage.show();\n    }\n\n    public static void main(String[] args) {\n        launch();\n    }\n}"
+                },
+                {
+                    "title": "JavaFX Styling with CSS",
+                    "explanation": "You can apply styles in JavaFX using external or inline CSS.",
+                    "code": "import javafx.application.Application;\nimport javafx.scene.Scene;\nimport javafx.scene.control.Button;\nimport javafx.scene.layout.VBox;\nimport javafx.stage.Stage;\n\npublic class CSSStyledApp extends Application {\n    @Override\n    public void start(Stage stage) {\n        Button btn = new Button(\"Styled Button\");\n        VBox root = new VBox(btn);\n        root.setSpacing(10);\n\n        Scene scene = new Scene(root, 300, 200);\n        scene.getStylesheets().add(\"style.css\"); // style.css must be in resources\n\n        stage.setScene(scene);\n        stage.setTitle(\"CSS Styling in JavaFX\");\n        stage.show();\n    }\n\n    public static void main(String[] args) {\n        launch();\n    }\n}"
+                },
+                {
+                    "title": "JavaFX with FXML",
+                    "explanation": "FXML separates UI layout from business logic, similar to HTML/CSS for the web.",
+                    "code": "// Main.java\nimport javafx.application.Application;\nimport javafx.fxml.FXMLLoader;\nimport javafx.scene.Parent;\nimport javafx.scene.Scene;\nimport javafx.stage.Stage;\n\npublic class Main extends Application {\n    @Override\n    public void start(Stage primaryStage) throws Exception {\n        Parent root = FXMLLoader.load(getClass().getResource(\"sample.fxml\"));\n        primaryStage.setTitle(\"FXML Example\");\n        primaryStage.setScene(new Scene(root));\n        primaryStage.show();\n    }\n\n    public static void main(String[] args) {\n        launch(args);\n    }\n}"
+                },
+                {
+                    "title": "FXML File",
+                    "explanation": "FXML file associated with the JavaFX application. Should be saved as 'sample.fxml' in the same package.",
+                    "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<?import javafx.scene.control.*?>\n<?import javafx.scene.layout.VBox?>\n\n<VBox xmlns=\"http://javafx.com/javafx\" xmlns:fx=\"http://javafx.com/fxml\"\n      fx:controller=\"Controller\" spacing=\"10\" alignment=\"CENTER\">\n    <Label text=\"Hello FXML!\" />\n    <Button text=\"Click Me\" onAction=\"#handleClick\" />\n</VBox>"
+                },
+                {
+                    "title": "Controller.java (for FXML)",
+                    "explanation": "The controller class defines logic triggered by FXML-defined UI elements.",
+                    "code": "public class Controller {\n    public void handleClick() {\n        System.out.println(\"Button clicked from FXML\");\n    }\n}"
+                },
+                {
+                    "title": "MVC Pattern (JavaFX)",
+                    "explanation": "Organize JavaFX app with separate Model, View (FXML), and Controller.",
+                    "code": "// Model.java\npublic class Model {\n    private String message = \"MVC Rocks!\";\n    public String getMessage() { return message; }\n}"
+                },
+                {
+                    "title": "JavaFX Media Player",
+                    "explanation": "Play video/audio files using JavaFX MediaPlayer.",
+                    "code": "import javafx.application.Application;\nimport javafx.scene.Scene;\nimport javafx.scene.layout.StackPane;\nimport javafx.scene.media.Media;\nimport javafx.scene.media.MediaPlayer;\nimport javafx.scene.media.MediaView;\nimport javafx.stage.Stage;\n\nimport java.io.File;\n\npublic class MediaDemo extends Application {\n    @Override\n    public void start(Stage stage) {\n        String path = \"sample.mp4\"; // path to your video/audio file\n        Media media = new Media(new File(path).toURI().toString());\n        MediaPlayer player = new MediaPlayer(media);\n        MediaView view = new MediaView(player);\n\n        StackPane root = new StackPane(view);\n        stage.setScene(new Scene(root, 640, 480));\n        stage.setTitle(\"Media Demo\");\n        stage.show();\n\n        player.play();\n    }\n\n    public static void main(String[] args) {\n        launch();\n    }\n}"
+                },
+                {
+                    "title": "Packaging with Maven",
+                    "explanation": "Use Maven to manage dependencies and package your JavaFX app.",
+                    "code": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n  <modelVersion>4.0.0</modelVersion>\n  <groupId>com.example</groupId>\n  <artifactId>javafx-gui</artifactId>\n  <version>1.0</version>\n  <properties>\n    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\n    <javafx.version>20</javafx.version>\n  </properties>\n  <dependencies>\n    <dependency>\n      <groupId>org.openjfx</groupId>\n      <artifactId>javafx-controls</artifactId>\n      <version>${javafx.version}</version>\n    </dependency>\n  </dependencies>\n</project>"
+                },
+                {
+                    "title": "Deploying with JLink",
+                    "explanation": "Use JLink to create a custom runtime image for distribution (Java 9+).",
+                    "code": "jlink \\\n  --module-path $JAVA_HOME/jmods:target/libs \\\n  --add-modules your.module.name \\\n  --output myapp-runtime"
+                }
+            ]
+        }
+    }
+} 

@@ -1,0 +1,390 @@
+{
+    "name": "JavaScript",
+    "sections": {
+        "variables": {
+            "description": "Variable declaration and initialization in JavaScript",
+            "examples": [
+                {
+                    "title": "Variable declaration (var)",
+                    "explanation": "var has function scope and can be redeclared. It's hoisted to the top of its scope. Avoid using var in modern JavaScript.",
+                    "code": "var name = \"John\";\nvar age = 30;"
+                },
+                {
+                    "title": "Variable declaration (let)",
+                    "explanation": "let has block scope and cannot be redeclared in the same scope. It's the preferred way to declare variables that will change.",
+                    "code": "let name = \"John\";\nlet age = 30;"
+                },
+                {
+                    "title": "Constant declaration (const)",
+                    "explanation": "const has block scope and cannot be reassigned. Use const for values that shouldn't change. Note that for objects and arrays, the contents can still be modified.",
+                    "code": "const name = \"John\";\nconst age = 30;"
+                }
+            ]
+        },
+        "types": {
+            "description": "JavaScript types and type conversion",
+            "examples": [
+                {
+                    "title": "Primitive Types",
+                    "explanation": "JavaScript has 7 primitive types: string, number, bigint, boolean, undefined, symbol, and null. All primitives are immutable.",
+                    "code": "let str = \"Hello\";\nlet num = 42;\nlet big = 9007199254740991n;\nlet bool = true;\nlet undef = undefined;\nlet sym = Symbol('id');\nlet nul = null;"
+                },
+                {
+                    "title": "Type Conversion",
+                    "explanation": "JavaScript is dynamically typed and performs automatic type conversion. You can also explicitly convert types.",
+                    "code": "// String to Number\nlet num = Number(\"42\");\n\n// Number to String\nlet str = String(42);\n\n// Boolean conversion\nlet bool = Boolean(1); // true\nlet bool2 = Boolean(0); // false\n\n// Truthy/Falsy values\nlet truthy = Boolean(\"hello\"); // true\nlet falsy = Boolean(\"\"); // false"
+                },
+                {
+                    "title": "Type Checking",
+                    "explanation": "Use typeof to check primitive types, but note that null returns 'object' and arrays are also objects.",
+                    "code": "typeof \"hello\" // \"string\"\ntypeof 42 // \"number\"\ntypeof true // \"boolean\"\ntypeof undefined // \"undefined\"\ntypeof null // \"object\"\ntypeof [] // \"object\"\ntypeof {} // \"object\""
+                }
+            ]
+        },
+        "conditionals": {
+            "description": "Conditional statements in JavaScript",
+            "examples": [
+                {
+                    "title": "If statement",
+                    "explanation": "Basic if statement for conditional execution. JavaScript uses truthy/falsy values for conditions.",
+                    "code": "if (age > 18) {\n    console.log(\"Adult\");\n}"
+                },
+                {
+                    "title": "If-else statement",
+                    "explanation": "If-else statement for two-way branching. The else block executes when the if condition is false.",
+                    "code": "if (age > 18) {\n    console.log(\"Adult\");\n} else {\n    console.log(\"Minor\");\n}"
+                },
+                {
+                    "title": "Ternary operator",
+                    "explanation": "Shorthand for if-else statements. Returns one of two values based on a condition.",
+                    "code": "const status = age > 18 ? \"Adult\" : \"Minor\";"
+                },
+                {
+                    "title": "Switch statement",
+                    "explanation": "Switch statement for multiple conditions. Uses strict equality (===) for comparison. Don't forget break statements!",
+                    "code": "switch (day) {\n    case \"Monday\":\n        console.log(\"Start of week\");\n        break;\n    case \"Friday\":\n        console.log(\"End of week\");\n        break;\n    default:\n        console.log(\"Mid week\");\n}"
+                }
+            ]
+        },
+        "loops": {
+            "description": "Loop constructs in JavaScript",
+            "examples": [
+                {
+                    "title": "For loop",
+                    "explanation": "Traditional for loop with initialization, condition, and increment. Good for when you know the number of iterations.",
+                    "code": "for (let i = 0; i < 5; i++) {\n    console.log(i);\n}"
+                },
+                {
+                    "title": "While loop",
+                    "explanation": "While loop executes as long as the condition is true. Use when you don't know the number of iterations in advance.",
+                    "code": "let i = 0;\nwhile (i < 5) {\n    console.log(i);\n    i++;\n}"
+                },
+                {
+                    "title": "For...of loop",
+                    "explanation": "For...of loop iterates over iterable objects (arrays, strings, etc.). Simpler than traditional for loops for collections.",
+                    "code": "const names = [\"John\", \"Jane\", \"Doe\"];\nfor (const name of names) {\n    console.log(name);\n}"
+                }
+            ]
+        },
+        "functions": {
+            "description": "Function declaration in JavaScript",
+            "examples": [
+                {
+                    "title": "Function declaration",
+                    "explanation": "Function declarations are hoisted and can be called before they're defined. They create their own this context.",
+                    "code": "function greet(name) {\n    return `Hello, ${name}`;\n}"
+                },
+                {
+                    "title": "Arrow function",
+                    "explanation": "Arrow functions don't create their own this context and are always anonymous. They're more concise and often used for callbacks.",
+                    "code": "const greet = (name) => `Hello, ${name}`;"
+                },
+                {
+                    "title": "Anonymous function",
+                    "explanation": "Anonymous functions are functions without a name. They're often used as callbacks or immediately invoked.",
+                    "code": "const square = function(x) {\n    return x * x;\n};"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error handling in JavaScript",
+            "examples": [
+                {
+                    "title": "Try-catch block",
+                    "explanation": "Try-catch blocks handle exceptions. The catch block receives the error object which contains information about what went wrong.",
+                    "code": "try {\n    const result = 10 / 0;\n} catch (error) {\n    console.log(\"Cannot divide by zero\");\n}"
+                },
+                {
+                    "title": "Try-catch-finally",
+                    "explanation": "The finally block always executes, regardless of whether an exception was thrown. Useful for cleanup operations.",
+                    "code": "try {\n    const result = 10 / 0;\n} catch (error) {\n    console.log(\"Cannot divide by zero\");\n} finally {\n    console.log(\"Cleanup code\");\n}"
+                }
+            ]
+        },
+        "classes": {
+            "description": "Class declaration in JavaScript",
+            "examples": [
+                {
+                    "title": "Class definition",
+                    "explanation": "Classes in JavaScript are syntactic sugar over prototype-based inheritance. They support constructors, methods, and inheritance.",
+                    "code": "class Person {\n    constructor(name, age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    greet() {\n        return `Hello, my name is ${this.name}`;\n    }\n}"
+                }
+            ]
+        },
+        "arrays": {
+            "description": "Arrays and array-like objects in JavaScript",
+            "examples": [
+                {
+                    "title": "Array Declaration",
+                    "explanation": "JavaScript arrays are dynamic and can hold mixed types. They are zero-indexed and can be created using array literals or the Array constructor.",
+                    "code": "// Array literal\nconst arr1 = [1, 2, 3];\nconst arr2 = ['a', 'b', 'c'];\nconst mixed = [1, 'two', true, {name: 'John'}];\n\n// Array constructor\nconst arr3 = new Array(1, 2, 3);\nconst arr4 = new Array(5); // Creates array with length 5"
+                },
+                {
+                    "title": "Array Methods",
+                    "explanation": "JavaScript arrays have many built-in methods. Some methods modify the array (mutating), while others return a new array (non-mutating).",
+                    "code": "const numbers = [1, 2, 3, 4, 5];\n\n// Mutating methods\nnumbers.push(6);        // Add to end\nnumbers.pop();          // Remove from end\nnumbers.unshift(0);     // Add to start\nnumbers.shift();        // Remove from start\nnumbers.splice(2, 1);   // Remove at index\n\n// Non-mutating methods\nconst doubled = numbers.map(x => x * 2);\nconst filtered = numbers.filter(x => x > 2);\nconst sum = numbers.reduce((acc, x) => acc + x, 0);\nconst sliced = numbers.slice(1, 3);"
+                },
+                {
+                    "title": "Typed Arrays",
+                    "explanation": "Typed arrays provide a way to work with binary data. They are fixed-length and can only contain numbers of a specific type.",
+                    "code": "// Different typed arrays\nconst int8 = new Int8Array(4);    // 8-bit signed integers\nconst uint8 = new Uint8Array(4);  // 8-bit unsigned integers\nconst float32 = new Float32Array(4); // 32-bit floating point\n\n// Initialization\nconst buffer = new ArrayBuffer(16);\nconst view = new Int32Array(buffer);"
+                },
+                {
+                    "title": "Array-like Objects",
+                    "explanation": "Some objects in JavaScript are array-like (have length and indexed properties) but aren't true arrays. Examples include arguments, NodeList, and HTMLCollection.",
+                    "code": "// Converting array-like to array\nfunction example() {\n    // arguments is array-like\n    const args = Array.from(arguments);\n    // or\n    const args2 = [...arguments];\n}\n\n// NodeList to array\nconst elements = document.querySelectorAll('div');\nconst divArray = Array.from(elements);"
+                }
+            ]
+        },
+        "objects": {
+            "description": "Objects and object-oriented features in JavaScript",
+            "examples": [
+                {
+                    "title": "Object Creation",
+                    "explanation": "JavaScript objects can be created using object literals, constructor functions, or the class syntax (ES6+).",
+                    "code": "// Object literal\nconst obj1 = {\n    name: 'John',\n    age: 30,\n    greet() {\n        return `Hello, ${this.name}`;\n    }\n};\n\n// Constructor function\nfunction Person(name, age) {\n    this.name = name;\n    this.age = age;\n}\nPerson.prototype.greet = function() {\n    return `Hello, ${this.name}`;\n};\n\n// Class syntax (ES6+)\nclass Person {\n    constructor(name, age) {\n        this.name = name;\n        this.age = age;\n    }\n    greet() {\n        return `Hello, ${this.name}`;\n    }\n}"
+                },
+                {
+                    "title": "Prototypal Inheritance",
+                    "explanation": "JavaScript uses prototypal inheritance. Objects can inherit properties and methods from other objects through their prototype chain.",
+                    "code": "// Prototype chain example\nconst animal = {\n    speak() {\n        return 'Some sound';\n    }\n};\n\nconst dog = Object.create(animal);\ndog.speak = function() {\n    return 'Woof!';\n};\n\n// Class inheritance\nclass Animal {\n    speak() {\n        return 'Some sound';\n    }\n}\n\nclass Dog extends Animal {\n    speak() {\n        return 'Woof!';\n    }\n}"
+                },
+                {
+                    "title": "Object Methods",
+                    "explanation": "JavaScript provides several static methods on the Object constructor for working with objects.",
+                    "code": "const obj = { name: 'John', age: 30 };\n\n// Object methods\nObject.keys(obj);      // ['name', 'age']\nObject.values(obj);    // ['John', 30]\nObject.entries(obj);   // [['name', 'John'], ['age', 30]]\n\n// Property descriptors\nObject.defineProperty(obj, 'name', {\n    writable: false,\n    configurable: false\n});"
+                }
+            ]
+        },
+        "modules": {
+            "description": "Module system in JavaScript",
+            "examples": [
+                {
+                    "title": "ES Modules",
+                    "explanation": "ES modules provide a standardized way to organize and share code. They support both named and default exports.",
+                    "code": "// Exporting\n// Named exports\nexport const PI = 3.14;\nexport function greet(name) {\n    return `Hello, ${name}`;\n}\n\n// Default export\nexport default class Person {\n    constructor(name) {\n        this.name = name;\n    }\n}\n\n// Importing\nimport { PI, greet } from './utils.js';\nimport Person from './Person.js';\n\n// Import all\nimport * as utils from './utils.js';"
+                },
+                {
+                    "title": "CommonJS Modules",
+                    "explanation": "CommonJS is the module system used in Node.js. It uses require() and module.exports.",
+                    "code": "// Exporting\nmodule.exports = {\n    PI: 3.14,\n    greet: function(name) {\n        return `Hello, ${name}`;\n    }\n};\n\n// Importing\nconst utils = require('./utils.js');"
+                }
+            ]
+        },
+        "async": {
+            "description": "Asynchronous programming in JavaScript",
+            "examples": [
+                {
+                    "title": "Promises",
+                    "explanation": "Promises represent the eventual completion of an asynchronous operation. They can be chained and handle errors.",
+                    "code": "// Creating a promise\nconst promise = new Promise((resolve, reject) => {\n    setTimeout(() => resolve('Success!'), 1000);\n});\n\n// Using promises\npromise\n    .then(result => console.log(result))\n    .catch(error => console.error(error))\n    .finally(() => console.log('Done'));"
+                },
+                {
+                    "title": "Async/Await",
+                    "explanation": "Async/await provides a more synchronous-looking way to work with promises. It's syntactic sugar over promises.",
+                    "code": "async function fetchData() {\n    try {\n        const response = await fetch('https://api.example.com');\n        const data = await response.json();\n        return data;\n    } catch (error) {\n        console.error('Error:', error);\n    }\n}"
+                },
+                {
+                    "title": "Event Loop",
+                    "explanation": "JavaScript's event loop handles asynchronous operations. It uses a single-threaded model with a message queue.",
+                    "code": "console.log('Start');\n\nsetTimeout(() => {\n    console.log('Timeout callback');\n}, 0);\n\nPromise.resolve().then(() => {\n    console.log('Promise callback');\n});\n\nconsole.log('End');\n\n// Output order:\n// Start\n// End\n// Promise callback\n// Timeout callback"
+                }
+            ]
+        },
+        "io": {
+            "description": "Input/Output in JavaScript",
+            "examples": [
+                {
+                    "title": "Console I/O",
+                    "explanation": "JavaScript provides console methods for basic output and debugging. In Node.js, readline can be used for input.",
+                    "code": "// Console output\nconsole.log(\"Hello, World!\");\nconsole.error(\"Error message\");\nconsole.warn(\"Warning message\");\n\n// Formatted output\nconsole.log(\"Name: %s, Age: %d\", \"John\", 30);\nconsole.log(`Template literal: ${name}`);\n\n// Table output\nconsole.table([\n    { name: \"John\", age: 30 },\n    { name: \"Jane\", age: 25 }\n]);\n\n// Node.js input\nconst readline = require('readline').createInterface({\n    input: process.stdin,\n    output: process.stdout\n});\n\nreadline.question('What is your name? ', name => {\n    console.log(`Hello, ${name}!`);\n    readline.close();\n});"
+                },
+                {
+                    "title": "File I/O (Node.js)",
+                    "explanation": "Node.js provides the fs module for file system operations. Modern JavaScript can use the File System Access API in browsers.",
+                    "code": "// Node.js file operations\nconst fs = require('fs');\n\n// Writing to file\nfs.writeFile('output.txt', 'Hello, World!', err => {\n    if (err) console.error(err);\n});\n\n// Reading from file\nfs.readFile('input.txt', 'utf8', (err, data) => {\n    if (err) console.error(err);\n    console.log(data);\n});\n\n// Using promises\nconst { promises: fsPromises } = require('fs');\n\nasync function readWriteFile() {\n    try {\n        const data = await fsPromises.readFile('input.txt', 'utf8');\n        await fsPromises.writeFile('output.txt', data);\n    } catch (err) {\n        console.error(err);\n    }\n}"
+                },
+                {
+                    "title": "Browser File Operations",
+                    "explanation": "Modern browsers provide the File System Access API and FileReader for handling files.",
+                    "code": "// File input element\nconst fileInput = document.querySelector('input[type=\"file\"]');\n\nfileInput.addEventListener('change', async (event) => {\n    const file = event.target.files[0];\n    \n    // Using FileReader\n    const reader = new FileReader();\n    reader.onload = (e) => {\n        console.log(e.target.result);\n    };\n    reader.readAsText(file);\n    \n    // Using File System Access API\n    try {\n        const handle = await window.showSaveFilePicker();\n        const writable = await handle.createWritable();\n        await writable.write('Hello, World!');\n        await writable.close();\n    } catch (err) {\n        console.error(err);\n    }\n});"
+                }
+            ]
+        },
+        "http": {
+            "description": "HTTP requests and handling in JavaScript",
+            "examples": [
+                {
+                    "title": "Fetch API",
+                    "explanation": "The Fetch API provides a modern way to make HTTP requests in JavaScript. It returns Promises and supports async/await.",
+                    "code": "// GET request\nfetch('https://api.example.com/data')\n    .then(response => {\n        if (!response.ok) {\n            throw new Error('Network response was not ok');\n        }\n        return response.json();\n    })\n    .then(data => console.log(data))\n    .catch(error => console.error('Error:', error));\n\n// POST request with JSON\nfetch('https://api.example.com/users', {\n    method: 'POST',\n    headers: {\n        'Content-Type': 'application/json',\n        'Authorization': 'Bearer token123'\n    },\n    body: JSON.stringify({ name: 'John', age: 30 })\n})\n    .then(response => response.json())\n    .then(data => console.log(data))\n    .catch(error => console.error('Error:', error));\n\n// Using async/await\nasync function fetchData() {\n    try {\n        const response = await fetch('https://api.example.com/data');\n        if (!response.ok) {\n            throw new Error('Network response was not ok');\n        }\n        const data = await response.json();\n        console.log(data);\n    } catch (error) {\n        console.error('Error:', error);\n    }\n}"
+                },
+                {
+                    "title": "XMLHttpRequest",
+                    "explanation": "The older XMLHttpRequest API is still supported and useful for legacy code or when more control is needed.",
+                    "code": "// GET request\nconst xhr = new XMLHttpRequest();\nxhr.open('GET', 'https://api.example.com/data');\nxhr.setRequestHeader('Content-Type', 'application/json');\n\nxhr.onload = function() {\n    if (xhr.status === 200) {\n        const data = JSON.parse(xhr.responseText);\n        console.log(data);\n    } else {\n        console.error('Error:', xhr.statusText);\n    }\n};\n\nxhr.onerror = function() {\n    console.error('Network error');\n};\n\nxhr.send();\n\n// POST request\nconst xhr2 = new XMLHttpRequest();\nxhr2.open('POST', 'https://api.example.com/users');\nxhr2.setRequestHeader('Content-Type', 'application/json');\n\nxhr2.onload = function() {\n    if (xhr2.status === 201) {\n        const data = JSON.parse(xhr2.responseText);\n        console.log(data);\n    } else {\n        console.error('Error:', xhr2.statusText);\n    }\n};\n\nxhr2.send(JSON.stringify({ name: 'John', age: 30 }));"
+                },
+                {
+                    "title": "Axios",
+                    "explanation": "Axios is a popular HTTP client library that provides a more convenient API than fetch or XMLHttpRequest.",
+                    "code": "// GET request\naxios.get('https://api.example.com/data')\n    .then(response => console.log(response.data))\n    .catch(error => console.error('Error:', error));\n\n// POST request\naxios.post('https://api.example.com/users', {\n    name: 'John',\n    age: 30\n}, {\n    headers: {\n        'Content-Type': 'application/json',\n        'Authorization': 'Bearer token123'\n    }\n})\n    .then(response => console.log(response.data))\n    .catch(error => console.error('Error:', error));\n\n// Using async/await\nasync function fetchData() {\n    try {\n        const response = await axios.get('https://api.example.com/data');\n        console.log(response.data);\n    } catch (error) {\n        console.error('Error:', error);\n    }\n}\n\n// Interceptors\naxios.interceptors.request.use(\n    config => {\n        // Add auth token to every request\n        config.headers.Authorization = 'Bearer token123';\n        return config;\n    },\n    error => {\n        return Promise.reject(error);\n    }\n);\n\n// Error handling\naxios.interceptors.response.use(\n    response => response,\n    error => {\n        if (error.response) {\n            // Server responded with error\n            console.error('Error status:', error.response.status);\n            console.error('Error data:', error.response.data);\n        } else if (error.request) {\n            // Request made but no response\n            console.error('No response received:', error.request);\n        } else {\n            // Error in request setup\n            console.error('Error:', error.message);\n        }\n        return Promise.reject(error);\n    }\n);"
+                }
+            ]
+        },
+        "string_manipulation": {
+            "description": "String manipulation in JavaScript",
+            "examples": [
+                {
+                    "title": "Basic String Operations",
+                    "explanation": "JavaScript provides a rich set of string operations through built-in methods.",
+                    "code": "// String concatenation\nconst str1 = 'Hello';\nconst str2 = 'World';\nconst result = str1 + ' ' + str2;\nconsole.log(result);\n\n// Template literals\nconst name = 'John';\nconst age = 30;\nconst template = `Name: ${name}, Age: ${age}`;\nconsole.log(template);\n\n// String length\nconst length = 'Hello'.length;\nconsole.log(length);\n\n// String comparison\nconst equal = 'hello' === 'HELLO';\nconsole.log(equal);\n\n// String contains\nconst contains = 'Hello World'.includes('World');\nconsole.log(contains);\n\n// String splitting\nconst parts = 'Hello,World,JavaScript'.split(',');\nconsole.log(parts);\n\n// String joining\nconst joined = ['Hello', 'World', 'JavaScript'].join(' ');\nconsole.log(joined);\n\n// String replacement\nconst replaced = 'Hello World'.replace('World', 'JavaScript');\nconsole.log(replaced);\n\n// String trimming\nconst trimmed = '  Hello World  '.trim();\nconsole.log(trimmed);\n\n// String case conversion\nconst upper = 'hello'.toUpperCase();\nconst lower = 'HELLO'.toLowerCase();\nconsole.log(upper, lower);\n\n// String substring\nconst substring = 'Hello World'.substring(0, 5);\nconsole.log(substring);"
+                },
+                {
+                    "title": "Regular Expressions",
+                    "explanation": "JavaScript's RegExp object provides regular expression functionality for pattern matching and text manipulation.",
+                    "code": "// Create regex\nconst pattern = /\\d+/;\n\n// Test match\nconst matched = pattern.test('123');\nconsole.log(matched);\n\n// Find matches\nconst matches = '123 abc 456 def'.match(/\\d+/g);\nconsole.log(matches);\n\n// Replace matches\nconst replaced = '123 abc 456 def'.replace(/\\d+/g, '#');\nconsole.log(replaced);\n\n// Capture groups\nconst emailPattern = /(\\w+)@(\\w+)\\.(\\w+)/;\nconst email = 'john@example.com';\nconst groups = email.match(emailPattern);\nconsole.log(groups);\n\n// Split by regex\nconst split = '123abc456def'.split(/\\d+/);\nconsole.log(split);"
+                }
+            ]
+        },
+        "date_time": {
+            "description": "Date and time handling in JavaScript",
+            "examples": [
+                {
+                    "title": "Basic Date/Time Operations",
+                    "explanation": "JavaScript's Date object provides date and time functionality.",
+                    "code": "// Current date/time\nconst now = new Date();\nconsole.log('Current time:', now);\n\n// Format date\nconst formatted = now.toLocaleString();\nconsole.log('Formatted time:', formatted);\n\n// Parse date\nconst parsed = new Date('2023-01-01');\nconsole.log('Parsed date:', parsed);\n\n// Date arithmetic\nconst tomorrow = new Date(now);\ntomorrow.setDate(now.getDate() + 1);\nconsole.log('Tomorrow:', tomorrow);\n\n// Date comparison\nconst isAfter = tomorrow > now;\nconsole.log('Is tomorrow after now?', isAfter);\n\n// Timezone\nconst options = { timeZone: 'America/New_York' };\nconst nyTime = now.toLocaleString('en-US', options);\nconsole.log('New York time:', nyTime);\n\n// Unix timestamp\nconst timestamp = Math.floor(now.getTime() / 1000);\nconsole.log('Unix timestamp:', timestamp);\n\n// Date components\nconst year = now.getFullYear();\nconst month = now.getMonth() + 1;\nconst day = now.getDate();\nconst hour = now.getHours();\nconst minute = now.getMinutes();\nconst second = now.getSeconds();\nconsole.log(`Components: ${year}-${month}-${day} ${hour}:${minute}:${second}`);\n\n// Format using Intl.DateTimeFormat\nconst formatter = new Intl.DateTimeFormat('en-US', {\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit',\n    second: '2-digit',\n    timeZoneName: 'short'\n});\nconsole.log('Formatted with Intl:', formatter.format(now));"
+                }
+            ]
+        },
+        "collections": {
+            "description": "Collections and data structures in JavaScript",
+            "examples": [
+                {
+                    "title": "Arrays",
+                    "explanation": "Arrays in JavaScript are dynamic and provide many built-in methods for manipulation.",
+                    "code": "// Array declaration\nconst arr = [];\n\n// Array initialization\nconst arr2 = [1, 2, 3];\nconsole.log('Initialized array:', arr2);\n\n// Array operations\narr2.push(4); // Add to end\nconsole.log('After push:', arr2);\n\narr2.pop(); // Remove from end\nconsole.log('After pop:', arr2);\n\narr2.unshift(0); // Add to beginning\nconsole.log('After unshift:', arr2);\n\narr2.shift(); // Remove from beginning\nconsole.log('After shift:', arr2);\n\n// Array methods\nconst mapped = arr2.map(x => x * 2);\nconsole.log('Mapped:', mapped);\n\nconst filtered = arr2.filter(x => x > 1);\nconsole.log('Filtered:', filtered);\n\nconst reduced = arr2.reduce((acc, x) => acc + x, 0);\nconsole.log('Reduced:', reduced);\n\n// Array spread\nconst combined = [...arr2, 4, 5];\nconsole.log('Combined:', combined);\n\n// Array destructuring\nconst [first, second, ...rest] = arr2;\nconsole.log('Destructured:', first, second, rest);"
+                },
+                {
+                    "title": "Sets and Maps",
+                    "explanation": "Sets store unique values, while Maps store key-value pairs.",
+                    "code": "// Set operations\nconst set = new Set([1, 2, 3]);\nset.add(4);\nconsole.log('Set:', set);\n\nset.delete(2);\nconsole.log('After delete:', set);\n\nconsole.log('Has 3?', set.has(3));\n\n// Map operations\nconst map = new Map();\nmap.set('one', 1);\nmap.set('two', 2);\nconsole.log('Map:', map);\n\nconsole.log('Get one:', map.get('one'));\n\nmap.delete('one');\nconsole.log('After delete:', map);\n\nconsole.log('Has two?', map.has('two'));\n\n// Iterate Set\nfor (const value of set) {\n    console.log('Set value:', value);\n}\n\n// Iterate Map\nfor (const [key, value] of map) {\n    console.log(`Map entry: ${key} => ${value}`);\n}"
+                },
+                {
+                    "title": "Custom Collections",
+                    "explanation": "JavaScript allows creating custom collections using classes.",
+                    "code": "// Stack implementation\nclass Stack {\n    constructor() {\n        this.items = [];\n    }\n\n    push(item) {\n        this.items.push(item);\n    }\n\n    pop() {\n        return this.items.pop();\n    }\n\n    peek() {\n        return this.items[this.items.length - 1];\n    }\n\n    isEmpty() {\n        return this.items.length === 0;\n    }\n}\n\n// Queue implementation\nclass Queue {\n    constructor() {\n        this.items = [];\n    }\n\n    enqueue(item) {\n        this.items.push(item);\n    }\n\n    dequeue() {\n        return this.items.shift();\n    }\n\n    front() {\n        return this.items[0];\n    }\n\n    isEmpty() {\n        return this.items.length === 0;\n    }\n}\n\n// Usage\nconst stack = new Stack();\nstack.push(1);\nstack.push(2);\nconsole.log('Stack pop:', stack.pop());\n\nconst queue = new Queue();\nqueue.enqueue(1);\nqueue.enqueue(2);\nconsole.log('Queue dequeue:', queue.dequeue());"
+                }
+            ]
+        },
+        "dom_manipulation": {
+            "description": "Document Object Model (DOM) manipulation in JavaScript",
+            "examples": [
+                {
+                    "title": "Element Selection",
+                    "explanation": "JavaScript provides various methods to select DOM elements.",
+                    "code": "// Single element selection\nconst element = document.getElementById('myId');\nconst element2 = document.querySelector('.myClass');\n\n// Multiple elements selection\nconst elements = document.getElementsByClassName('myClass');\nconst elements2 = document.getElementsByTagName('div');\nconst elements3 = document.querySelectorAll('.myClass');\n\n// Element relationships\nconst parent = element.parentElement;\nconst children = element.children;\nconst firstChild = element.firstElementChild;\nconst lastChild = element.lastElementChild;\nconst nextSibling = element.nextElementSibling;\nconst previousSibling = element.previousElementSibling;"
+                },
+                {
+                    "title": "Element Creation and Modification",
+                    "explanation": "Creating and modifying DOM elements programmatically.",
+                    "code": "// Create element\nconst newElement = document.createElement('div');\n\n// Set attributes\nnewElement.setAttribute('id', 'newId');\nnewElement.setAttribute('class', 'newClass');\n\n// Set content\nnewElement.textContent = 'Hello World';\nnewElement.innerHTML = '<strong>Hello</strong> World';\n\n// Add styles\nnewElement.style.color = 'red';\nnewElement.style.backgroundColor = 'blue';\n\n// Add classes\nnewElement.classList.add('active');\nnewElement.classList.remove('inactive');\nnewElement.classList.toggle('highlight');\n\n// Append to DOM\nconst parent = document.getElementById('parent');\nparent.appendChild(newElement);\n\n// Insert at specific position\nconst referenceElement = document.getElementById('reference');\nparent.insertBefore(newElement, referenceElement);\n\n// Remove element\nparent.removeChild(newElement);"
+                },
+                {
+                    "title": "DOM Traversal and Manipulation",
+                    "explanation": "Traversing and manipulating the DOM tree.",
+                    "code": "// Get element dimensions\nconst width = element.offsetWidth;\nconst height = element.offsetHeight;\nconst rect = element.getBoundingClientRect();\n\n// Scroll operations\nelement.scrollIntoView();\nwindow.scrollTo(0, 100);\n\n// Form elements\nconst form = document.querySelector('form');\nconst input = form.elements['username'];\nconst value = input.value;\n\n// Table manipulation\nconst table = document.querySelector('table');\nconst row = table.insertRow();\nconst cell = row.insertCell();\ncell.textContent = 'New Cell';\n\n// Document fragments\nconst fragment = document.createDocumentFragment();\nfor (let i = 0; i < 10; i++) {\n    const div = document.createElement('div');\n    div.textContent = `Item ${i}`;\n    fragment.appendChild(div);\n}\ndocument.body.appendChild(fragment);"
+                }
+            ]
+        },
+        "events": {
+            "description": "Event handling in JavaScript",
+            "examples": [
+                {
+                    "title": "Event Listeners",
+                    "explanation": "Adding and removing event listeners to DOM elements.",
+                    "code": "// Add event listener\nconst button = document.querySelector('button');\nbutton.addEventListener('click', function(event) {\n    console.log('Button clicked!');\n    console.log('Event:', event);\n});\n\n// Remove event listener\nconst handler = function(event) {\n    console.log('Button clicked!');\n};\nbutton.addEventListener('click', handler);\nbutton.removeEventListener('click', handler);\n\n// Event delegation\nconst list = document.querySelector('ul');\nlist.addEventListener('click', function(event) {\n    if (event.target.tagName === 'LI') {\n        console.log('List item clicked:', event.target.textContent);\n    }\n});\n\n// Multiple events\nconst input = document.querySelector('input');\ninput.addEventListener('focus', function() {\n    console.log('Input focused');\n});\ninput.addEventListener('blur', function() {\n    console.log('Input blurred');\n});\ninput.addEventListener('input', function(event) {\n    console.log('Input changed:', event.target.value);\n});"
+                },
+                {
+                    "title": "Custom Events",
+                    "explanation": "Creating and dispatching custom events.",
+                    "code": "// Create custom event\nconst customEvent = new CustomEvent('myEvent', {\n    detail: { message: 'Hello World' },\n    bubbles: true,\n    cancelable: true\n});\n\n// Listen for custom event\nconst element = document.querySelector('#myElement');\nelement.addEventListener('myEvent', function(event) {\n    console.log('Custom event received:', event.detail.message);\n});\n\n// Dispatch custom event\nelement.dispatchEvent(customEvent);\n\n// Event propagation\nconst parent = document.querySelector('#parent');\nconst child = document.querySelector('#child');\n\nparent.addEventListener('click', function() {\n    console.log('Parent clicked');\n});\n\nchild.addEventListener('click', function(event) {\n    console.log('Child clicked');\n    // Stop propagation\n    event.stopPropagation();\n});\n\n// Prevent default behavior\nconst link = document.querySelector('a');\nlink.addEventListener('click', function(event) {\n    event.preventDefault();\n    console.log('Link click prevented');\n});"
+                },
+                {
+                    "title": "Keyboard and Mouse Events",
+                    "explanation": "Handling keyboard and mouse events.",
+                    "code": "// Keyboard events\ndocument.addEventListener('keydown', function(event) {\n    console.log('Key pressed:', event.key);\n    console.log('Key code:', event.keyCode);\n    console.log('Ctrl pressed:', event.ctrlKey);\n    console.log('Shift pressed:', event.shiftKey);\n    console.log('Alt pressed:', event.altKey);\n});\n\n// Mouse events\nconst element = document.querySelector('#myElement');\nelement.addEventListener('mousedown', function(event) {\n    console.log('Mouse button:', event.button);\n    console.log('Mouse position:', event.clientX, event.clientY);\n});\n\nelement.addEventListener('mousemove', function(event) {\n    console.log('Mouse moved to:', event.clientX, event.clientY);\n});\n\nelement.addEventListener('mouseenter', function() {\n    console.log('Mouse entered element');\n});\n\nelement.addEventListener('mouseleave', function() {\n    console.log('Mouse left element');\n});\n\n// Touch events\nelement.addEventListener('touchstart', function(event) {\n    const touch = event.touches[0];\n    console.log('Touch started at:', touch.clientX, touch.clientY);\n});\n\nelement.addEventListener('touchmove', function(event) {\n    const touch = event.touches[0];\n    console.log('Touch moved to:', touch.clientX, touch.clientY);\n});"
+                }
+            ]
+        },
+        "web_storage": {
+            "description": "Web Storage API in JavaScript",
+            "examples": [
+                {
+                    "title": "Local Storage",
+                    "explanation": "Local Storage provides persistent storage that remains even after the browser is closed.",
+                    "code": "// Store data\nlocalStorage.setItem('username', 'John');\nlocalStorage.setItem('age', '30');\n\n// Retrieve data\nconst username = localStorage.getItem('username');\nconst age = localStorage.getItem('age');\nconsole.log(username, age);\n\n// Store objects\nconst user = { name: 'John', age: 30 };\nlocalStorage.setItem('user', JSON.stringify(user));\n\n// Retrieve objects\nconst storedUser = JSON.parse(localStorage.getItem('user'));\nconsole.log(storedUser);\n\n// Remove item\nlocalStorage.removeItem('username');\n\n// Clear all\nlocalStorage.clear();\n\n// Check if storage is available\nfunction isLocalStorageAvailable() {\n    try {\n        const test = '__storage_test__';\n        localStorage.setItem(test, test);\n        localStorage.removeItem(test);\n        return true;\n    } catch (e) {\n        return false;\n    }\n}"
+                },
+                {
+                    "title": "Session Storage",
+                    "explanation": "Session Storage provides storage that is cleared when the browser tab is closed.",
+                    "code": "// Store data\nsessionStorage.setItem('sessionId', '12345');\n\n// Retrieve data\nconst sessionId = sessionStorage.getItem('sessionId');\nconsole.log(sessionId);\n\n// Store objects\nconst sessionData = { id: '12345', timestamp: Date.now() };\nsessionStorage.setItem('sessionData', JSON.stringify(sessionData));\n\n// Retrieve objects\nconst storedSession = JSON.parse(sessionStorage.getItem('sessionData'));\nconsole.log(storedSession);\n\n// Remove item\nsessionStorage.removeItem('sessionId');\n\n// Clear all\nsessionStorage.clear();\n\n// Storage event\nwindow.addEventListener('storage', function(event) {\n    console.log('Storage changed:', event.key);\n    console.log('Old value:', event.oldValue);\n    console.log('New value:', event.newValue);\n});"
+                },
+                {
+                    "title": "IndexedDB",
+                    "explanation": "IndexedDB provides a more powerful client-side storage solution for larger amounts of structured data.",
+                    "code": "// Open database\nconst request = indexedDB.open('MyDatabase', 1);\n\n// Create object store\nrequest.onupgradeneeded = function(event) {\n    const db = event.target.result;\n    const store = db.createObjectStore('users', { keyPath: 'id' });\n    store.createIndex('name', 'name', { unique: false });\n};\n\n// Add data\nrequest.onsuccess = function(event) {\n    const db = event.target.result;\n    const transaction = db.transaction(['users'], 'readwrite');\n    const store = transaction.objectStore('users');\n    \n    const user = { id: 1, name: 'John', age: 30 };\n    store.add(user);\n    \n    transaction.oncomplete = function() {\n        console.log('User added');\n    };\n};\n\n// Retrieve data\nrequest.onsuccess = function(event) {\n    const db = event.target.result;\n    const transaction = db.transaction(['users'], 'readonly');\n    const store = transaction.objectStore('users');\n    \n    const request = store.get(1);\n    request.onsuccess = function() {\n        console.log('User:', request.result);\n    };\n};\n\n// Query data\nrequest.onsuccess = function(event) {\n    const db = event.target.result;\n    const transaction = db.transaction(['users'], 'readonly');\n    const store = transaction.objectStore('users');\n    const index = store.index('name');\n    \n    const request = index.getAll('John');\n    request.onsuccess = function() {\n        console.log('Users:', request.result);\n    };\n};\n\n// Delete data\nrequest.onsuccess = function(event) {\n    const db = event.target.result;\n    const transaction = db.transaction(['users'], 'readwrite');\n    const store = transaction.objectStore('users');\n    \n    store.delete(1);\n    \n    transaction.oncomplete = function() {\n        console.log('User deleted');\n    };\n};"
+                }
+            ]
+        },
+        "gui_development_js": {
+            "description": "Creating GUI applications with JavaScript for web and desktop using HTML/CSS/JS, React, Canvas, and Electron.",
+            "examples": [
+                {
+                    "title": "Basic UI and Event Handling (Vanilla JS)",
+                    "explanation": "Build a basic GUI using HTML and handle events with JavaScript.",
+                    "code": "<!DOCTYPE html>\n<html>\n<head><title>Vanilla JS GUI</title></head>\n<body>\n  <input type=\"text\" id=\"name\" placeholder=\"Enter name\">\n  <button onclick=\"greet()\">Greet</button>\n  <p id=\"output\"></p>\n\n  <script>\n    function greet() {\n      const name = document.getElementById('name').value;\n      document.getElementById('output').innerText = `Hello, ${name}!`;\n    }\n  </script>\n</body>\n</html>"
+                },
+                {
+                    "title": "React Component",
+                    "explanation": "Create a simple interactive UI component using React.",
+                    "code": "import React, { useState } from 'react';\n\nfunction GreetingApp() {\n  const [name, setName] = useState('');\n  return (\n    <div>\n      <input onChange={e => setName(e.target.value)} placeholder=\"Enter name\" />\n      <p>Hello, {name}!</p>\n    </div>\n  );\n}\n\nexport default GreetingApp;"
+                },
+                {
+                    "title": "Canvas Drawing",
+                    "explanation": "Use the HTML5 canvas for interactive graphics.",
+                    "code": "<!DOCTYPE html>\n<html>\n<body>\n<canvas id=\"myCanvas\" width=\"400\" height=\"300\" style=\"border:1px solid #000\"></canvas>\n<script>\n  const canvas = document.getElementById('myCanvas');\n  const ctx = canvas.getContext('2d');\n\n  canvas.addEventListener('click', function(e) {\n    const x = e.offsetX;\n    const y = e.offsetY;\n    ctx.fillStyle = 'blue';\n    ctx.beginPath();\n    ctx.arc(x, y, 10, 0, Math.PI * 2);\n    ctx.fill();\n  });\n</script>\n</body>\n</html>"
+                },
+                {
+                    "title": "Electron App (Desktop GUI with JS)",
+                    "explanation": "Electron lets you build cross-platform desktop apps using web technologies.",
+                    "code": "// main.js\nconst { app, BrowserWindow } = require('electron');\n\nfunction createWindow () {\n  const win = new BrowserWindow({ width: 800, height: 600 });\n  win.loadFile('index.html');\n}\n\napp.whenReady().then(createWindow);"
+                },
+                {
+                    "title": "Electron HTML GUI",
+                    "explanation": "The HTML file used in the Electron app.",
+                    "code": "<!DOCTYPE html>\n<html>\n<body>\n  <h1>Hello from Electron!</h1>\n  <button onclick=\"alert('Clicked!')\">Click me</button>\n</body>\n</html>"
+                }
+            ]
+        }          
+    }
+} 

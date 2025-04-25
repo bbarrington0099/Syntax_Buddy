@@ -1,0 +1,250 @@
+{
+    "name": "Bash Shell Scripting",
+    "sections": {
+        "shebang": {
+            "description": "Specifying the interpreter for script execution",
+            "examples": [
+                {
+                    "title": "Basic shebang",
+                    "explanation": "The first line of a script specifying which interpreter to use. #! is called a shebang.",
+                    "code": "#!/bin/bash"
+                },
+                {
+                    "title": "Env shebang",
+                    "explanation": "Using /usr/bin/env to find bash in the system PATH",
+                    "code": "#!/usr/bin/env bash"
+                }
+            ]
+        },
+        "variables": {
+            "description": "Variable declaration and usage in Bash",
+            "examples": [
+                {
+                    "title": "Variable assignment",
+                    "explanation": "Variables are assigned without spaces around =. No dollar sign during assignment.",
+                    "code": "name=\"John\"\nage=30"
+                },
+                {
+                    "title": "Variable usage",
+                    "explanation": "Variables are accessed using $ before the variable name. Curly braces {} help with variable interpolation.",
+                    "code": "echo \"Name: $name, Age: ${age}\""
+                },
+                {
+                    "title": "Environment variables",
+                    "explanation": "Predefined variables and exporting variables to child processes",
+                    "code": "echo \"Home directory: $HOME\"\nexport MY_VAR=\"some value\""
+                }
+            ]
+        },
+        "command_substitution": {
+            "description": "Capturing command output in variables",
+            "examples": [
+                {
+                    "title": "Backtick syntax",
+                    "explanation": "Older syntax using backticks for command substitution",
+                    "code": "files=`ls -l`"
+                },
+                {
+                    "title": "Dollar parenthesis syntax",
+                    "explanation": "Preferred modern syntax for command substitution",
+                    "code": "files=$(ls -l)\ntoday=$(date +%F)"
+                }
+            ]
+        },
+        "conditionals": {
+            "description": "Conditional statements in Bash",
+            "examples": [
+                {
+                    "title": "If statement",
+                    "explanation": "Basic if statement structure. Spaces around [ ] are required.",
+                    "code": "if [ $age -gt 18 ]; then\n    echo \"Adult\"\nfi"
+                },
+                {
+                    "title": "If-else statement",
+                    "explanation": "Full if-else structure with test conditions",
+                    "code": "if [[ $name == \"John\" ]]; then\n    echo \"Hello John\"\nelse\n    echo \"Stranger\"\nfi"
+                },
+                {
+                    "title": "Case statement",
+                    "explanation": "Switch-like statement for multiple conditions",
+                    "code": "case $day in\n    \"Monday\")\n        echo \"Start of week\"\n        ;;\n    \"Friday\")\n        echo \"Weekend coming\"\n        ;;\n    *)\n        echo \"Mid week\"\n        ;;\nesac"
+                }
+            ]
+        },
+        "loops": {
+            "description": "Loop constructs in Bash",
+            "examples": [
+                {
+                    "title": "For loop",
+                    "explanation": "Iterating over a list of values or a range",
+                    "code": "for i in 1 2 3 4 5; do\n    echo \"Number: $i\"\ndone\n\n# C-style for loop\nfor ((i=0; i<5; i++)); do\n    echo \"Count: $i\"\ndone"
+                },
+                {
+                    "title": "While loop",
+                    "explanation": "Executing while condition is true",
+                    "code": "count=0\nwhile [ $count -lt 5 ]; do\n    echo \"Count: $count\"\n    ((count++))\ndone"
+                },
+                {
+                    "title": "Until loop",
+                    "explanation": "Executing until condition becomes true",
+                    "code": "count=0\nuntil [ $count -ge 5 ]; do\n    echo \"Count: $count\"\n    ((count++))\ndone"
+                }
+            ]
+        },
+        "functions": {
+            "description": "Function declaration and usage",
+            "examples": [
+                {
+                    "title": "Function definition",
+                    "explanation": "Two syntax options for defining functions",
+                    "code": "function greet() {\n    echo \"Hello $1\"\n}\n\n# Alternative syntax\ngreet_alt() {\n    echo \"Hi $1\"\n}"
+                },
+                {
+                    "title": "Function parameters",
+                    "explanation": "Accessing arguments with $1, $2, etc. $@ for all arguments",
+                    "code": "function sum() {\n    echo $(($1 + $2))\n}\nsum 5 3  # Returns 8"
+                }
+            ]
+        },
+        "parameters": {
+            "description": "Handling script parameters",
+            "examples": [
+                {
+                    "title": "Positional parameters",
+                    "explanation": "Accessing script arguments and parameters",
+                    "code": "echo \"Script name: $0\"\necho \"First argument: $1\"\necho \"All arguments: $@\"\necho \"Number of arguments: $#\""
+                },
+                {
+                    "title": "Parameter expansion",
+                    "explanation": "Special parameter operations and default values",
+                    "code": "${var:-default}  # Use default if unset\n${var:?error}   # Show error if unset\n${var:+alt}     # Use alt if set"
+                }
+            ]
+        },
+        "cli_parameters": {
+            "description": "Advanced command-line argument handling in Bash with POSIX getopts and GNU getopt",
+            "examples": [
+                {
+                    "title": "Positional Parameters",
+                    "explanation": "Accessing basic positional arguments",
+                    "code": "#!/bin/bash\n\necho \"Script name: $0\"\necho \"First argument: $1\"\necho \"All arguments: $@\"\necho \"Argument count: $#\""
+                },
+                {
+                    "title": "Short Options (getopts)",
+                    "explanation": "POSIX-compliant option handling with getopts",
+                    "code": "#!/bin/bash\n\nwhile getopts \":vf:o:\" opt; do\n  case $opt in\n    v) verbose=true ;;\n    f) file=\"$OPTARG\" ;;\n    o) output=\"$OPTARG\" ;;\n    \\?) echo \"Invalid option: -$OPTARG\" >&2 ;;\n    :) echo \"Option -$OPTARG requires an argument\" >&2 ;;\n  esac\ndone\n\nshift $((OPTIND -1))\n\necho \"Verbose: ${verbose:-false}\"\necho \"Input file: ${file:-none}\"\necho \"Output dir: ${output:-./}\""
+                },
+                {
+                    "title": "Long Options (getopt)",
+                    "explanation": "GNU-style long options handling (requires getopt utility)",
+                    "code": "#!/bin/bash\n\n# macOS requires brew install gnu-getopt\nARGS=$(getopt -o vf:o: --long verbose,file:,output: -n \"$0\" -- \"$@\")\neval set -- \"$ARGS\"\n\nwhile true; do\n  case \"$1\" in\n    -v|--verbose) verbose=true; shift ;;\n    -f|--file) file=\"$2\"; shift 2 ;;\n    -o|--output) output=\"$2\"; shift 2 ;;\n    --) shift; break ;;\n    *) echo \"Internal error\"; exit 1 ;;\n  esac\ndone\n\necho \"Verbose: ${verbose:-false}\"\necho \"Input file: ${file:-none}\"\necho \"Output dir: ${output:-./}\""
+                },
+                {
+                    "title": "Complex Option Handling",
+                    "explanation": "Combined short/long options with argument validation",
+                    "code": "#!/bin/bash\n\nusage() {\n  echo \"Usage: $0 [-v|--verbose] [-f|--file FILE] [-o|--output DIR]\"\n  exit 1\n}\n\n# Set defaults\nverbose=false\noutput=\"./\"\n\nwhile [[ $# -gt 0 ]]; do\n  case $1 in\n    -v|--verbose)\n      verbose=true\n      shift\n      ;;\n    -f|--file)\n      [[ -z $2 ]] && usage\n      file=\"$2\"\n      shift 2\n      ;;\n    -o|--output)\n      [[ -z $2 ]] && usage\n      output=\"$2\"\n      shift 2\n      ;;\n    -*)\n      echo \"Unknown option $1\"\n      usage\n      ;;\n    *)\n      args+=(\"$1\")\n      shift\n      ;;\n  esac\ndone\n\n# Validate required arguments\n[[ -z $file ]] && usage\n\n# Rest of script..."
+                },
+                {
+                    "title": "Boolean Flags & Defaults",
+                    "explanation": "Handling toggle flags and default values",
+                    "code": "#!/bin/bash\n\nforce=false\nrecursive=false\n\necho \"Starting processing\"\n\nwhile [[ $# -gt 0 ]]; do\n  case $1 in\n    -f|--force)\n      force=true\n      shift\n      ;;\n    -r|--recursive)\n      recursive=true\n      shift\n      ;;\n    --dry-run)\n      dry_run=true\n      shift\n      ;;\n    *)\n      target=\"$1\"\n      shift\n      ;;\n  esac\ndone\n\necho \"Force mode: $force\"\necho \"Recursive: $recursive\"\necho \"Target: ${target:-default_value}\""
+                },
+                {
+                    "title": "Subcommand Pattern",
+                    "explanation": "Git-style subcommand handling",
+                    "code": "#!/bin/bash\n\nusage() {\n  echo \"Usage: $0 {init|backup|restore} [options]\"\n  exit 1\n}\n\n[[ $# -eq 0 ]] && usage\n\nsubcommand=$1\nshift\n\ncase $subcommand in\n  init)\n    while [[ $# -gt 0 ]]; do\n      case $1 in\n        -p|--path)\n          path=\"$2\"\n          shift 2\n          ;;\n        *) break ;;\n      esac\ndone\n    echo \"Initializing in ${path:-.}\"\n    ;;\n\n  backup)\n    # Backup-specific options\n    ;;\n\n  restore)\n    # Restore-specific options\n    ;;\n\n  *)\n    usage\n    ;;\nesac"
+                },
+                {
+                    "title": "Practical Example: Backup Script",
+                    "explanation": "Complete implementation with error checking",
+                    "code": "#!/bin/bash\n\n# Defaults\nverbose=false\ncompress=false\nsource_dir=\"\"\ndest_dir=\"\"\n\nusage() {\n  cat <<EOF\nUsage: $0 -s|--source DIR -d|--dest DIR [OPTIONS]\nOptions:\n  -v|--verbose    Show detailed output\n  -c|--compress   Create compressed archive\n  -h|--help       Show this help\nEOF\n  exit 1\n}\n\n# Parse arguments\nwhile [[ $# -gt 0 ]]; do\n  case $1 in\n    -s|--source)\n      [[ -z $2 ]] && usage\n      source_dir=\"$2\"\n      shift 2\n      ;;\n    -d|--dest)\n      [[ -z $2 ]] && usage\n      dest_dir=\"$2\"\n      shift 2\n      ;;\n    -v|--verbose)\n      verbose=true\n      shift\n      ;;\n    -c|--compress)\n      compress=true\n      shift\n      ;;\n    -h|--help)\n      usage\n      ;;\n    *)\n      echo \"Unknown option: $1\"\n      usage\n      ;;\n  esac\ndone\n\n# Validate required arguments\n[[ -z $source_dir || -z $dest_dir ]] && usage\n[[ ! -d $source_dir ]] && echo \"Source directory not found\" && exit 1\n\n# Main logic\nif $compress; then\n  tar -czf \"$dest_dir/backup-$(date +%F).tar.gz\" -C \"$source_dir\" .\nelse\n  rsync -a${verbose:+v} \"$source_dir/\" \"$dest_dir/\"\nfi\n\necho \"Backup completed to $dest_dir\""
+                }
+            ]
+        },
+        "arrays": {
+            "description": "Working with arrays in Bash",
+            "examples": [
+                {
+                    "title": "Array declaration",
+                    "explanation": "Creating and accessing array elements",
+                    "code": "fruits=(\"Apple\" \"Banana\" \"Cherry\")\necho \"First fruit: ${fruits[0]}\"\necho \"All fruits: ${fruits[@]}\""
+                },
+                {
+                    "title": "Associative arrays",
+                    "explanation": "Key-value pairs (requires Bash 4+)",
+                    "code": "declare -A user\nuser[\"name\"]=\"John\"\nuser[\"age\"]=30\necho \"${user[\"name\"]} is ${user[\"age\"]} years old\""
+                }
+            ]
+        },
+        "io_redirection": {
+            "description": "Input/output redirection and pipes",
+            "examples": [
+                {
+                    "title": "Basic redirection",
+                    "explanation": "Redirecting stdout and stderr",
+                    "code": "ls > output.txt          # Overwrite\nls >> output.txt         # Append\nls 2> error.log          # Redirect stderr\nls &> all_output.log     # Redirect both stdout and stderr"
+                },
+                {
+                    "title": "Pipes",
+                    "explanation": "Connecting command output to input",
+                    "code": "cat file.txt | grep \"error\" | sort > filtered.txt"
+                },
+                {
+                    "title": "Here documents",
+                    "explanation": "Inline input redirection",
+                    "code": "cat <<EOF\nThis is a\nmulti-line\ntext block\nEOF"
+                }
+            ]
+        },
+        "string_manipulation": {
+            "description": "String operations in Bash",
+            "examples": [
+                {
+                    "title": "Substring extraction",
+                    "explanation": "Extracting parts of strings",
+                    "code": "str=\"Hello World\"\necho ${str:0:5}    # Outputs 'Hello'\necho ${str:6}      # Outputs 'World'"
+                },
+                {
+                    "title": "String replacement",
+                    "explanation": "Pattern substitution in strings",
+                    "code": "str=\"foo bar foo\"\necho ${str/foo/baz}   # Replace first match\necho ${str//foo/baz}  # Replace all matches"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error handling and debugging",
+            "examples": [
+                {
+                    "title": "Exit codes",
+                    "explanation": "Checking and returning exit status",
+                    "code": "if grep -q \"pattern\" file.txt; then\n    echo \"Found\"\nfi\n\nexit 0  # Successful exit\nexit 1  # Error exit"
+                },
+                {
+                    "title": "Trap signals",
+                    "explanation": "Handling signals and cleanup",
+                    "code": "trap 'cleanup; exit' SIGINT SIGTERM\n\nfunction cleanup() {\n    echo \"Removing temp files...\"\n    rm -rf /tmp/*\n}"
+                },
+                {
+                    "title": "Debugging",
+                    "explanation": "Debugging options and tracing",
+                    "code": "set -x  # Enable debugging\n# Script commands here\nset +x  # Disable debugging"
+                }
+            ]
+        },
+        "process_management": {
+            "description": "Managing processes and jobs",
+            "examples": [
+                {
+                    "title": "Background processes",
+                    "explanation": "Running processes in the background",
+                    "code": "sleep 10 &\nbg  # Resume suspended job in background\nfg  # Bring to foreground"
+                },
+                {
+                    "title": "Wait for processes",
+                    "explanation": "Waiting for background processes to complete",
+                    "code": "pid1=$!\npid2=$!\nwait $pid1 $pid2\necho \"All processes completed\""
+                }
+            ]
+        }
+    }
+}

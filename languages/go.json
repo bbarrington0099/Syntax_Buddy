@@ -1,0 +1,580 @@
+{
+    "name": "Go",
+    "sections": {
+        "variables": {
+            "description": "Variable declaration and initialization in Go",
+            "examples": [
+                {
+                    "title": "Basic variable declaration",
+                    "explanation": "Go is statically typed. Variables can be declared with explicit type or using type inference. The var keyword is used for declaration.",
+                    "code": "var name string = \"John\"\nvar age int = 30"
+                },
+                {
+                    "title": "Short variable declaration",
+                    "explanation": "The := operator is used for short variable declaration. The type is inferred from the value. This is the preferred way to declare variables in Go.",
+                    "code": "name := \"John\"\nage := 30"
+                },
+                {
+                    "title": "Multiple variable declaration",
+                    "explanation": "Multiple variables can be declared in a single var block. This is useful for declaring related variables together.",
+                    "code": "var (\n    name string = \"John\"\n    age int = 30\n)"
+                }
+            ]
+        },
+        "types": {
+            "description": "Go types and type conversion",
+            "examples": [
+                {
+                    "title": "Basic Types",
+                    "explanation": "Go has several basic types: string, bool, numeric types (int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr, float32, float64, complex64, complex128), and byte (alias for uint8).",
+                    "code": "var str string = \"hello\"\nvar b bool = true\nvar i int = 42\nvar f float64 = 3.14\nvar c complex128 = 1 + 2i\nvar by byte = 'A'"
+                },
+                {
+                    "title": "Type Conversion",
+                    "explanation": "Go requires explicit type conversion. There is no automatic type promotion. Conversion between numeric types requires explicit casting.",
+                    "code": "// Numeric conversions\ni := 42\nf := float64(i)\nu := uint(i)\n\n// String conversions\nstr := \"42\"\nnum, err := strconv.Atoi(str)  // string to int\nstr2 := strconv.Itoa(42)       // int to string\n\n// Type assertions (for interfaces)\nvar val interface{} = \"hello\"\nstr, ok := val.(string)  // type assertion"
+                },
+                {
+                    "title": "Type Aliases and Custom Types",
+                    "explanation": "Go allows creating type aliases and custom types. Type aliases are just alternative names, while custom types create new distinct types.",
+                    "code": "// Type alias\ntype Celsius float64\n\n// Custom type\ntype Person struct {\n    Name string\n    Age  int\n}\n\n// Type with methods\ntype Counter int\n\nfunc (c *Counter) Increment() {\n    *c++\n}"
+                }
+            ]
+        },
+        "constants": {
+            "description": "Constant declaration in Go",
+            "examples": [
+                {
+                    "title": "Basic constant",
+                    "explanation": "Constants in Go are declared using the const keyword. They must be initialized at declaration and cannot be changed.",
+                    "code": "const Pi = 3.14"
+                },
+                {
+                    "title": "Multiple constants",
+                    "explanation": "Multiple constants can be declared in a const block. iota can be used to create enumerated constants.",
+                    "code": "const (\n    Pi = 3.14\n    Language = \"Go\"\n)\n\n// Using iota\nconst (\n    Monday = iota  // 0\n    Tuesday        // 1\n    Wednesday      // 2\n)"
+                }
+            ]
+        },
+        "arrays_and_slices": {
+            "description": "Arrays and slices in Go",
+            "examples": [
+                {
+                    "title": "Arrays",
+                    "explanation": "Arrays in Go are fixed-length sequences. The size is part of the type. Arrays are passed by value (copied) when used as function arguments.",
+                    "code": "// Array declaration\nvar arr [5]int\narr[0] = 1\n\n// Array initialization\narr2 := [3]int{1, 2, 3}\n\n// Array with ellipsis\narr3 := [...]int{1, 2, 3, 4, 5}  // compiler counts elements"
+                },
+                {
+                    "title": "Slices",
+                    "explanation": "Slices are dynamic arrays in Go. They are more commonly used than arrays. Slices are passed by reference and can grow/shrink.",
+                    "code": "// Slice declaration\nvar s []int\n\n// Slice initialization\ns1 := []int{1, 2, 3}\n\n// Slice from array\narr := [5]int{1, 2, 3, 4, 5}\ns2 := arr[1:4]  // [2, 3, 4]\n\n// Slice operations\ns3 := append(s1, 4)  // append\ns4 := s1[1:]         // slicing\ns5 := make([]int, 5) // make with length\ns6 := make([]int, 0, 10) // make with length and capacity"
+                }
+            ]
+        },
+        "conditionals": {
+            "description": "Conditional statements in Go",
+            "examples": [
+                {
+                    "title": "If statement",
+                    "explanation": "Go's if statement can include an initialization statement. The condition must evaluate to a boolean value.",
+                    "code": "if age > 18 {\n    fmt.Println(\"Adult\")\n}"
+                },
+                {
+                    "title": "If-else statement",
+                    "explanation": "The else block executes when the if condition is false. Go uses curly braces for code blocks.",
+                    "code": "if age > 18 {\n    fmt.Println(\"Adult\")\n} else {\n    fmt.Println(\"Minor\")\n}"
+                },
+                {
+                    "title": "If-else if statement",
+                    "explanation": "Multiple conditions can be chained using else if. Each condition is evaluated in order until one is true.",
+                    "code": "if age < 13 {\n    fmt.Println(\"Child\")\n} else if age < 18 {\n    fmt.Println(\"Teen\")\n} else {\n    fmt.Println(\"Adult\")\n}"
+                },
+                {
+                    "title": "Switch statement",
+                    "explanation": "Go's switch statement is more flexible than in other languages. Unlike C/Java, Go's switch doesn't need break statements as it automatically breaks after each case.",
+                    "code": "switch day {\ncase \"Monday\":\n    fmt.Println(\"Start of week\")\ncase \"Friday\":\n    fmt.Println(\"End of week\")\ndefault:\n    fmt.Println(\"Mid week\")\n}"
+                },
+                {
+                    "title": "Switch with fallthrough",
+                    "explanation": "Unlike other languages, Go requires explicit fallthrough to continue to the next case. This is a safety feature to prevent accidental fallthrough.",
+                    "code": "switch day {\ncase \"Monday\":\n    fmt.Println(\"Start of week\")\n    fallthrough  // continues to next case\ncase \"Tuesday\":\n    fmt.Println(\"Still early in the week\")\ncase \"Friday\":\n    fmt.Println(\"End of week\")\ndefault:\n    fmt.Println(\"Mid week\")\n}"
+                },
+                {
+                    "title": "Switch with multiple values",
+                    "explanation": "Go allows matching multiple values in a single case, making the code more concise.",
+                    "code": "switch day {\ncase \"Monday\", \"Tuesday\", \"Wednesday\":\n    fmt.Println(\"Early week\")\ncase \"Thursday\", \"Friday\":\n    fmt.Println(\"Late week\")\ndefault:\n    fmt.Println(\"Weekend\")\n}"
+                },
+                {
+                    "title": "Switch with initialization",
+                    "explanation": "Like if statements, switch statements can include an initialization statement.",
+                    "code": "switch day := time.Now().Weekday(); day {\ncase time.Monday:\n    fmt.Println(\"Start of week\")\ncase time.Friday:\n    fmt.Println(\"End of week\")\ndefault:\n    fmt.Println(\"Mid week\")\n}"
+                }
+            ]
+        },
+        "loops": {
+            "description": "Loop constructs in Go",
+            "examples": [
+                {
+                    "title": "For loop",
+                    "explanation": "Go has only one loop construct: for. It can be used as a traditional for loop, while loop, or infinite loop.",
+                    "code": "for i := 0; i < 5; i++ {\n    fmt.Println(i)\n}"
+                },
+                {
+                    "title": "While loop (using for)",
+                    "explanation": "Go uses the for keyword for while loops by omitting the initialization and post statements.",
+                    "code": "i := 0\nfor i < 5 {\n    fmt.Println(i)\n    i++\n}"
+                },
+                {
+                    "title": "Infinite loop",
+                    "explanation": "An infinite loop is created by omitting all three statements in the for loop.",
+                    "code": "for {\n    // Infinite loop\n}"
+                }
+            ]
+        },
+        "functions": {
+            "description": "Function declaration in Go",
+            "examples": [
+                {
+                    "title": "Basic function",
+                    "explanation": "Go functions can return multiple values. They are first-class citizens and can be passed as arguments.",
+                    "code": "func greet(name string) string {\n    return \"Hello, \" + name\n}"
+                },
+                {
+                    "title": "Multiple return values",
+                    "explanation": "Go functions can return multiple values, which is commonly used for returning a result and an error.",
+                    "code": "func divide(a, b float64) (float64, error) {\n    if b == 0 {\n        return 0, errors.New(\"division by zero\")\n    }\n    return a / b, nil\n}"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error handling in Go",
+            "examples": [
+                {
+                    "title": "Basic error handling",
+                    "explanation": "Go uses multiple return values for error handling. The error type is a built-in interface.",
+                    "code": "result, err := divide(10, 0)\nif err != nil {\n    fmt.Println(\"Error:\", err)\n}"
+                }
+            ]
+        },
+        "structs": {
+            "description": "Struct declaration and usage in Go",
+            "examples": [
+                {
+                    "title": "Struct definition",
+                    "explanation": "Structs in Go are similar to classes in other languages but don't support inheritance. They can have methods.",
+                    "code": "type Person struct {\n    Name string\n    Age  int\n}"
+                },
+                {
+                    "title": "Struct initialization",
+                    "explanation": "Structs can be initialized using field names or position. Field names make the code more readable.",
+                    "code": "p := Person{\n    Name: \"John\",\n    Age:  30,\n}"
+                }
+            ]
+        },
+        "io": {
+            "description": "Input/Output in Go",
+            "examples": [
+                {
+                    "title": "Console I/O",
+                    "explanation": "Go provides fmt package for formatted I/O and bufio for buffered I/O operations.",
+                    "code": "package main\n\nimport (\n    \"bufio\"\n    \"fmt\"\n    \"os\"\n)\n\nfunc main() {\n    // Basic output\n    fmt.Println(\"Hello, World!\")\n    fmt.Printf(\"Name: %s, Age: %d\\n\", \"John\", 30)\n\n    // Reading input\n    reader := bufio.NewReader(os.Stdin)\n    fmt.Print(\"Enter text: \")\n    text, _ := reader.ReadString('\\n')\n    fmt.Printf(\"You entered: %s\", text)\n\n    // Scanning input\n    var name string\n    var age int\n    fmt.Print(\"Enter name and age: \")\n    fmt.Scanf(\"%s %d\", &name, &age)\n    fmt.Printf(\"Name: %s, Age: %d\\n\", name, age)\n}"
+                },
+                {
+                    "title": "File I/O",
+                    "explanation": "Go provides os and io packages for file operations, with bufio for buffered I/O.",
+                    "code": "package main\n\nimport (\n    \"bufio\"\n    \"fmt\"\n    \"io\"\n    \"os\"\n)\n\nfunc main() {\n    // Writing to file\n    file, err := os.Create(\"output.txt\")\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n    defer file.Close()\n\n    writer := bufio.NewWriter(file)\n    fmt.Fprintln(writer, \"Hello, World!\")\n    writer.Flush()\n\n    // Reading from file\n    file, err = os.Open(\"input.txt\")\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n    defer file.Close()\n\n    scanner := bufio.NewScanner(file)\n    for scanner.Scan() {\n        fmt.Println(scanner.Text())\n    }\n\n    // Copying files\n    src, err := os.Open(\"source.txt\")\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n    defer src.Close()\n\n    dst, err := os.Create(\"destination.txt\")\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n    defer dst.Close()\n\n    io.Copy(dst, src)\n}"
+                },
+                {
+                    "title": "Advanced I/O",
+                    "explanation": "Go provides additional I/O features like io.Writer and io.Reader interfaces, and the ioutil package for common operations.",
+                    "code": "package main\n\nimport (\n    \"fmt\"\n    \"io\"\n    \"io/ioutil\"\n    \"os\"\n)\n\nfunc main() {\n    // Using ioutil\n    data := []byte(\"Hello, World!\")\n    err := ioutil.WriteFile(\"output.txt\", data, 0644)\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n\n    content, err := ioutil.ReadFile(\"input.txt\")\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n    fmt.Println(string(content))\n\n    // Custom writer\n    type customWriter struct{}\n\n    func (w customWriter) Write(p []byte) (n int, err error) {\n        fmt.Printf(\"Writing: %s\\n\", string(p))\n        return len(p), nil\n    }\n\n    var writer customWriter\n    fmt.Fprintln(writer, \"Hello, World!\")\n}"
+                }
+            ]
+        },
+        "http": {
+            "description": "HTTP client and server in Go",
+            "examples": [
+                {
+                    "title": "HTTP Client",
+                    "explanation": "Go's net/http package provides a robust HTTP client. The client supports timeouts, custom headers, and request/response handling.",
+                    "code": "package main\n\nimport (\n    \"fmt\"\n    \"io/ioutil\"\n    \"net/http\"\n    \"time\"\n)\n\nfunc main() {\n    // Create client with timeout\n    client := &http.Client{\n        Timeout: 10 * time.Second,\n    }\n\n    // GET request\n    resp, err := client.Get(\"https://api.example.com/data\")\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n    defer resp.Body.Close()\n\n    body, err := ioutil.ReadAll(resp.Body)\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n    fmt.Println(string(body))\n\n    // POST request with JSON\n    jsonData := []byte(`{\"name\":\"John\",\"age\":30}`)\n    req, err := http.NewRequest(\"POST\", \"https://api.example.com/users\", bytes.NewBuffer(jsonData))\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n\n    req.Header.Set(\"Content-Type\", \"application/json\")\n    req.Header.Set(\"Authorization\", \"Bearer token123\")\n\n    resp, err = client.Do(req)\n    if err != nil {\n        fmt.Println(err)\n        return\n    }\n    defer resp.Body.Close()"
+                },
+                {
+                    "title": "HTTP Server",
+                    "explanation": "Go's net/http package makes it easy to create HTTP servers with routing and middleware support.",
+                    "code": "package main\n\nimport (\n    \"fmt\"\n    \"net/http\"\n)\n\nfunc main() {\n    // Basic handler\n    http.HandleFunc(\"/\", func(w http.ResponseWriter, r *http.Request) {\n        fmt.Fprintf(w, \"Hello, World!\")\n    })\n\n    // JSON response\n    http.HandleFunc(\"/api/data\", func(w http.ResponseWriter, r *http.Request) {\n        w.Header().Set(\"Content-Type\", \"application/json\")\n        fmt.Fprintf(w, `{\"message\":\"Hello, World!\"}`)\n    })\n\n    // Query parameters\n    http.HandleFunc(\"/greet\", func(w http.ResponseWriter, r *http.Request) {\n        name := r.URL.Query().Get(\"name\")\n        if name == \"\" {\n            name = \"World\"\n        }\n        fmt.Fprintf(w, \"Hello, %s!\", name)\n    })\n\n    // POST request handling\n    http.HandleFunc(\"/submit\", func(w http.ResponseWriter, r *http.Request) {\n        if r.Method != \"POST\" {\n            http.Error(w, \"Method not allowed\", http.StatusMethodNotAllowed)\n            return\n        }\n\n        // Parse form data\n        err := r.ParseForm()\n        if err != nil {\n            http.Error(w, \"Bad request\", http.StatusBadRequest)\n            return\n        }\n\n        name := r.Form.Get(\"name\")\n        fmt.Fprintf(w, \"Received: %s\", name)\n    })\n\n    // Start server\n    fmt.Println(\"Server starting on :8080\")\n    http.ListenAndServe(\":8080\", nil)\n}"
+                },
+                {
+                    "title": "Middleware and Routing",
+                    "explanation": "Go's HTTP package can be extended with middleware and custom routing using third-party packages like gorilla/mux.",
+                    "code": "package main\n\nimport (\n    \"fmt\"\n    \"log\"\n    \"net/http\"\n    \"time\"\n\n    \"github.com/gorilla/mux\"\n)\n\n// Middleware function\nfunc loggingMiddleware(next http.Handler) http.Handler {\n    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n        start := time.Now()\n        next.ServeHTTP(w, r)\n        log.Printf(\"%s %s %s\", r.Method, r.RequestURI, time.Since(start))\n    })\n}\n\n// Authentication middleware\nfunc authMiddleware(next http.Handler) http.Handler {\n    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n        token := r.Header.Get(\"Authorization\")\n        if token != \"Bearer valid-token\" {\n            http.Error(w, \"Unauthorized\", http.StatusUnauthorized)\n            return\n        }\n        next.ServeHTTP(w, r)\n    })\n}\n\nfunc main() {\n    r := mux.NewRouter()\n\n    // Apply middleware\n    r.Use(loggingMiddleware)\n    r.Use(authMiddleware)\n\n    // Define routes\n    r.HandleFunc(\"/\", func(w http.ResponseWriter, r *http.Request) {\n        fmt.Fprintf(w, \"Home page\")\n    })\n\n    r.HandleFunc(\"/users/{id}\", func(w http.ResponseWriter, r *http.Request) {\n        vars := mux.Vars(r)\n        id := vars[\"id\"]\n        fmt.Fprintf(w, \"User ID: %s\", id)\n    }).Methods(\"GET\")\n\n    // Start server\n    log.Println(\"Server starting on :8080\")\n    log.Fatal(http.ListenAndServe(\":8080\", r))\n}"
+                }
+            ]
+        },
+        "string_manipulation": {
+            "description": "String manipulation in Go",
+            "examples": [
+                {
+                    "title": "Basic String Operations",
+                    "explanation": "Go provides a rich set of string operations through the strings package and built-in string functions.",
+                    "code": "package main\n\nimport (\n    \"fmt\"\n    \"strings\"\n)\n\nfunc main() {\n    // String concatenation\n    str1 := \"Hello\"\n    str2 := \"World\"\n    result := str1 + \" \" + str2\n    fmt.Println(result)\n\n    // Using strings.Builder for efficient concatenation\n    var builder strings.Builder\n    builder.WriteString(\"Hello\")\n    builder.WriteString(\" \")\n    builder.WriteString(\"World\")\n    fmt.Println(builder.String())\n\n    // String length\n    length := len(\"Hello\")\n    fmt.Println(length)\n\n    // String comparison\n    equal := strings.EqualFold(\"hello\", \"HELLO\") // case-insensitive\n    fmt.Println(equal)\n\n    // String contains\n    contains := strings.Contains(\"Hello World\", \"World\")\n    fmt.Println(contains)\n\n    // String splitting\n    parts := strings.Split(\"Hello,World,Go\", \",\")\n    fmt.Println(parts)\n\n    // String joining\n    joined := strings.Join([]string{\"Hello\", \"World\", \"Go\"}, \" \")\n    fmt.Println(joined)\n\n    // String replacement\n    replaced := strings.Replace(\"Hello World\", \"World\", \"Go\", 1)\n    fmt.Println(replaced)\n\n    // String trimming\n    trimmed := strings.TrimSpace(\"  Hello World  \")\n    fmt.Println(trimmed)\n\n    // String case conversion\n    upper := strings.ToUpper(\"hello\")\n    lower := strings.ToLower(\"HELLO\")\n    fmt.Println(upper, lower)\n\n    // String formatting\n    formatted := fmt.Sprintf(\"Name: %s, Age: %d\", \"John\", 30)\n    fmt.Println(formatted)"
+                },
+                {
+                    "title": "Regular Expressions",
+                    "explanation": "Go's regexp package provides regular expression functionality for pattern matching and text manipulation.",
+                    "code": "package main\n\nimport (\n    \"fmt\"\n    \"regexp\"\n)\n\nfunc main() {\n    // Compile regex pattern\n    pattern := regexp.MustCompile(`\\d+`)\n\n    // Match string\n    matched := pattern.MatchString(\"123\")\n    fmt.Println(matched)\n\n    // Find all matches\n    matches := pattern.FindAllString(\"123 abc 456 def\", -1)\n    fmt.Println(matches)\n\n    // Replace matches\n    replaced := pattern.ReplaceAllString(\"123 abc 456 def\", \"#\")\n    fmt.Println(replaced)\n\n    // Capture groups\n    emailPattern := regexp.MustCompile(`(\\w+)@(\\w+)\\.(\\w+)`)\n    email := \"john@example.com\"\n    groups := emailPattern.FindStringSubmatch(email)\n    fmt.Println(groups)\n\n    // Split by regex\n    split := pattern.Split(\"123abc456def\", -1)\n    fmt.Println(split)"
+                }
+            ]
+        },
+        "date_time": {
+            "description": "Date and time handling in Go",
+            "examples": [
+                {
+                    "title": "Basic Date/Time Operations",
+                    "explanation": "Go's time package provides comprehensive date and time functionality.",
+                    "code": "package main\n\nimport (\n    \"fmt\"\n    \"time\"\n)\n\nfunc main() {\n    // Current time\n    now := time.Now()\n    fmt.Println(\"Current time:\", now)\n\n    // Format time\n    formatted := now.Format(\"2006-01-02 15:04:05\")\n    fmt.Println(\"Formatted time:\", formatted)\n\n    // Parse time\n    parsed, _ := time.Parse(\"2006-01-02\", \"2023-01-01\")\n    fmt.Println(\"Parsed time:\", parsed)\n\n    // Time arithmetic\n    tomorrow := now.Add(24 * time.Hour)\n    fmt.Println(\"Tomorrow:\", tomorrow)\n\n    // Time comparison\n    isAfter := tomorrow.After(now)\n    fmt.Println(\"Is tomorrow after now?\", isAfter)\n\n    // Time duration\n    duration := time.Hour * 2\n    fmt.Println(\"Duration:\", duration)\n\n    // Sleep\n    fmt.Println(\"Sleeping for 1 second...\")\n    time.Sleep(1 * time.Second)\n\n    // Timezone\n    loc, _ := time.LoadLocation(\"America/New_York\")\n    nyTime := now.In(loc)\n    fmt.Println(\"New York time:\", nyTime)\n\n    // Unix timestamp\n    timestamp := now.Unix()\n    fmt.Println(\"Unix timestamp:\", timestamp)\n\n    // Time components\n    year := now.Year()\n    month := now.Month()\n    day := now.Day()\n    hour := now.Hour()\n    minute := now.Minute()\n    second := now.Second()\n    fmt.Printf(\"Components: %d-%02d-%02d %02d:%02d:%02d\\n\",\n        year, month, day, hour, minute, second)"
+                }
+            ]
+        },
+        "collections": {
+            "description": "Collections and data structures in Go",
+            "examples": [
+                {
+                    "title": "Arrays and Slices",
+                    "explanation": "Arrays are fixed-size sequences, while slices are dynamic arrays in Go.",
+                    "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    // Array declaration\n    var arr [5]int\n    arr[0] = 1\n    fmt.Println(\"Array:\", arr)\n\n    // Array initialization\n    arr2 := [3]int{1, 2, 3}\n    fmt.Println(\"Initialized array:\", arr2)\n\n    // Slice declaration\n    var slice []int\n    fmt.Println(\"Empty slice:\", slice)\n\n    // Slice initialization\n    slice2 := []int{1, 2, 3, 4, 5}\n    fmt.Println(\"Initialized slice:\", slice2)\n\n    // Slice operations\n    slice2 = append(slice2, 6) // Append\n    fmt.Println(\"After append:\", slice2)\n\n    subSlice := slice2[1:3] // Sub-slice\n    fmt.Println(\"Sub-slice:\", subSlice)\n\n    // Slice capacity\n    fmt.Printf(\"Length: %d, Capacity: %d\\n\", len(slice2), cap(slice2))\n\n    // Make slice with capacity\n    slice3 := make([]int, 0, 10)\n    fmt.Printf(\"Length: %d, Capacity: %d\\n\", len(slice3), cap(slice3))"
+                },
+                {
+                    "title": "Maps",
+                    "explanation": "Maps are key-value pairs in Go, similar to dictionaries in other languages.",
+                    "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    // Map declaration\n    var m map[string]int\n    m = make(map[string]int)\n\n    // Map initialization\n    m2 := map[string]int{\n        \"one\": 1,\n        \"two\": 2,\n    }\n    fmt.Println(\"Initialized map:\", m2)\n\n    // Map operations\n    m[\"one\"] = 1 // Add/update\n    value, exists := m[\"one\"] // Check existence\n    fmt.Printf(\"Value: %d, Exists: %v\\n\", value, exists)\n\n    delete(m, \"one\") // Delete\n    fmt.Println(\"After delete:\", m)\n\n    // Iterate map\n    for key, value := range m2 {\n        fmt.Printf(\"Key: %s, Value: %d\\n\", key, value)\n    }\n\n    // Map length\n    fmt.Println(\"Map length:\", len(m2))"
+                },
+                {
+                    "title": "Custom Collections",
+                    "explanation": "Go allows creating custom collections using structs and interfaces.",
+                    "code": "package main\n\nimport \"fmt\"\n\n// Stack implementation\ntype Stack struct {\n    items []int\n}\n\nfunc (s *Stack) Push(item int) {\n    s.items = append(s.items, item)\n}\n\nfunc (s *Stack) Pop() int {\n    if len(s.items) == 0 {\n        return -1\n    }\n    item := s.items[len(s.items)-1]\n    s.items = s.items[:len(s.items)-1]\n    return item\n}\n\n// Queue implementation\ntype Queue struct {\n    items []int\n}\n\nfunc (q *Queue) Enqueue(item int) {\n    q.items = append(q.items, item)\n}\n\nfunc (q *Queue) Dequeue() int {\n    if len(q.items) == 0 {\n        return -1\n    }\n    item := q.items[0]\n    q.items = q.items[1:]\n    return item\n}\n\nfunc main() {\n    // Stack usage\n    stack := Stack{}\n    stack.Push(1)\n    stack.Push(2)\n    fmt.Println(\"Stack pop:\", stack.Pop())\n\n    // Queue usage\n    queue := Queue{}\n    queue.Enqueue(1)\n    queue.Enqueue(2)\n    fmt.Println(\"Queue dequeue:\", queue.Dequeue())"
+                }
+            ]
+        },
+        "concurrency": {
+            "description": "Concurrency and parallelism in Go",
+            "examples": [
+                {
+                    "title": "Goroutines",
+                    "explanation": "Goroutines are lightweight threads managed by the Go runtime. They allow concurrent execution with minimal resources.",
+                    "code": "// Basic goroutine\ngo func() {\n    fmt.Println(\"Running in goroutine\")\n}()\n\n// Goroutine with function\nfunc process(id int) {\n    fmt.Printf(\"Processing %d\\n\", id)\n}\n\nfor i := 0; i < 5; i++ {\n    go process(i)  // Start 5 goroutines\n}\n\n// Wait for goroutines to finish\ntime.Sleep(time.Second)"
+                },
+                {
+                    "title": "Channels",
+                    "explanation": "Channels are the primary communication mechanism between goroutines. They provide type-safe communication and synchronization.",
+                    "code": "// Unbuffered channel\nch := make(chan int)\n\n// Send value on channel (in goroutine)\ngo func() {\n    ch <- 42  // Blocks until someone receives\n}()\n\n// Receive value from channel\nvalue := <-ch\nfmt.Println(value)\n\n// Buffered channel\nbufferedCh := make(chan int, 3)  // Buffer size 3\nbufferedCh <- 1  // Won't block until buffer is full\nbufferedCh <- 2\nbufferedCh <- 3\n\n// Channel iteration\nch := make(chan int)\ngo func() {\n    for i := 0; i < 5; i++ {\n        ch <- i\n    }\n    close(ch)  // Close channel when done\n}()\n\n// Range over channel (stops when channel is closed)\nfor num := range ch {\n    fmt.Println(num)\n}"
+                },
+                {
+                    "title": "Select Statement",
+                    "explanation": "The select statement allows a goroutine to wait on multiple channel operations simultaneously, similar to switch but for channels.",
+                    "code": "ch1 := make(chan string)\nch2 := make(chan string)\n\ngo func() {\n    time.Sleep(time.Second)\n    ch1 <- \"Channel 1\"\n}()\n\ngo func() {\n    time.Sleep(2 * time.Second)\n    ch2 <- \"Channel 2\"\n}()\n\n// Wait on multiple channels\nfor i := 0; i < 2; i++ {\n    select {\n    case msg1 := <-ch1:\n        fmt.Println(msg1)\n    case msg2 := <-ch2:\n        fmt.Println(msg2)\n    case <-time.After(3 * time.Second):\n        fmt.Println(\"Timeout\")\n    }\n}"
+                },
+                {
+                    "title": "Mutex and RWMutex",
+                    "explanation": "Mutexes provide exclusive access to shared resources. RWMutex allows multiple readers or one writer.",
+                    "code": "var (\n    counter int\n    mutex   sync.Mutex\n    rwMutex sync.RWMutex\n    data    map[string]string\n)\n\n// Using Mutex for exclusive access\nfunc incrementCounter() {\n    mutex.Lock()\n    defer mutex.Unlock()\n    counter++\n}\n\n// Using RWMutex for concurrent reads\nfunc readData(key string) string {\n    rwMutex.RLock()\n    defer rwMutex.RUnlock()\n    return data[key]\n}\n\n// Using RWMutex for exclusive writes\nfunc writeData(key, value string) {\n    rwMutex.Lock()\n    defer rwMutex.Unlock()\n    data[key] = value\n}"
+                },
+                {
+                    "title": "WaitGroup",
+                    "explanation": "WaitGroup is used to wait for a collection of goroutines to finish execution.",
+                    "code": "var wg sync.WaitGroup\n\nfunc worker(id int) {\n    defer wg.Done()  // Decrement counter when done\n    fmt.Printf(\"Worker %d starting\\n\", id)\n    time.Sleep(time.Second)\n    fmt.Printf(\"Worker %d done\\n\", id)\n}\n\nfor i := 1; i <= 5; i++ {\n    wg.Add(1)  // Increment counter\n    go worker(i)\n}\n\nwg.Wait()  // Wait for all goroutines to finish\nfmt.Println(\"All workers done\")"
+                }
+            ]
+        },
+        "database_operations": {
+            "description": "Database operations in Go",
+            "examples": [
+                {
+                    "title": "SQL Database Connection",
+                    "explanation": "Go's database/sql package provides a generic interface for SQL database access. It requires a database driver.",
+                    "code": "package main\n\nimport (\n    \"database/sql\"\n    \"fmt\"\n    \"log\"\n\n    _ \"github.com/go-sql-driver/mysql\"  // Import MySQL driver\n)\n\nfunc main() {\n    // Open database connection\n    db, err := sql.Open(\"mysql\", \"user:password@tcp(127.0.0.1:3306)/dbname\")\n    if err != nil {\n        log.Fatal(err)\n    }\n    defer db.Close()\n\n    // Test connection\n    err = db.Ping()\n    if err != nil {\n        log.Fatal(err)\n    }\n\n    fmt.Println(\"Connected to database!\")\n}"
+                },
+                {
+                    "title": "SQL Queries",
+                    "explanation": "Go provides several methods for executing SQL queries, handling results, and managing prepared statements.",
+                    "code": "// Query multiple rows\nrows, err := db.Query(\"SELECT id, name FROM users WHERE age > ?\", 18)\nif err != nil {\n    log.Fatal(err)\n}\ndefer rows.Close()\n\nfor rows.Next() {\n    var id int\n    var name string\n    if err := rows.Scan(&id, &name); err != nil {\n        log.Fatal(err)\n    }\n    fmt.Printf(\"ID: %d, Name: %s\\n\", id, name)\n}\n\n// Check for errors during iteration\nif err := rows.Err(); err != nil {\n    log.Fatal(err)\n}\n\n// Query single row\nvar name string\nerr = db.QueryRow(\"SELECT name FROM users WHERE id = ?\", 1).Scan(&name)\nif err != nil {\n    if err == sql.ErrNoRows {\n        fmt.Println(\"No user found\")\n    } else {\n        log.Fatal(err)\n    }\n}\n\n// Execute statement (insert, update, delete)\nresult, err := db.Exec(\"INSERT INTO users(name, age) VALUES(?, ?)\", \"John\", 30)\nif err != nil {\n    log.Fatal(err)\n}\n\n// Get affected rows\naffected, err := result.RowsAffected()\nif err != nil {\n    log.Fatal(err)\n}\nfmt.Printf(\"%d rows affected\\n\", affected)\n\n// Get last insert ID\nlastID, err := result.LastInsertId()\nif err != nil {\n    log.Fatal(err)\n}\nfmt.Printf(\"Last insert ID: %d\\n\", lastID)"
+                },
+                {
+                    "title": "Prepared Statements",
+                    "explanation": "Prepared statements improve performance and security by separating SQL logic from data.",
+                    "code": "// Create prepared statement\nstmt, err := db.Prepare(\"INSERT INTO users(name, age) VALUES(?, ?)\")\nif err != nil {\n    log.Fatal(err)\n}\ndefer stmt.Close()\n\n// Execute prepared statement multiple times\nfor i := 0; i < 3; i++ {\n    name := fmt.Sprintf(\"User%d\", i)\n    age := 20 + i\n    \n    _, err := stmt.Exec(name, age)\n    if err != nil {\n        log.Fatal(err)\n    }\n}\n\n// Query prepared statement\nqstmt, err := db.Prepare(\"SELECT name FROM users WHERE age > ?\")\nif err != nil {\n    log.Fatal(err)\n}\ndefer qstmt.Close()\n\nrows, err := qstmt.Query(25)\nif err != nil {\n    log.Fatal(err)\n}\ndefer rows.Close()"
+                },
+                {
+                    "title": "Transactions",
+                    "explanation": "Transactions ensure that a series of operations either all succeed or all fail together.",
+                    "code": "// Begin transaction\ntx, err := db.Begin()\nif err != nil {\n    log.Fatal(err)\n}\n\n// Perform operations within transaction\n_, err = tx.Exec(\"UPDATE accounts SET balance = balance - ? WHERE id = ?\", 100, 1)\nif err != nil {\n    tx.Rollback()  // Rollback on error\n    log.Fatal(err)\n}\n\n_, err = tx.Exec(\"UPDATE accounts SET balance = balance + ? WHERE id = ?\", 100, 2)\nif err != nil {\n    tx.Rollback()  // Rollback on error\n    log.Fatal(err)\n}\n\n// Commit transaction if all operations succeeded\nerr = tx.Commit()\nif err != nil {\n    log.Fatal(err)\n}"
+                },
+                {
+                    "title": "ORM Example with GORM",
+                    "explanation": "GORM is a popular ORM library for Go that simplifies database operations.",
+                    "code": "package main\n\nimport (\n    \"fmt\"\n    \"log\"\n\n    \"gorm.io/driver/sqlite\"\n    \"gorm.io/gorm\"\n)\n\n// Define model\ntype User struct {\n    ID        uint   `gorm:\"primaryKey\"`\n    Name      string\n    Age       int\n    Email     string `gorm:\"uniqueIndex\"`\n    Posts     []Post\n}\n\ntype Post struct {\n    ID     uint   `gorm:\"primaryKey\"`\n    Title  string\n    Content string\n    UserID uint\n}\n\nfunc main() {\n    // Connect to database\n    db, err := gorm.Open(sqlite.Open(\"test.db\"), &gorm.Config{})\n    if err != nil {\n        log.Fatal(err)\n    }\n\n    // Auto migrate schemas\n    db.AutoMigrate(&User{}, &Post{})\n\n    // Create\n    user := User{Name: \"John\", Age: 30, Email: \"john@example.com\"}\n    db.Create(&user)\n\n    // Read\n    var foundUser User\n    db.First(&foundUser, \"email = ?\", \"john@example.com\") // Find first record\n    fmt.Printf(\"Found user: %v\\n\", foundUser)\n\n    // Update\n    db.Model(&foundUser).Updates(User{Name: \"John Doe\", Age: 31})\n\n    // Delete\n    db.Delete(&foundUser)\n\n    // Associations\n    user = User{Name: \"Alice\", Age: 25, Email: \"alice@example.com\"}\n    user.Posts = []Post{\n        {Title: \"Post 1\", Content: \"Content 1\"},\n        {Title: \"Post 2\", Content: \"Content 2\"},\n    }\n    db.Create(&user)\n\n    // Eager loading (preload)\n    var userWithPosts User\n    db.Preload(\"Posts\").First(&userWithPosts, user.ID)\n    fmt.Printf(\"User with posts: %v\\n\", userWithPosts)\n}"
+                }
+            ]
+        },
+        "regexp": {
+            "description": "Regular expressions in Go",
+            "examples": [
+                {
+                    "title": "Pattern Matching",
+                    "explanation": "Go's regexp package provides pattern matching capabilities. The package implements RE2 syntax.",
+                    "code": "package main\n\nimport (\n    \"fmt\"\n    \"regexp\"\n)\n\nfunc main() {\n    // Compile regular expression\n    pattern := regexp.MustCompile(`\\d+`)\n\n    // Match entire string\n    matched := pattern.MatchString(\"123\")\n    fmt.Printf(\"String '123' matches pattern: %v\\n\", matched)\n\n    // Find first match\n    firstMatch := pattern.FindString(\"abc123def456\")\n    fmt.Printf(\"First match: %s\\n\", firstMatch)\n\n    // Find all matches\n    allMatches := pattern.FindAllString(\"abc123def456\", -1)\n    fmt.Printf(\"All matches: %v\\n\", allMatches)\n\n    // Find match positions\n    indices := pattern.FindStringIndex(\"abc123def456\")\n    fmt.Printf(\"First match position: %v\\n\", indices)\n\n    // Check if pattern is valid\n    _, err := regexp.Compile(`[a-z+`)  // Invalid pattern\n    fmt.Printf(\"Compilation error: %v\\n\", err)\n}"
+                },
+                {
+                    "title": "String Replacement",
+                    "explanation": "Regular expressions can be used to replace text in strings based on patterns.",
+                    "code": "// Basic replacement\npattern := regexp.MustCompile(`\\d+`)\nreplaced := pattern.ReplaceAllString(\"abc123def456\", \"X\")\nfmt.Printf(\"Replaced: %s\\n\", replaced)  // Output: abcXdefX\n\n// Replacement with callback function\nreplacedFunc := pattern.ReplaceAllStringFunc(\"abc123def456\", func(s string) string {\n    return fmt.Sprintf(\"[%s]\", s)\n})\nfmt.Printf(\"Replaced with function: %s\\n\", replacedFunc)  // Output: abc[123]def[456]\n\n// Replace first N occurrences\npattern = regexp.MustCompile(`\\d`)\nreplacedN := pattern.ReplaceAllString(\"123456\", \"X\")\nfmt.Printf(\"All replaced: %s\\n\", replacedN)  // Output: XXXXXX\n\n// Global vs non-global replacement (in Go, we control with limit parameter)\nreplaced1 := pattern.ReplaceAllString(\"123456\", \"X\")\nfmt.Printf(\"Global replacement: %s\\n\", replaced1)  // Output: XXXXXX\n\n// Literal replacement (no backreferences)\nreplacedLit := pattern.ReplaceAllLiteralString(\"123\", \"$1\")\nfmt.Printf(\"Literal replacement: %s\\n\", replacedLit)  // Output: $1$1$1"
+                },
+                {
+                    "title": "Capture Groups",
+                    "explanation": "Capture groups allow extracting specific parts of matched patterns. They are defined with parentheses.",
+                    "code": "// Basic capture groups\npattern := regexp.MustCompile(`(\\w+)@(\\w+)\\.(\\w+)`)\nemail := \"john@example.com\"\nmatches := pattern.FindStringSubmatch(email)\nfmt.Println(\"Full match:\", matches[0])\nfmt.Println(\"Username:\", matches[1])\nfmt.Println(\"Domain:\", matches[2])\nfmt.Println(\"TLD:\", matches[3])\n\n// Named capture groups\npattern = regexp.MustCompile(`(?P<username>\\w+)@(?P<domain>\\w+)\\.(?P<tld>\\w+)`)\nmatches = pattern.FindStringSubmatch(email)\nnames := pattern.SubexpNames()\n\n// Create a map of named groups\nresult := make(map[string]string)\nfor i, name := range names {\n    if i != 0 && name != \"\" && i < len(matches) {\n        result[name] = matches[i]\n    }\n}\nfmt.Printf(\"Username: %s, Domain: %s, TLD: %s\\n\",\n    result[\"username\"], result[\"domain\"], result[\"tld\"])\n\n// Using capture groups in replacement\npattern = regexp.MustCompile(`(\\w+)@(\\w+)\\.(\\w+)`)\nreplaced := pattern.ReplaceAllString(email, \"$1 at $2 dot $3\")\nfmt.Println(\"Replaced:\", replaced)  // Output: john at example dot com"
+                },
+                {
+                    "title": "Flags and Modifiers",
+                    "explanation": "Go's regexp package supports various flags and modifiers that change how patterns match.",
+                    "code": "// Case-insensitive matching\npattern := regexp.MustCompile(`(?i)hello`)\nfmt.Println(pattern.MatchString(\"HELLO\"))  // true\n\n// Multiline mode\npattern = regexp.MustCompile(`(?m)^start`)\ntext := \"line1\\nstart line2\"\nfmt.Println(pattern.MatchString(text))  // true\n\n// Single line mode (dot matches newline)\npattern = regexp.MustCompile(`(?s)hello.*world`)\ntext = \"hello\\nworld\"\nfmt.Println(pattern.MatchString(text))  // true\n\n// Combining flags\npattern = regexp.MustCompile(`(?i)(?m)^hello`)\ntext = \"line1\\nHELLO line2\"\nfmt.Println(pattern.MatchString(text))  // true\n\n// Word boundaries\npattern = regexp.MustCompile(`\\bword\\b`)\nfmt.Println(pattern.MatchString(\"word\"))    // true\nfmt.Println(pattern.MatchString(\"sword\"))   // false\nfmt.Println(pattern.MatchString(\"word s\"))  // true\n\n// Greedy vs non-greedy matching\ntext = \"<div>Content1</div><div>Content2</div>\"\ngreedy := regexp.MustCompile(`<div>.*</div>`)\nfmt.Println(greedy.FindString(text))  // <div>Content1</div><div>Content2</div>\n\nnonGreedy := regexp.MustCompile(`<div>.*?</div>`)\nfmt.Println(nonGreedy.FindString(text))  // <div>Content1</div>"
+                }
+            ]
+        },
+        "json_xml": {
+            "description": "JSON and XML handling in Go",
+            "examples": [
+                {
+                    "title": "JSON Parsing",
+                    "explanation": "Go's encoding/json package provides functions to parse JSON data into Go structs and vice versa.",
+                    "code": "package main\n\nimport (\n    \"encoding/json\"\n    \"fmt\"\n)\n\n// Define struct that matches JSON structure\ntype Person struct {\n    Name    string   `json:\"name\"`\n    Age     int      `json:\"age\"`\n    Hobbies []string `json:\"hobbies,omitempty\"`\n}\n\nfunc main() {\n    // JSON string\n    jsonData := `{\"name\":\"John\",\"age\":30,\"hobbies\":[\"reading\",\"coding\"]}`\n\n    // Parse JSON into struct\n    var person Person\n    err := json.Unmarshal([]byte(jsonData), &person)\n    if err != nil {\n        fmt.Println(\"Error:\", err)\n        return\n    }\n\n    fmt.Printf(\"Person: %+v\\n\", person)\n\n    // Parse JSON into map\n    var data map[string]interface{}\n    err = json.Unmarshal([]byte(jsonData), &data)\n    if err != nil {\n        fmt.Println(\"Error:\", err)\n        return\n    }\n\n    fmt.Printf(\"Name: %s, Age: %.0f\\n\", \n        data[\"name\"].(string), \n        data[\"age\"].(float64))\n\n    // Access nested data\n    hobbies := data[\"hobbies\"].([]interface{})\n    for _, hobby := range hobbies {\n        fmt.Println(\"Hobby:\", hobby.(string))\n    }\n}"
+                },
+                {
+                    "title": "JSON Serialization",
+                    "explanation": "Converting Go objects to JSON strings is done using the Marshal function.",
+                    "code": "// Create struct\nperson := Person{\n    Name:    \"John\",\n    Age:     30,\n    Hobbies: []string{\"reading\", \"coding\"},\n}\n\n// Convert to JSON\njsonData, err := json.Marshal(person)\nif err != nil {\n    fmt.Println(\"Error:\", err)\n    return\n}\n\nfmt.Println(string(jsonData))\n\n// Pretty print JSON\nprettyJSON, err := json.MarshalIndent(person, \"\", \"  \")\nif err != nil {\n    fmt.Println(\"Error:\", err)\n    return\n}\n\nfmt.Println(string(prettyJSON))\n\n// Custom marshaling\ntype CustomTime time.Time\n\nfunc (t CustomTime) MarshalJSON() ([]byte, error) {\n    return []byte(\"\\\"\"+time.Time(t).Format(\"2006-01-02\")+\"\\\"\"), nil\n}\n\ntype Event struct {\n    Title string     `json:\"title\"`\n    Date  CustomTime `json:\"date\"`\n}\n\nevent := Event{\n    Title: \"Conference\",\n    Date:  CustomTime(time.Date(2023, 1, 15, 0, 0, 0, 0, time.UTC)),\n}\n\neventJSON, _ := json.Marshal(event)\nfmt.Println(string(eventJSON))"
+                },
+                {
+                    "title": "XML Handling",
+                    "explanation": "Go's encoding/xml package provides functions to parse and generate XML data.",
+                    "code": "package main\n\nimport (\n    \"encoding/xml\"\n    \"fmt\"\n)\n\n// Define struct with XML tags\ntype Book struct {\n    XMLName  xml.Name `xml:\"book\"`\n    ID       int      `xml:\"id,attr\"`\n    Title    string   `xml:\"title\"`\n    Author   string   `xml:\"author\"`\n    Year     int      `xml:\"year\"`\n    Chapters []string `xml:\"chapters>chapter\"`\n}\n\nfunc main() {\n    // XML string\n    xmlData := `\n    <book id=\"123\">\n        <title>Go Programming</title>\n        <author>John Doe</author>\n        <year>2023</year>\n        <chapters>\n            <chapter>Introduction</chapter>\n            <chapter>Basics</chapter>\n            <chapter>Advanced</chapter>\n        </chapters>\n    </book>`\n\n    // Parse XML into struct\n    var book Book\n    err := xml.Unmarshal([]byte(xmlData), &book)\n    if err != nil {\n        fmt.Println(\"Error:\", err)\n        return\n    }\n\n    fmt.Printf(\"Book: %+v\\n\", book)\n\n    // Convert struct to XML\n    newBook := Book{\n        ID:       456,\n        Title:    \"Advanced Go\",\n        Author:   \"Jane Smith\",\n        Year:     2024,\n        Chapters: []string{\"Concurrency\", \"Web Services\", \"Testing\"},\n    }\n\n    output, err := xml.MarshalIndent(newBook, \"\", \"  \")\n    if err != nil {\n        fmt.Println(\"Error:\", err)\n        return\n    }\n\n    // Add XML header\n    fmt.Println(xml.Header + string(output))\n}"
+                },
+                {
+                    "title": "JSON Validation",
+                    "explanation": "Go doesn't have built-in JSON schema validation, but there are third-party libraries available.",
+                    "code": "package main\n\nimport (\n    \"encoding/json\"\n    \"fmt\"\n    \"log\"\n\n    \"github.com/xeipuuv/gojsonschema\"\n)\n\nfunc main() {\n    // JSON schema\n    schemaLoader := gojsonschema.NewStringLoader(`{\n        \"type\": \"object\",\n        \"required\": [\"name\", \"age\"],\n        \"properties\": {\n            \"name\": {\"type\": \"string\"},\n            \"age\": {\"type\": \"integer\", \"minimum\": 0},\n            \"hobbies\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}}\n        }\n    }`)\n\n    // JSON data to validate\n    dataLoader := gojsonschema.NewStringLoader(`{\n        \"name\": \"John\",\n        \"age\": 30,\n        \"hobbies\": [\"reading\", \"coding\"]\n    }`)\n\n    // Validate\n    result, err := gojsonschema.Validate(schemaLoader, dataLoader)\n    if err != nil {\n        log.Fatal(err)\n    }\n\n    if result.Valid() {\n        fmt.Println(\"The data is valid\")\n    } else {\n        fmt.Println(\"The data is not valid. Errors:\")\n        for _, err := range result.Errors() {\n            fmt.Println(\"-\", err)\n        }\n    }\n\n    // Manual validation\n    var data map[string]interface{}\n    json.Unmarshal([]byte(`{\"name\":\"John\",\"age\":30}`), &data)\n\n    // Check required fields\n    required := []string{\"name\", \"age\"}\n    for _, field := range required {\n        if _, ok := data[field]; !ok {\n            fmt.Printf(\"Missing required field: %s\\n\", field)\n        }\n    }\n\n    // Type checking\n    if name, ok := data[\"name\"].(string); ok {\n        fmt.Println(\"Name:\", name)\n    } else {\n        fmt.Println(\"Name is not a string\")\n    }\n\n    if age, ok := data[\"age\"].(float64); ok {  // JSON numbers are parsed as float64\n        fmt.Println(\"Age:\", int(age))\n    } else {\n        fmt.Println(\"Age is not a number\")\n    }\n}"
+                }
+            ]
+        },
+        "cli": {
+            "description": "Command line argument handling in Go",
+            "examples": [
+            {
+                "title": "Basic Argument Parsing",
+                "explanation": "Go's os package provides access to command line arguments through os.Args.",
+                "code": "package main\n\nimport (\n \"fmt\"\n \"os\"\n)\n\nfunc main() {\n // os.Args[0] is the program name\n // os.Args[1:] are the arguments\n fmt.Printf(\"Program: %s\\n\", os.Args[0])\n fmt.Printf(\"Arguments: %v\\n\", os.Args[1:])\n\n // Check if arguments were provided\n if len(os.Args) < 2 {\n fmt.Println(\"No arguments provided\")\n return\n }\n\n // Process each argument\n for i, arg := range os.Args[1:] {\n fmt.Printf(\"Argument %d: %s\\n\", i+1, arg)\n }\n}"
+            },
+            {
+                "title": "Flag Package",
+                "explanation": "Go's flag package provides more sophisticated command line argument parsing with support for flags and options.",
+                "code": "package main\n\nimport (\n \"flag\"\n \"fmt\"\n)\n\nfunc main() {\n // Define flags\n namePtr := flag.String(\"name\", \"World\", \"a name to say hello to\")\n agePtr := flag.Int(\"age\", 0, \"age of the person\")\n verbosePtr := flag.Bool(\"verbose\", false, \"verbose output\")\n\n // Define shorthand flags\n var name string\n flag.StringVar(&name, \"n\", \"World\", \"a name to say hello to (shorthand)\")\n\n // Parse flags\n flag.Parse()\n\n // Access parsed flags\n fmt.Printf(\"Hello, %s!\\n\", *namePtr)\n fmt.Printf(\"Age: %d\\n\", *agePtr)\n if *verbosePtr {\n fmt.Println(\"Verbose mode enabled\")\n }\n\n // Access remaining non-flag arguments\n fmt.Printf(\"Remaining args: %v\\n\", flag.Args())\n}"
+            },
+            {
+                "title": "Environment Variables",
+                "explanation": "Go provides access to environment variables through the os package.",
+                "code": "package main\n\nimport (\n \"fmt\"\n \"os\"\n \"strings\"\n)\n\nfunc main() {\n // Get environment variable\n home := os.Getenv(\"HOME\")\n fmt.Println(\"Home directory:\", home)\n\n // Check if environment variable exists\n if path, exists := os.LookupEnv(\"PATH\"); exists {\n paths := strings.Split(path, \":\")\n fmt.Println(\"PATH entries:\")\n for _, p := range paths {\n fmt.Println(\"-\", p)\n }\n }\n\n // Set environment variable\n os.Setenv(\"MY_VAR\", \"my_value\")\n fmt.Println(\"MY_VAR:\", os.Getenv(\"MY_VAR\"))\n\n // Get all environment variables\n env := os.Environ()\n fmt.Println(\"\\nEnvironment variables:\")\n for i, e := range env {\n if i < 5 { // Show just a few\n fmt.Println(e)\n }\n }\n}"
+            },
+            {
+                "title": "Cobra Library",
+                "explanation": "Cobra is a popular third-party library for creating powerful modern CLI applications in Go with support for subcommands, flags, and more.",
+                "code": "package main\n\nimport (\n \"fmt\"\n \"os\"\n\n \"github.com/spf13/cobra\"\n)\n\nfunc main() {\n var verbose bool\n var source string\n\n // Root command\n rootCmd := &cobra.Command{\n Use: \"app\",\n Short: \"A brief description of your application\",\n Long: `A longer description that spans multiple lines and likely contains\nexamples and usage of using your application.`,\n Run: func(cmd *cobra.Command, args []string) {\n fmt.Printf(\"Verbose: %v\\n\", verbose)\n fmt.Printf(\"Source: %s\\n\", source)\n fmt.Printf(\"Args: %v\\n\", args)\n },\n}\n\n // Flags and configuration\n rootCmd.PersistentFlags().BoolVarP(&verbose, \"verbose\", \"v\", false, \"verbose output\")\n rootCmd.Flags().StringVarP(&source, \"source\", \"s\", \"\", \"Source directory\")\n\n // Subcommands\n var serveCmd = &cobra.Command{\n Use: \"serve\",\n Short: \"Start the server\",\n Run: func(cmd *cobra.Command, args []string) {\n fmt.Println(\"Server started\")\n },\n}\n rootCmd.AddCommand(serveCmd)\n\n if err := rootCmd.Execute(); err != nil {\n fmt.Println(err)\n os.Exit(1)\n }\n}"
+            },
+            {
+                "title": "Custom Argument Parser",
+                "explanation": "For more control, you can create a custom argument parser in Go.",
+                "code": "package main\n\nimport (\n \"fmt\"\n \"os\"\n \"strings\"\n)\n\nfunc main() {\n if len(os.Args) < 2 {\n printUsage()\n return\n }\n\n command := os.Args[1]\n args := os.Args[2:]\n\n switch command {\n case \"help\":\n printUsage()\n case \"run\":\n runCommand(args)\n case \"version\":\n fmt.Println(\"v1.0.0\")\n default:\n fmt.Printf(\"Unknown command: %s\\n\", command)\n printUsage()\n }\n}\n\nfunc printUsage() {\n fmt.Println(\"Usage: program [command] [arguments]\")\n fmt.Println(\"Commands:\")\n fmt.Println(\" help     - Show this help\")\n fmt.Println(\" run      - Run the application\")\n fmt.Println(\" version  - Show version\")\n}\n\nfunc runCommand(args []string) {\n options := make(map[string]string)\n\n // Parse options in the format --key=value or -k value\n for i := 0; i < len(args); i++ {\n arg := args[i]\n\n if strings.HasPrefix(arg, \"--\") {\n parts := strings.SplitN(arg[2:], \"=\", 2)\n if len(parts) == 2 {\n options[parts[0]] = parts[1]\n } else {\n options[parts[0]] = \"true\"\n }\n } else if strings.HasPrefix(arg, \"-\") {\n key := arg[1:]\n if i+1 < len(args) && !strings.HasPrefix(args[i+1], \"-\") {\n options[key] = args[i+1]\n i++ // Skip next arg\n } else {\n options[key] = \"true\"\n }\n }\n }\n\n fmt.Println(\"Running with options:\")\n for k, v := range options {\n fmt.Printf(\" %s: %s\\n\", k, v)\n }\n}"
+            },
+            {
+                "title": "Program Exit Codes",
+                "explanation": "Using proper exit codes helps other programs interact with your CLI application.",
+                "code": "package main\n\nimport (\n \"fmt\"\n \"os\"\n)\n\nconst (\n ExitSuccess = 0\n ExitError = 1\n ExitInvalidArgs = 2\n)\n\nfunc main() {\n if len(os.Args) < 2 {\n fmt.Println(\"Error: No arguments provided\")\n os.Exit(ExitInvalidArgs)\n }\n\n command := os.Args[1]\n\n switch command {\n case \"success\":\n fmt.Println(\"Operation completed successfully\")\n os.Exit(ExitSuccess)\n case \"fail\":\n fmt.Println(\"Operation failed\")\n os.Exit(ExitError)\n default:\n fmt.Printf(\"Unknown command: %s\\n\", command)\n os.Exit(ExitInvalidArgs)\n }\n}"
+            },
+            {
+                "title": "Input from STDIN",
+                "explanation": "CLI applications often need to read from standard input.",
+                "code": "package main\n\nimport (\n \"bufio\"\n \"fmt\"\n \"os\"\n \"strings\"\n)\n\nfunc main() {\n // Check if data is being piped in\n stat, _ := os.Stdin.Stat()\n if (stat.Mode() & os.ModeCharDevice) == 0 {\n // Data is being piped in\n scanner := bufio.NewScanner(os.Stdin)\n var lines []string\n\n for scanner.Scan() {\n lines = append(lines, scanner.Text())\n }\n\n if err := scanner.Err(); err != nil {\n fmt.Fprintf(os.Stderr, \"Error reading stdin: %v\\n\", err)\n os.Exit(1)\n }\n\n fmt.Printf(\"Read %d lines from stdin\\n\", len(lines))\n for i, line := range lines {\n if i < 3 { // Show just a few lines\n fmt.Printf(\"%d: %s\\n\", i+1, line)\n }\n }\n } else {\n // Interactive input\n fmt.Print(\"Enter your name: \")\n reader := bufio.NewReader(os.Stdin)\n input, _ := reader.ReadString('\\n')\n name := strings.TrimSpace(input)\n fmt.Printf(\"Hello, %s!\\n\", name)\n }\n}"
+            },
+            {
+                "title": "Progress Indicators",
+                "explanation": "CLI applications often need to show progress for long-running operations.",
+                "code": "package main\n\nimport (\n \"fmt\"\n \"time\"\n)\n\nfunc main() {\n // Simple spinner\n fmt.Print(\"Working \")\n for i := 0; i < 10; i++ {\n fmt.Print(\".\")\n time.Sleep(300 * time.Millisecond)\n }\n fmt.Println(\" Done!\")\n\n // Progress bar\n total := 50\n fmt.Print(\"Progress: [\")\n for i := 0; i <= total; i++ {\n time.Sleep(50 * time.Millisecond)\n\n // Calculate percentage\n percent := float64(i) / float64(total) * 100\n\n // Update progress bar\n fmt.Printf(\"\\rProgress: [\")\n for j := 0; j < total; j++ {\n if j < i {\n fmt.Print(\"=\")\n } else {\n fmt.Print(\" \")\n }\n }\n fmt.Printf(\"] %.1f%%\", percent)\n }\n fmt.Println(\"\\nCompleted!\")\n}"
+            },
+            {
+                "title": "Console Colors",
+                "explanation": "Adding colors to terminal output can improve usability of CLI applications.",
+                "code": "package main\n\nimport \"fmt\"\n\nconst (\n ColorReset = \"\\033[0m\"\n ColorRed = \"\\033[31m\"\n ColorGreen = \"\\033[32m\"\n ColorYellow = \"\\033[33m\"\n ColorBlue = \"\\033[34m\"\n ColorBold = \"\\033[1m\"\n)\n\nfunc main() {\n fmt.Println(\"Standard text\")\n fmt.Println(string(ColorRed) + \"Error message\" + string(ColorReset))\n fmt.Println(string(ColorGreen) + \"Success message\" + string(ColorReset))\n fmt.Println(string(ColorYellow) + \"Warning message\" + string(ColorReset))\n fmt.Println(string(ColorBlue) + \"Info message\" + string(ColorReset))\n fmt.Println(string(ColorBold) + \"Bold text\" + string(ColorReset))\n\n // Combine colors and styles\n fmt.Println(string(ColorBold) + string(ColorGreen) + \"Bold green success\" + string(ColorReset))\n}"
+            }
+            ]
+        },
+        "testing": {
+            "description": "Testing in Go using the built-in testing package and other tools",
+            "examples": [
+                {
+                "title": "Basic Unit Tests",
+                "explanation": "Go has a built-in testing framework in the 'testing' package.",
+                "code": "package main\n\nimport \"testing\"\n\n// Function to test\nfunc Add(a, b int) int {\n  return a + b\n}\n\n// Test function\nfunc TestAdd(t *testing.T) {\n  result := Add(2, 3)\n  expected := 5\n  \n  if result != expected {\n    t.Errorf(\"Add(2, 3) = %d; expected %d\", result, expected)\n  }\n  \n  // Test multiple cases\n  testCases := []struct {\n    a, b, expected int\n  }{\n    {1, 1, 2},\n    {5, 0, 5},\n    {-1, 1, 0},\n    {-5, -5, -10},\n  }\n  \n  for _, tc := range testCases {\n    result := Add(tc.a, tc.b)\n    if result != tc.expected {\n      t.Errorf(\"Add(%d, %d) = %d; expected %d\", tc.a, tc.b, result, tc.expected)\n    }\n  }\n}"
+                },
+                {
+                "title": "Table-Driven Tests",
+                "explanation": "Table-driven testing is a common pattern in Go for testing multiple cases.",
+                "code": "package main\n\nimport (\n  \"testing\"\n  \"strings\"\n)\n\nfunc IsPalindrome(s string) bool {\n  // Convert to lowercase and remove non-alphanumeric characters\n  s = strings.ToLower(s)\n  var result string\n  for _, ch := range s {\n    if (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9') {\n      result += string(ch)\n    }\n  }\n  \n  // Check if palindrome\n  for i := 0; i < len(result)/2; i++ {\n    if result[i] != result[len(result)-i-1] {\n      return false\n    }\n  }\n  return true\n}\n\nfunc TestIsPalindrome(t *testing.T) {\n  testCases := []struct {\n    input string\n    want  bool\n  }{\n    {\"radar\", true},\n    {\"Radar\", true},\n    {\"A man, a plan, a canal: Panama\", true},\n    {\"hello\", false},\n    {\"go\", false},\n    {\"\", true},\n    {\"racecar\", true},\n    {\"123321\", true},\n    {\"12321\", true},\n  }\n  \n  for _, tc := range testCases {\n    got := IsPalindrome(tc.input)\n    if got != tc.want {\n      t.Errorf(\"IsPalindrome(%q) = %v; want %v\", tc.input, got, tc.want)\n    }\n  }\n}"
+                },
+                {
+                "title": "Subtests",
+                "explanation": "Go allows organizing tests into logical groups with subtests.",
+                "code": "package main\n\nimport (\n  \"testing\"\n  \"time\"\n)\n\nfunc ParseDate(date string) (time.Time, error) {\n  return time.Parse(\"2006-01-02\", date)\n}\n\nfunc TestDateParsing(t *testing.T) {\n  t.Run(\"ValidDates\", func(t *testing.T) {\n    testCases := []struct {\n      input    string\n      expected time.Time\n    }{\n      {\"2023-01-15\", time.Date(2023, 1, 15, 0, 0, 0, 0, time.UTC)},\n      {\"2020-02-29\", time.Date(2020, 2, 29, 0, 0, 0, 0, time.UTC)},\n      {\"1999-12-31\", time.Date(1999, 12, 31, 0, 0, 0, 0, time.UTC)},\n    }\n    \n    for _, tc := range testCases {\n      t.Run(tc.input, func(t *testing.T) {\n        result, err := ParseDate(tc.input)\n        if err != nil {\n          t.Fatalf(\"ParseDate(%q) returned error: %v\", tc.input, err)\n        }\n        if !result.Equal(tc.expected) {\n          t.Errorf(\"ParseDate(%q) = %v; expected %v\", tc.input, result, tc.expected)\n        }\n      })\n    }\n  })\n  \n  t.Run(\"InvalidDates\", func(t *testing.T) {\n    invalidDates := []string{\n      \"2023-13-01\", // Invalid month\n      \"2023-01-32\", // Invalid day\n      \"2023-02-30\", // February doesn't have 30 days\n      \"20230101\",   // Wrong format\n    }\n    \n    for _, date := range invalidDates {\n      t.Run(date, func(t *testing.T) {\n        _, err := ParseDate(date)\n        if err == nil {\n          t.Errorf(\"ParseDate(%q) did not return an error for invalid date\", date)\n        }\n      })\n    }\n  })\n}"
+                },
+                {
+                "title": "Benchmarks",
+                "explanation": "Go's testing package supports benchmarking to measure performance.",
+                "code": "package main\n\nimport (\n  \"testing\"\n  \"strings\"\n)\n\nfunc Concat(n int, str string) string {\n  var result string\n  for i := 0; i < n; i++ {\n    result += str\n  }\n  return result\n}\n\nfunc ConcatBuilder(n int, str string) string {\n  var builder strings.Builder\n  for i := 0; i < n; i++ {\n    builder.WriteString(str)\n  }\n  return builder.String()\n}\n\nfunc BenchmarkConcat(b *testing.B) {\n  for i := 0; i < b.N; i++ {\n    Concat(100, \"x\")\n  }\n}\n\nfunc BenchmarkConcatBuilder(b *testing.B) {\n  for i := 0; i < b.N; i++ {\n    ConcatBuilder(100, \"x\")\n  }\n}\n\n// Run benchmarks with different inputs\nfunc BenchmarkConcatSize(b *testing.B) {\n  benchmarks := []struct {\n    name string\n    n    int\n  }{\n    {\"Small\", 10},\n    {\"Medium\", 100},\n    {\"Large\", 1000},\n  }\n  \n  for _, bm := range benchmarks {\n    b.Run(bm.name, func(b *testing.B) {\n      for i := 0; i < b.N; i++ {\n        Concat(bm.n, \"x\")\n      }\n    })\n  }\n}"
+                },
+                {
+                "title": "Test Mocks",
+                "explanation": "Creating mocks for interfaces to test components in isolation.",
+                "code": "package main\n\nimport (\n  \"testing\"\n)\n\n// Interface we want to mock\ntype DataStore interface {\n  Get(key string) (string, error)\n  Set(key, value string) error\n}\n\n// Service using the DataStore\ntype UserService struct {\n  store DataStore\n}\n\n// Method to test\nfunc (s *UserService) GetUserEmail(userID string) (string, error) {\n  return s.store.Get(\"user:\" + userID + \":email\")\n}\n\n// Mock implementation\ntype MockDataStore struct {\n  data map[string]string\n}\n\nfunc (m *MockDataStore) Get(key string) (string, error) {\n  value, ok := m.data[key]\n  if !ok {\n    return \"\", nil // Could return an error for \"not found\"\n  }\n  return value, nil\n}\n\nfunc (m *MockDataStore) Set(key, value string) error {\n  m.data[key] = value\n  return nil\n}\n\n// Test with mock\nfunc TestGetUserEmail(t *testing.T) {\n  // Create mock store\n  mockStore := &MockDataStore{\n    data: map[string]string{\n      \"user:123:email\": \"user@example.com\",\n      \"user:456:email\": \"another@example.com\",\n    },\n  }\n  \n  // Create service with mock\n  service := &UserService{store: mockStore}\n  \n  // Test cases\n  testCases := []struct {\n    userID   string\n    expected string\n  }{\n    {\"123\", \"user@example.com\"},\n    {\"456\", \"another@example.com\"},\n    {\"789\", \"\"}, // Not found\n  }\n  \n  for _, tc := range testCases {\n    result, err := service.GetUserEmail(tc.userID)\n    if err != nil {\n      t.Errorf(\"GetUserEmail(%q) returned error: %v\", tc.userID, err)\n    }\n    if result != tc.expected {\n      t.Errorf(\"GetUserEmail(%q) = %q; expected %q\", tc.userID, result, tc.expected)\n    }\n  }\n}"
+                },
+                {
+                "title": "HTTP Testing",
+                "explanation": "Go provides tools for testing HTTP handlers and making HTTP requests.",
+                "code": "package main\n\nimport (\n  \"net/http\"\n  \"net/http/httptest\"\n  \"testing\"\n  \"io\"\n  \"strings\"\n)\n\n// HTTP handler to test\nfunc HelloHandler(w http.ResponseWriter, r *http.Request) {\n  name := r.URL.Query().Get(\"name\")\n  if name == \"\" {\n    name = \"World\"\n  }\n  w.WriteHeader(http.StatusOK)\n  w.Write([]byte(\"Hello, \" + name + \"!\"))\n}\n\nfunc TestHelloHandler(t *testing.T) {\n  // Create test cases\n  testCases := []struct {\n    name           string\n    url            string\n    expectedStatus int\n    expectedBody   string\n  }{\n    {\"Default\", \"/hello\", http.StatusOK, \"Hello, World!\"},\n    {\"WithName\", \"/hello?name=John\", http.StatusOK, \"Hello, John!\"},\n  }\n  \n  for _, tc := range testCases {\n    t.Run(tc.name, func(t *testing.T) {\n      // Create request\n      req := httptest.NewRequest(\"GET\", tc.url, nil)\n      \n      // Create response recorder\n      recorder := httptest.NewRecorder()\n      \n      // Call handler\n      HelloHandler(recorder, req)\n      \n      // Check status code\n      if recorder.Code != tc.expectedStatus {\n        t.Errorf(\"Expected status %d; got %d\", tc.expectedStatus, recorder.Code)\n      }\n      \n      // Check response body\n      body, _ := io.ReadAll(recorder.Body)\n      if string(body) != tc.expectedBody {\n        t.Errorf(\"Expected body %q; got %q\", tc.expectedBody, string(body))\n      }\n    })\n  }\n}\n\n// Test with a mock server\nfunc TestMockServer(t *testing.T) {\n  // Create mock server\n  server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n    if r.URL.Path == \"/api/users\" {\n      w.Header().Set(\"Content-Type\", \"application/json\")\n      w.WriteHeader(http.StatusOK)\n      w.Write([]byte(`{\"users\": [\"user1\", \"user2\"]}`)) \n    } else {\n      w.WriteHeader(http.StatusNotFound)\n    }\n  }))\n  defer server.Close()\n  \n  // Make request to mock server\n  resp, err := http.Get(server.URL + \"/api/users\")\n  if err != nil {\n    t.Fatalf(\"Failed to make request: %v\", err)\n  }\n  defer resp.Body.Close()\n  \n  // Check response\n  if resp.StatusCode != http.StatusOK {\n    t.Errorf(\"Expected status OK; got %v\", resp.Status)\n  }\n  \n  body, _ := io.ReadAll(resp.Body)\n  expected := `{\"users\": [\"user1\", \"user2\"]}`\n  if string(body) != expected {\n    t.Errorf(\"Expected body %q; got %q\", expected, string(body))\n  }\n}"
+                }
+            ]
+        },
+        "logging": {
+            "description": "Logging in Go using the standard library and third-party packages",
+            "examples": [
+                {
+                    "title": "Basic Logging",
+                    "explanation": "Go's standard library includes a simple logging package.",
+                    "code": "package main\n\nimport (\n  \"log\"\n  \"os\"\n)\n\nfunc main() {\n  // Default logger writes to stderr\n  log.Println(\"This is a log message\")\n  log.Printf(\"This is a formatted message: %d\", 42)\n  \n  // Log with additional prefix\n  log.SetPrefix(\"[APP] \")\n  log.Println(\"Message with prefix\")\n  \n  // Change output destination\n  file, err := os.OpenFile(\"app.log\", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)\n  if err != nil {\n    log.Fatal(\"Failed to open log file\")\n  }\n  defer file.Close()\n  \n  log.SetOutput(file)\n  log.Println(\"This goes to the file\")\n  \n  // Create a custom logger\n  logger := log.New(os.Stdout, \"[CUSTOM] \", log.Ldate|log.Ltime)\n  logger.Println(\"Message from custom logger\")\n  \n  // Log and exit\n  // log.Fatal(\"Fatal error message\") // This would exit the program with status 1\n  \n  // Log with panic\n  // log.Panic(\"Panic message\") // This would print the message and cause a panic\n}"
+                },
+                {
+                    "title": "Log Levels",
+                    "explanation": "Implementing log levels with the standard library.",
+                    "code": "package main\n\nimport (\n  \"io\"\n  \"io/ioutil\"\n  \"log\"\n  \"os\"\n)\n\nvar (\n  // Create different loggers for different levels\n  traceLogger   *log.Logger\n  infoLogger    *log.Logger\n  warningLogger *log.Logger\n  errorLogger   *log.Logger\n)\n\nfunc init() {\n  // Common log flags\n  flags := log.Ldate | log.Ltime | log.Lshortfile\n  \n  // Set up loggers\n  traceLogger = log.New(ioutil.Discard, \"TRACE: \", flags) // Disabled by default\n  infoLogger = log.New(os.Stdout, \"INFO: \", flags)\n  warningLogger = log.New(os.Stdout, \"WARNING: \", flags)\n  errorLogger = log.New(os.Stderr, \"ERROR: \", flags)\n  \n  // Enable trace logs based on environment variable\n  if os.Getenv(\"DEBUG\") == \"true\" {\n    traceLogger.SetOutput(os.Stdout)\n  }\n}\n\nfunc main() {\n  traceLogger.Println(\"This is a trace log\")\n  infoLogger.Println(\"This is an informational message\")\n  warningLogger.Println(\"This is a warning\")\n  errorLogger.Println(\"This is an error message\")\n  \n  // Example of using a function with different log levels\n  processItem(\"item1\", true)\n  processItem(\"item2\", false)\n}\n\nfunc processItem(item string, succeed bool) {\n  infoLogger.Printf(\"Processing item: %s\", item)\n  \n  if succeed {\n    infoLogger.Printf(\"Item %s processed successfully\", item)\n  } else {\n    errorLogger.Printf(\"Failed to process item: %s\", item)\n  }\n}"
+                },
+                {
+                    "title": "Structured Logging with zerolog",
+                    "explanation": "Zerolog is a fast and structured logging library for Go.",
+                    "code": "package main\n\nimport (\n  \"os\"\n  \"time\"\n\n  \"github.com/rs/zerolog\"\n  \"github.com/rs/zerolog/log\"\n)\n\nfunc main() {\n  // Configure zerolog\n  zerolog.TimeFieldFormat = time.RFC3339\n  log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: time.RFC3339})\n  \n  // Simple logs\n  log.Info().Msg(\"This is an info message\")\n  log.Warn().Msg(\"This is a warning message\")\n  \n  // Logs with additional context\n  log.Debug().Str(\"key\", \"value\").Int(\"count\", 42).Msg(\"Debug message with context\")\n  \n  // Logs with structured fields\n  log.Error().Str(\"service\", \"api\").Int(\"status\", 500).Str(\"error\", \"database connection failed\").Msg(\"Error processing request\")\n  \n  // Sub-loggers with context\n  userLogger := log.With().Str(\"component\", \"user-service\").Logger()\n  userLogger.Info().Str(\"user\", \"john\").Msg(\"User logged in\")\n  \n  // Error handling example\n  err := func() error {\n    return nil // Replace with actual error for real usage\n  }()\n  if err != nil {\n    log.Error().Err(err).Msg(\"An error occurred\")\n  }\n}"
+                }
+            ]
+        },
+        "package_management": {
+            "description": "Managing dependencies and modules in Go using Go Modules (`go mod`) and related tools.",
+            "examples": [
+                {
+                    "title": "Initializing a Module",
+                    "explanation": "Go Modules is the standard way to manage dependencies in Go. Start by initializing a module.",
+                    "code": "go mod init github.com/username/projectname\n\n// This creates a go.mod file, declaring the module path and Go version.\n\n// Example go.mod content:\n// module github.com/username/projectname\n//\n// go 1.21"
+                },
+                {
+                    "title": "Adding Dependencies",
+                    "explanation": "Use `go get` to add a new dependency to your project. It also updates `go.mod` and `go.sum`.",
+                    "code": "// From the command line:\ngo get github.com/sirupsen/logrus@v1.9.0\n\n// In your Go code:\nimport \"github.com/sirupsen/logrus\"\n\nfunc main() {\n  log := logrus.New()\n  log.Info(\"Logrus initialized\")\n}"
+                },
+                {
+                    "title": "Tidying Up Dependencies",
+                    "explanation": "Remove unused dependencies and clean up `go.mod` and `go.sum` files.",
+                    "code": "// From the command line:\ngo mod tidy\n\n// This ensures only necessary dependencies are kept."
+                },
+                {
+                    "title": "Upgrading and Downgrading Dependencies",
+                    "explanation": "You can upgrade or downgrade specific dependencies using `go get` with a version or pseudo-version.",
+                    "code": "// Upgrade to latest version:\ngo get github.com/gin-gonic/gin@latest\n\n// Downgrade:\ngo get github.com/gin-gonic/gin@v1.8.1"
+                },
+                {
+                    "title": "Working with Replace Directives",
+                    "explanation": "Use `replace` in `go.mod` to point to a local copy or fork of a dependency.",
+                    "code": "// Inside go.mod:\nreplace github.com/original/module => ../local/module\n\n// This is useful for local development or working with forks."
+                },
+                {
+                    "title": "Using a Private Module",
+                    "explanation": "Access private modules by configuring environment variables or using a `.netrc` file.",
+                    "code": "// Example:\nGOPRIVATE=github.com/myorg/*\n\n// Set in terminal or in your go env:\ngo env -w GOPRIVATE=github.com/myorg/*\n\n// For Git-based auth:\n// Use SSH or configure Git credentials for access."
+                }
+            ]
+        },
+        "pointers_references": {
+            "description": "Pointers in Go allow you to reference memory locations directly. They are useful for modifying values in place, optimizing performance, and working with data structures.",
+            "examples": [
+                {
+                    "title": "Basic Pointer Usage",
+                    "explanation": "A pointer holds the memory address of a variable. Use `&` to get the address, and `*` to dereference it.",
+                    "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  x := 42\n  p := &x // p is a pointer to x\n\n  fmt.Println(\"Value of x:\", x)\n  fmt.Println(\"Address of x:\", p)\n  fmt.Println(\"Value via pointer:\", *p)\n\n  *p = 100 // modifies x through the pointer\n  fmt.Println(\"Updated x:\", x)\n}"
+                },
+                {
+                    "title": "Passing by Reference",
+                    "explanation": "You can pass a pointer to a function to modify the original variable.",
+                    "code": "package main\n\nimport \"fmt\"\n\nfunc increment(n *int) {\n  *n++\n}\n\nfunc main() {\n  value := 5\n  increment(&value)\n  fmt.Println(\"Incremented value:\", value)\n}"
+                },
+                {
+                    "title": "Pointer to Struct",
+                    "explanation": "Pointers are commonly used with structs to avoid copying large structures and to modify fields.",
+                    "code": "package main\n\nimport \"fmt\"\n\ntype Person struct {\n  Name string\n  Age  int\n}\n\nfunc updateAge(p *Person, age int) {\n  p.Age = age\n}\n\nfunc main() {\n  person := Person{Name: \"Alice\", Age: 30}\n  updateAge(&person, 35)\n  fmt.Printf(\"Updated person: %+v\\n\", person)\n}"
+                },
+                {
+                    "title": "Pointer Receiver in Methods",
+                    "explanation": "Use pointer receivers to modify the instance within a method and avoid copying.",
+                    "code": "package main\n\nimport \"fmt\"\n\ntype Counter struct {\n  Count int\n}\n\nfunc (c *Counter) Increment() {\n  c.Count++\n}\n\nfunc main() {\n  c := Counter{}\n  c.Increment()\n  fmt.Println(\"Counter:\", c.Count)\n}"
+                },
+                {
+                    "title": "Nil Pointers",
+                    "explanation": "Pointers can be `nil`, meaning they point to nothing. Always check before dereferencing.",
+                    "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  var ptr *int\n\n  if ptr == nil {\n    fmt.Println(\"Pointer is nil\")\n  } else {\n    fmt.Println(\"Value:\", *ptr) // This would panic if ptr is nil\n  }\n}"
+                }
+            ]
+        },
+        "gui_development": {
+            "description": "Building desktop applications with Go using GUI libraries like Fyne (native widgets) and Wails (Go + Web tech).",
+            "examples": [
+                {
+                    "title": "Basic GUI with Fyne",
+                    "explanation": "Fyne is a modern UI toolkit for building cross-platform apps in Go. It supports widgets, layout, and theming.",
+                    "code": "package main\n\nimport (\n  \"fyne.io/fyne/v2/app\"\n  \"fyne.io/fyne/v2/container\"\n  \"fyne.io/fyne/v2/widget\"\n)\n\nfunc main() {\n  myApp := app.New()\n  win := myApp.NewWindow(\"Hello GUI\")\n\n  label := widget.NewLabel(\"Welcome to Fyne!\")\n  button := widget.NewButton(\"Click Me\", func() {\n    label.SetText(\"You clicked it!\")\n  })\n\n  win.SetContent(container.NewVBox(label, button))\n  win.ShowAndRun()\n}"
+                },
+                {
+                    "title": "Showing a Dialog (Fyne)",
+                    "explanation": "Use built-in dialogs for alerts, confirmations, file selection, etc.",
+                    "code": "package main\n\nimport (\n  \"fyne.io/fyne/v2/app\"\n  \"fyne.io/fyne/v2/dialog\"\n  \"fyne.io/fyne/v2/widget\"\n)\n\nfunc main() {\n  myApp := app.New()\n  win := myApp.NewWindow(\"Dialogs\")\n\n  button := widget.NewButton(\"Open Dialog\", func() {\n    dialog.ShowInformation(\"Hello\", \"This is a dialog!\", win)\n  })\n\n  win.SetContent(button)\n  win.ShowAndRun()\n}"
+                },
+                {
+                    "title": "Data Binding with Fyne",
+                    "explanation": "Fyne supports data binding to automatically sync data with UI widgets.",
+                    "code": "package main\n\nimport (\n  \"fyne.io/fyne/v2/app\"\n  \"fyne.io/fyne/v2/data/binding\"\n  \"fyne.io/fyne/v2/widget\"\n)\n\nfunc main() {\n  myApp := app.New()\n  win := myApp.NewWindow(\"Data Binding\")\n\n  data := binding.NewString()\n  data.Set(\"Initial Text\")\n\n  entry := widget.NewEntryWithData(data)\n  label := widget.NewLabelWithData(data)\n\n  win.SetContent(widget.NewVBox(entry, label))\n  win.ShowAndRun()\n}"
+                },
+                {
+                    "title": "Handling Events in Wails",
+                    "explanation": "In Wails, you can trigger frontend events from Go and vice versa.",
+                    "code": "// Go backend\nfunc (a *App) SayHello(name string) string {\n  return fmt.Sprintf(\"Hello %s!\", name)\n}\n\n// Frontend (JS):\nwindow.backend.App.SayHello('World').then(result => {\n  alert(result)\n})"
+                },
+                {
+                    "title": "Complex Layout with Fyne (Grids, Tabs)",
+                    "explanation": "Use layout containers to create complex UIs.",
+                    "code": "package main\n\nimport (\n  \"fyne.io/fyne/v2/app\"\n  \"fyne.io/fyne/v2/container\"\n  \"fyne.io/fyne/v2/widget\"\n)\n\nfunc main() {\n  a := app.New()\n  win := a.NewWindow(\"Layouts\")\n\n  grid := container.NewGridWithColumns(2,\n    widget.NewButton(\"1\", nil),\n    widget.NewButton(\"2\", nil),\n    widget.NewButton(\"3\", nil),\n    widget.NewButton(\"4\", nil),\n  )\n\n  tabs := container.NewAppTabs(\n    container.NewTabItem(\"Grid\", grid),\n    container.NewTabItem(\"Form\", widget.NewForm(\n      widget.NewFormItem(\"Name\", widget.NewEntry()),\n      widget.NewFormItem(\"Email\", widget.NewEntry()),\n    )),\n  )\n\n  win.SetContent(tabs)\n  win.ShowAndRun()\n}"
+                },
+                {
+                    "title": "Using a Table in Fyne",
+                    "explanation": "Fyne provides a Table widget for displaying rows and columns of data, similar to spreadsheets or data grids.",
+                    "code": "package main\n\nimport (\n  \"fyne.io/fyne/v2/app\"\n  \"fyne.io/fyne/v2/container\"\n  \"fyne.io/fyne/v2/widget\"\n)\n\nfunc main() {\n  myApp := app.New()\n  win := myApp.NewWindow(\"Table Example\")\n\n  table := widget.NewTable(\n    func() (int, int) { return 5, 3 }, // rows, columns\n    func() fyne.CanvasObject {\n      return widget.NewLabel(\"Cell\")\n    },\n    func(i widget.TableCellID, o fyne.CanvasObject) {\n      o.(*widget.Label).SetText(fmt.Sprintf(\"Row %d Col %d\", i.Row+1, i.Col+1))\n    },\n  )\n\n  win.SetContent(container.NewMax(table))\n  win.Resize(fyne.NewSize(300, 200))\n  win.ShowAndRun()\n}"
+                },
+                {
+                    "title": "Drawing on a Canvas (Fyne)",
+                    "explanation": "The Fyne canvas API allows for custom drawing and rendering of shapes and images.",
+                    "code": "package main\n\nimport (\n  \"image/color\"\n\n  \"fyne.io/fyne/v2/app\"\n  \"fyne.io/fyne/v2/canvas\"\n  \"fyne.io/fyne/v2/container\"\n  \"fyne.io/fyne/v2\"\n)\n\nfunc main() {\n  myApp := app.New()\n  win := myApp.NewWindow(\"Canvas Drawing\")\n\n  rect := canvas.NewRectangle(color.NRGBA{R: 200, G: 0, B: 0, A: 255})\n  rect.SetMinSize(fyne.NewSize(100, 100))\n\n  text := canvas.NewText(\"Canvas Text\", color.White)\n  text.Alignment = fyne.TextAlignCenter\n\n  circle := canvas.NewCircle(color.NRGBA{G: 200, A: 255})\n  circle.SetMinSize(fyne.NewSize(80, 80))\n\n  win.SetContent(container.NewVBox(rect, text, circle))\n  win.Resize(fyne.NewSize(200, 300))\n  win.ShowAndRun()\n}"
+                }
+            ]
+        }
+    }
+} 

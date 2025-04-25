@@ -1,0 +1,145 @@
+{
+    "name": "CSS",
+    "sections": {
+        "basic_syntax": {
+            "description": "Fundamental CSS syntax and selectors",
+            "examples": [
+                {
+                    "title": "Element Selector",
+                    "explanation": "Selecting HTML elements by tag name",
+                    "code": "p {\n    color: blue;\n    font-size: 16px;\n}"
+                },
+                {
+                    "title": "Class and ID Selectors",
+                    "explanation": "Selecting elements by class and ID attributes",
+                    "code": ".container {\n    width: 100%;\n}\n\n#header {\n    background: #333;\n}"
+                }
+            ]
+        },
+        "box_model": {
+            "description": "Understanding the CSS box model",
+            "examples": [
+                {
+                    "title": "Margin and Padding",
+                    "explanation": "Spacing around elements",
+                    "code": ".box {\n    margin: 20px;\n    padding: 15px;\n    border: 2px solid black;\n}"
+                },
+                {
+                    "title": "Box Sizing",
+                    "explanation": "Controlling element sizing behavior",
+                    "code": "* {\n    box-sizing: border-box;\n}"
+                }
+            ]
+        },
+        "layout": {
+            "description": "Modern layout techniques",
+            "examples": [
+                {
+                    "title": "Flexbox",
+                    "explanation": "Flexible box layout system",
+                    "code": ".container {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}"
+                },
+                {
+                    "title": "CSS Grid",
+                    "explanation": "Two-dimensional layout system",
+                    "code": ".grid {\n    display: grid;\n    grid-template-columns: repeat(3, 1fr);\n    gap: 20px;\n}"
+                }
+            ]
+        },
+        "variables": {
+            "description": "Custom properties (CSS variables)",
+            "examples": [
+                {
+                    "title": "Variable Declaration",
+                    "explanation": "Defining and using CSS variables",
+                    "code": ":root {\n    --primary-color: #2ecc71;\n    --spacing-unit: 8px;\n}\n\n.button {\n    background: var(--primary-color);\n    padding: var(--spacing-unit);\n}"
+                }
+            ]
+        },
+        "responsive_design": {
+            "description": "Responsive web design techniques",
+            "examples": [
+                {
+                    "title": "Media Queries",
+                    "explanation": "Conditional styling based on viewport size",
+                    "code": "@media (max-width: 768px) {\n    .menu {\n        flex-direction: column;\n    }\n    h1 {\n        font-size: 24px;\n    }\n}"
+                },
+                {
+                    "title": "Viewport Units",
+                    "explanation": "Responsive sizing with viewport units",
+                    "code": ".hero {\n    height: 100vh;\n    width: 100vw;\n}"
+                }
+            ]
+        },
+        "transitions_animations": {
+            "description": "Motion and interactive effects",
+            "examples": [
+                {
+                    "title": "Transitions",
+                    "explanation": "Smooth property changes over time",
+                    "code": ".button {\n    transition: all 0.3s ease-in-out;\n}\n.button:hover {\n    transform: scale(1.1);\n}"
+                },
+                {
+                    "title": "Keyframe Animations",
+                    "explanation": "Complex animation sequences",
+                    "code": "@keyframes slideIn {\n    from {\n        transform: translateX(-100%);\n    }\n    to {\n        transform: translateX(0);\n    }\n}\n\n.element {\n    animation: slideIn 0.5s ease-out;\n}"
+                }
+            ]
+        },
+        "advanced_selectors": {
+            "description": "Complex selector patterns",
+            "examples": [
+                {
+                    "title": "Attribute Selectors",
+                    "explanation": "Selecting elements by attributes",
+                    "code": "input[type='text'] {\n    border: 1px solid #ccc;\n}\n\na[href^='https'] {\n    color: green;\n}"
+                },
+                {
+                    "title": "Pseudo-classes",
+                    "explanation": "Special state-based selectors",
+                    "code": "a:hover {\n    text-decoration: underline;\n}\n\nli:nth-child(odd) {\n    background: #f5f5f5;\n}"
+                }
+            ]
+        },
+        "functions": {
+            "description": "CSS built-in functions",
+            "examples": [
+                {
+                    "title": "Calculation Function",
+                    "explanation": "Mathematical operations in CSS",
+                    "code": ".column {\n    width: calc(100% / 3 - 20px);\n}"
+                },
+                {
+                    "title": "Gradient Functions",
+                    "explanation": "Creating color gradients",
+                    "code": ".gradient {\n    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);\n}"
+                }
+            ]
+        },
+        "imports": {
+            "description": "Organizing CSS code",
+            "examples": [
+                {
+                    "title": "CSS Import",
+                    "explanation": "Combining multiple stylesheets",
+                    "code": "@import url('reset.css');\n@import url('variables.css');"
+                }
+            ]
+        },
+        "modern_features": {
+            "description": "Cutting-edge CSS features",
+            "examples": [
+                {
+                    "title": "CSS Custom Filters",
+                    "explanation": "Advanced visual effects",
+                    "code": ".card {\n    backdrop-filter: blur(10px);\n    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));\n}"
+                },
+                {
+                    "title": "CSS Grid Subgrid",
+                    "explanation": "Nested grid alignment",
+                    "code": ".grid {\n    display: grid;\n    grid-template-columns: subgrid;\n}"
+                }
+            ]
+        }
+    }
+}

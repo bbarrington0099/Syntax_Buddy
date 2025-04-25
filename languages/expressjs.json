@@ -1,0 +1,100 @@
+{
+    "name": "Express.js",
+    "sections": {
+        "basic_server": {
+            "description": "Creating a basic Express server",
+            "examples": [
+                {
+                    "title": "Server Setup",
+                    "explanation": "Minimum server configuration",
+                    "code": "const express = require('express');\nconst app = express();\nconst port = 3000;\n\napp.get('/', (req, res) => {\n  res.send('Hello World!');\n});\n\napp.listen(port, () => {\n  console.log(`Server running on port ${port}`);\n});"
+                },
+                {
+                    "title": "Route Parameters",
+                    "explanation": "Handling dynamic URL parameters",
+                    "code": "app.get('/users/:userId', (req, res) => {\n  res.send(`User ID: ${req.params.userId}`);\n});"
+                }
+            ]
+        },
+        "middleware": {
+            "description": "Using and creating middleware functions",
+            "examples": [
+                {
+                    "title": "Built-in Middleware",
+                    "explanation": "JSON and URL-encoded body parsing",
+                    "code": "app.use(express.json());\napp.use(express.urlencoded({ extended: true }));"
+                },
+                {
+                    "title": "Custom Middleware",
+                    "explanation": "Creating request logging middleware",
+                    "code": "const logger = (req, res, next) => {\n  console.log(`${req.method} ${req.path}`);\n  next();\n};\n\napp.use(logger);"
+                }
+            ]
+        },
+        "routing": {
+            "description": "Handling different HTTP methods and routes",
+            "examples": [
+                {
+                    "title": "RESTful Routes",
+                    "explanation": "CRUD operations for a resource",
+                    "code": "app.route('/articles')\n  .get((req, res) => { /* GET all */ })\n  .post((req, res) => { /* POST new */ });\n\napp.route('/articles/:id')\n  .get((req, res) => { /* GET one */ })\n  .put((req, res) => { /* UPDATE */ })\n  .delete((req, res) => { /* DELETE */ });"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error handling middleware and patterns",
+            "examples": [
+                {
+                    "title": "Error Middleware",
+                    "explanation": "Catching and processing errors",
+                    "code": "app.use((err, req, res, next) => {\n  console.error(err.stack);\n  res.status(500).send('Something broke!');\n});"
+                }
+            ]
+        },
+        "database": {
+            "description": "Database integration examples",
+            "examples": [
+                {
+                    "title": "MongoDB Connection",
+                    "explanation": "Connecting to MongoDB with Mongoose",
+                    "code": "const mongoose = require('mongoose');\n\nmongoose.connect(process.env.DB_URI, {\n  useNewUrlParser: true,\n  useUnifiedTopology: true\n});\n\nconst postSchema = new mongoose.Schema({\n  title: String,\n  content: String\n});\n\nconst Post = mongoose.model('Post', postSchema);"
+                }
+            ]
+        },
+        "authentication": {
+            "description": "User authentication strategies",
+            "examples": [
+                {
+                    "title": "JWT Authentication",
+                    "explanation": "JSON Web Token implementation",
+                    "code": "const jwt = require('jsonwebtoken');\n\napp.post('/login', (req, res) => {\n  // Validate credentials\n  const user = { id: 123, name: 'John' };\n  const token = jwt.sign(user, process.env.JWT_SECRET);\n  res.json({ token });\n});"
+                }
+            ]
+        },
+        "configuration": {
+            "description": "Environment configuration",
+            "examples": [
+                {
+                    "title": "Environment Variables",
+                    "explanation": "Using dotenv for configuration",
+                    "code": "require('dotenv').config();\n\napp.get('/config', (req, res) => {\n  res.send(`API Key: ${process.env.API_KEY}`);\n});"
+                }
+            ]
+        },
+        "production": {
+            "description": "Production deployment considerations",
+            "examples": [
+                {
+                    "title": "Helmet Security",
+                    "explanation": "Security middleware setup",
+                    "code": "const helmet = require('helmet');\napp.use(helmet());"
+                },
+                {
+                    "title": "Compression",
+                    "explanation": "Response compression middleware",
+                    "code": "const compression = require('compression');\napp.use(compression());"
+                }
+            ]
+        }
+    }
+}

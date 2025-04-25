@@ -1,0 +1,155 @@
+{
+    "name": "C Programming Language",
+    "sections": {
+        "basic_syntax": {
+            "description": "Fundamental syntax elements and program structure",
+            "examples": [
+                {
+                    "title": "Hello World",
+                    "explanation": "Basic program structure with main function",
+                    "code": "#include <stdio.h>\n\nint main(void) {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+                },
+                {
+                    "title": "Primitive Types",
+                    "explanation": "Basic data types and variable declaration",
+                    "code": "int age = 30;\nfloat price = 19.99f;\ndouble pi = 3.1415926535;\nchar grade = 'A';\n_Bool is_valid = 1;"
+                }
+            ]
+        },
+        "pointers": {
+            "description": "Pointer operations and memory management",
+            "examples": [
+                {
+                    "title": "Basic Pointers",
+                    "explanation": "Pointer declaration and dereferencing",
+                    "code": "int num = 10;\nint *ptr = &num;\nprintf(\"Value: %d, Address: %p\\n\", *ptr, (void*)ptr);"
+                },
+                {
+                    "title": "Pointer Arithmetic",
+                    "explanation": "Arithmetic operations on pointers",
+                    "code": "int arr[5] = {1,2,3,4,5};\nint *p = arr;\nprintf(\"%d\\n\", *(p + 2));  // Outputs 3"
+                },
+                {
+                    "title": "Function Pointers",
+                    "explanation": "Using pointers to functions",
+                    "code": "int add(int a, int b) { return a + b; }\nint (*operation)(int, int) = &add;\nprintf(\"%d\\n\", operation(2,3));  // Outputs 5"
+                }
+            ]
+        },
+        "memory_management": {
+            "description": "Dynamic memory allocation and management",
+            "examples": [
+                {
+                    "title": "Heap Allocation",
+                    "explanation": "Using malloc and free",
+                    "code": "int *arr = malloc(5 * sizeof(int));\nif(arr == NULL) {\n    fprintf(stderr, \"Memory allocation failed\\n\");\n    exit(EXIT_FAILURE);\n}\n// Use array\nfree(arr);"
+                },
+                {
+                    "title": "Realloc Example",
+                    "explanation": "Resizing allocated memory",
+                    "code": "int *ptr = malloc(2 * sizeof(int));\nptr = realloc(ptr, 4 * sizeof(int));\nif(!ptr) { /* handle error */ }\nfree(ptr);"
+                }
+            ]
+        },
+        "data_structures": {
+            "description": "Custom data structures and type definitions",
+            "examples": [
+                {
+                    "title": "Structs",
+                    "explanation": "Creating and using structures",
+                    "code": "struct Point {\n    int x;\n    int y;\n};\n\nstruct Point p1 = {.x=10, .y=20};\nprintf(\"Coordinates: (%d, %d)\\n\", p1.x, p1.y);"
+                },
+                {
+                    "title": "Unions",
+                    "explanation": "Memory-sharing data structure",
+                    "code": "union Data {\n    int i;\n    float f;\n    char str[20];\n};\n\nunion Data data;\ndata.i = 10;\nprintf(\"%d\\n\", data.i);"
+                },
+                {
+                    "title": "Enums",
+                    "explanation": "Enumerated types",
+                    "code": "enum Weekdays {MON=1, TUE, WED, THU, FRI};\nenum Weekdays day = WED;\nprintf(\"%d\\n\", day);  // Outputs 3"
+                }
+            ]
+        },
+        "arrays_strings": {
+            "description": "Array manipulation and string handling",
+            "examples": [
+                {
+                    "title": "Multidimensional Arrays",
+                    "explanation": "Declaring and using 2D arrays",
+                    "code": "int matrix[3][3] = {\n    {1,2,3},\n    {4,5,6},\n    {7,8,9}\n};\nprintf(\"%d\\n\", matrix[1][2]);  // Outputs 6"
+                },
+                {
+                    "title": "String Manipulation",
+                    "explanation": "Common string operations",
+                    "code": "char str1[20] = \"Hello\";\nchar str2[] = \" World!\";\nstrcat(str1, str2);\nprintf(\"%s\\n\", str1);  // Outputs \"Hello World!\""
+                }
+            ]
+        },
+        "file_io": {
+            "description": "File input/output operations",
+            "examples": [
+                {
+                    "title": "Text File Operations",
+                    "explanation": "Reading/writing text files",
+                    "code": "FILE *f = fopen(\"data.txt\", \"w\");\nif(f == NULL) {\n    perror(\"Error opening file\");\n    return 1;\n}\nfprintf(f, \"Hello File I/O!\\n\");\nfclose(f);"
+                },
+                {
+                    "title": "Binary File Operations",
+                    "explanation": "Working with binary data",
+                    "code": "struct Data {\n    int id;\n    double value;\n} data = {1, 3.14};\n\nFILE *f = fopen(\"data.bin\", \"wb\");\nfwrite(&data, sizeof(struct Data), 1, f);\nfclose(f);"
+                }
+            ]
+        },
+        "preprocessor": {
+            "description": "Preprocessor directives and macros",
+            "examples": [
+                {
+                    "title": "Macros",
+                    "explanation": "Using #define for constants and macros",
+                    "code": "#define PI 3.14159\n#define SQUARE(x) ((x) * (x))\n\nprintf(\"%f\\n\", SQUARE(PI));  // Outputs ~9.8696"
+                },
+                {
+                    "title": "Conditional Compilation",
+                    "explanation": "Platform-specific code compilation",
+                    "code": "#ifdef _WIN32\n    printf(\"Windows platform\\n\");\n#elif defined(__linux__)\n    printf(\"Linux platform\\n\");\n#endif"
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error detection and handling techniques",
+            "examples": [
+                {
+                    "title": "errno Usage",
+                    "explanation": "Using standard error reporting",
+                    "code": "#include <errno.h>\n\nFILE *f = fopen(\"nonexistent.txt\", \"r\");\nif(f == NULL) {\n    perror(\"Error\");\n    printf(\"Error code: %d\\n\", errno);\n}"
+                },
+                {
+                    "title": "setjmp/longjmp",
+                    "explanation": "Non-local jumps for error handling",
+                    "code": "#include <setjmp.h>\njmp_buf env;\n\nif(setjmp(env)) {\n    printf(\"Error occurred\\n\");\n} else {\n    // Main code\n    longjmp(env, 1);  // Simulate error\n}"
+                }
+            ]
+        },
+        "advanced_features": {
+            "description": "Advanced C-specific features",
+            "examples": [
+                {
+                    "title": "Bit Fields",
+                    "explanation": "Compact data storage in structs",
+                    "code": "struct {\n    unsigned int is_active : 1;\n    unsigned int age : 7;\n} status;\n\nstatus.is_active = 1;\nstatus.age = 42;"
+                },
+                {
+                    "title": "Variadic Functions",
+                    "explanation": "Functions with variable arguments",
+                    "code": "#include <stdarg.h>\n\nint sum(int count, ...) {\n    va_list args;\n    va_start(args, count);\n    int total = 0;\n    for(int i=0; i<count; i++) {\n        total += va_arg(args, int);\n    }\n    va_end(args);\n    return total;\n}\n\nprintf(\"%d\\n\", sum(3, 1,2,3));  // Outputs 6"
+                },
+                {
+                    "title": "Inline Assembly",
+                    "explanation": "Embedding assembly code (GCC extension)",
+                    "code": "int a = 10, b = 20, result;\n__asm__(\n    \"addl %%ebx, %%eax;\"\n    : \"=a\"(result)\n    : \"a\"(a), \"b\"(b)\n);\nprintf(\"%d\\n\", result);  // Outputs 30"
+                }
+            ]
+        }
+    }
+}

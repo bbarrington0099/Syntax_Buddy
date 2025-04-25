@@ -1,0 +1,190 @@
+{
+    "name": "Assembly Language",
+    "sections": {
+        "registers": {
+            "description": "CPU registers and their purposes",
+            "examples": [
+                {
+                    "title": "General Purpose Registers",
+                    "explanation": "Primary registers for data manipulation",
+                    "code": "; 64-bit: RAX, RBX, RCX, RDX\n; 32-bit: EAX, EBX, ECX, EDX\n; 16-bit: AX, BX, CX, DX\n; 8-bit: AL, AH, BL, BH"
+                },
+                {
+                    "title": "Special Registers",
+                    "explanation": "Registers with specific purposes",
+                    "code": "RIP ; Instruction Pointer\nRSP ; Stack Pointer\nRBP ; Base Pointer\nRFLAGS ; Status Flags"
+                }
+            ]
+        },
+        "basic_instructions": {
+            "description": "Fundamental assembly instructions",
+            "examples": [
+                {
+                    "title": "Data Movement",
+                    "explanation": "Moving data between registers and memory",
+                    "code": "mov rax, 42      ; Immediate to register\nmov [rbx], rax   ; Register to memory\nmov rdx, [rcx]   ; Memory to register"
+                },
+                {
+                    "title": "Arithmetic Operations",
+                    "explanation": "Basic math operations",
+                    "code": "add rax, rbx    ; Add\nsub rcx, 10     ; Subtract\nmul rdx         ; Unsigned multiply\nidiv rsi        ; Signed divide"
+                }
+            ]
+        },
+        "control_flow": {
+            "description": "Conditional and unconditional jumps",
+            "examples": [
+                {
+                    "title": "Conditional Jumps",
+                    "explanation": "Branching based on flags",
+                    "code": "cmp rax, rbx\njg greater      ; Jump if greater\njl less         ; Jump if less\nje equal        ; Jump if equal"
+                },
+                {
+                    "title": "Loop Construct",
+                    "explanation": "Implementing loops",
+                    "code": "mov ecx, 10     ; Initialize counter\nloop_start:\n    ; Loop body\n    dec ecx\n    jnz loop_start"
+                }
+            ]
+        },
+        "memory_addressing": {
+            "description": "Memory addressing modes",
+            "examples": [
+                {
+                    "title": "Addressing Modes",
+                    "explanation": "Different ways to access memory",
+                    "code": "mov eax, [rbx]          ; Direct\nmov eax, [rbx+rcx*4]    ; Scaled index\nmov eax, [rbx+rcx+16]   ; Displacement"
+                }
+            ]
+        },
+        "system_calls": {
+            "description": "Interacting with the operating system",
+            "examples": [
+                {
+                    "title": "Linux System Call",
+                    "explanation": "Using syscall instruction (64-bit)",
+                    "code": "; Write 'Hello World' to stdout\nmov rax, 1       ; sys_write\nmov rdi, 1       ; fd = stdout\nlea rsi, [msg]   ; buffer\nmov rdx, 12      ; length\nsyscall\n\nsection .data\nmsg: db 'Hello World', 0xA"
+                }
+            ]
+        },
+        "stack_operations": {
+            "description": "Stack management and function calls",
+            "examples": [
+                {
+                    "title": "Push/Pop",
+                    "explanation": "Basic stack operations",
+                    "code": "push rax        ; Save RAX to stack\npop rbx         ; Restore to RBX"
+                },
+                {
+                    "title": "Function Prologue/Epilogue",
+                    "explanation": "Standard function setup",
+                    "code": "my_function:\n    push rbp\n    mov rbp, rsp\n    ; Function body\n    mov rsp, rbp\n    pop rbp\n    ret"
+                }
+            ]
+        },
+        "data_sections": {
+            "description": "Data allocation and definitions",
+            "examples": [
+                {
+                    "title": "Initialized Data",
+                    "explanation": "Defining static data",
+                    "code": "section .data\n    count: dq 0\n    message: db 'Hello', 0\n    array: times 10 dd 0"
+                },
+                {
+                    "title": "Uninitialized Data",
+                    "explanation": "Reserving space with BSS",
+                    "code": "section .bss\n    buffer: resb 256\n    big_array: resq 1024"
+                }
+            ]
+        },
+        "macros": {
+            "description": "Code reuse with macros",
+            "examples": [
+                {
+                    "title": "Basic Macro",
+                    "explanation": "Defining and using macros",
+                    "code": "%macro print 2\n    mov rax, 1\n    mov rdi, 1\n    mov rsi, %1\n    mov rdx, %2\n    syscall\n%endmacro\n\nprint msg, msg_len"
+                }
+            ]
+        },
+        "inline_assembly": {
+            "description": "Using assembly in C code",
+            "examples": [
+                {
+                    "title": "GCC Inline Assembly",
+                    "explanation": "Extended ASM syntax",
+                    "code": "int result;\n__asm__(\n    \"movl $5, %%eax\\n\"\n    \"addl $10, %%eax\\n\"\n    : \"=a\" (result)\n    :\n    : \"eax\"\n);"
+                }
+            ]
+        },
+        "optimization": {
+            "description": "Performance optimization techniques",
+            "examples": [
+                {
+                    "title": "Loop Unrolling",
+                    "explanation": "Manual loop optimization",
+                    "code": "mov ecx, 100\nloop_start:\n    ; Operation 1\n    ; Operation 2\n    ; Operation 3\n    ; Operation 4\n    sub ecx, 4\n    jnz loop_start"
+                }
+            ]
+        },
+        "architecture_specific": {
+            "description": "Hardware-specific features",
+            "examples": [
+                {
+                    "title": "SIMD Instructions",
+                    "explanation": "Vector operations with SSE/AVX",
+                    "code": "movdqa xmm0, [src]   ; Load 128-bit aligned data\npaddd xmm0, xmm1     ; Add packed 32-bit integers\nmovdqa [dst], xmm0   ; Store result"
+                },
+                {
+                    "title": "CPUID Instruction",
+                    "explanation": "Processor identification",
+                    "code": "mov eax, 0\ncpuid\n; Returns vendor string in EBX, EDX, ECX"
+                }
+            ]
+        },
+        "assembler_directives": {
+            "description": "Assembler-specific commands",
+            "examples": [
+                {
+                    "title": "NASM Directives",
+                    "explanation": "Common NASM assembler directives",
+                    "code": "bits 64         ; 64-bit mode\nsection .text   ; Code section\nglobal _start   ; Entry point\n_start:         ; Program start"
+                }
+            ]
+        },
+        "calling_conventions": {
+            "description": "Function parameter passing",
+            "examples": [
+                {
+                    "title": "System V AMD64 ABI",
+                    "explanation": "Linux 64-bit calling convention",
+                    "code": "; Parameters: RDI, RSI, RDX, RCX, R8, R9\n; Return: RAX\n; Preserved: RBX, RBP, R12-R15"
+                }
+            ]
+        },
+        "interrupts": {
+            "description": "Hardware and software interrupts",
+            "examples": [
+                {
+                    "title": "Keyboard Interrupt",
+                    "explanation": "Handling hardware interrupts",
+                    "code": "keyboard_isr:\n    push rax\n    in al, 0x60    ; Read keyboard port\n    ; Process scancode\n    pop rax\n    iretq"
+                }
+            ]
+        },
+        "notes": {
+            "description": "Important considerations",
+            "examples": [
+                {
+                    "title": "Architecture Differences",
+                    "explanation": "x86 vs ARM vs RISC-V",
+                    "code": "; x86: Complex instruction set (CISC)\n; ARM: Load/store architecture\n; RISC-V: Open instruction set"
+                },
+                {
+                    "title": "Assembler Variants",
+                    "explanation": "Common assembler differences",
+                    "code": "; NASM: Intel syntax\n; GAS: AT&T syntax\n; MASM: Microsoft variant"
+                }
+            ]
+        }
+    }
+}

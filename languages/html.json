@@ -1,0 +1,155 @@
+{
+    "name": "HTML",
+    "sections": {
+        "basic_structure": {
+            "description": "Fundamental HTML document structure",
+            "examples": [
+                {
+                    "title": "Document Template",
+                    "explanation": "Basic HTML5 document structure",
+                    "code": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n</head>\n<body>\n    <!-- Content -->\n</body>\n</html>"
+                }
+            ]
+        },
+        "semantic_elements": {
+            "description": "Semantic HTML5 elements",
+            "examples": [
+                {
+                    "title": "Page Layout",
+                    "explanation": "Semantic structure for accessibility and SEO",
+                    "code": "<header>\n    <nav>...</nav>\n</header>\n<main>\n    <article>\n        <section>...</section>\n    </article>\n    <aside>...</aside>\n</main>\n<footer>...</footer>"
+                },
+                {
+                    "title": "Text Semantics",
+                    "explanation": "Meaningful text elements",
+                    "code": "<p><mark>Highlighted text</mark> with <strong>important</strong> content.</p>\n<time datetime=\"2023-08-01\">August 1st</time>"
+                }
+            ]
+        },
+        "text_formatting": {
+            "description": "Text content elements",
+            "examples": [
+                {
+                    "title": "Headings & Paragraphs",
+                    "explanation": "Document hierarchy and text blocks",
+                    "code": "<h1>Main Heading</h1>\n<h2>Subheading</h2>\n<p>Paragraph of text...</p>"
+                },
+                {
+                    "title": "Lists",
+                    "explanation": "Ordered and unordered lists",
+                    "code": "<ul>\n    <li>Item 1</li>\n    <li>Item 2</li>\n</ul>\n\n<ol>\n    <li>First step</li>\n    <li>Second step</li>\n</ol>"
+                }
+            ]
+        },
+        "links_media": {
+            "description": "Hyperlinks and embedded content",
+            "examples": [
+                {
+                    "title": "Links & Images",
+                    "explanation": "Creating hyperlinks and embedding images",
+                    "code": "<a href=\"https://example.com\" target=\"_blank\" rel=\"noopener\">Visit Example</a>\n<img src=\"image.jpg\" alt=\"Description\" width=\"600\" height=\"400\">"
+                },
+                {
+                    "title": "Multimedia Embedding",
+                    "explanation": "Video and audio content",
+                    "code": "<video controls width=\"600\">\n    <source src=\"movie.mp4\" type=\"video/mp4\">\n    Your browser doesn't support HTML5 video.\n</video>\n\n<iframe src=\"https://example.com\" title=\"Embedded Content\"></iframe>"
+                }
+            ]
+        },
+        "forms_inputs": {
+            "description": "Interactive form elements",
+            "examples": [
+                {
+                    "title": "Form Structure",
+                    "explanation": "Complete form with various inputs",
+                    "code": "<form action=\"/submit\" method=\"POST\">\n    <label for=\"name\">Name:</label>\n    <input type=\"text\" id=\"name\" name=\"name\" required>\n\n    <label for=\"email\">Email:</label>\n    <input type=\"email\" id=\"email\" name=\"email\" required>\n\n    <button type=\"submit\">Submit</button>\n</form>"
+                },
+                {
+                    "title": "Input Types",
+                    "explanation": "Modern input types and attributes",
+                    "code": "<input type=\"date\" name=\"birthdate\">\n<input type=\"range\" min=\"0\" max=\"100\">\n<input type=\"color\" value=\"#ff0000\">\n<input type=\"search\" placeholder=\"Search...\">"
+                }
+            ]
+        },
+        "tables": {
+            "description": "Tabular data presentation",
+            "examples": [
+                {
+                    "title": "Table Structure",
+                    "explanation": "Proper table markup with semantic elements",
+                    "code": "<table>\n    <thead>\n        <tr>\n            <th>Name</th>\n            <th>Age</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr>\n            <td>John</td>\n            <td>30</td>\n        </tr>\n    </tbody>\n</table>"
+                }
+            ]
+        },
+        "metadata": {
+            "description": "Document metadata and SEO",
+            "examples": [
+                {
+                    "title": "Meta Tags",
+                    "explanation": "Common meta tags for SEO and social sharing",
+                    "code": "<meta name=\"description\" content=\"Page description\">\n<meta property=\"og:title\" content=\"Social Media Title\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">"
+                },
+                {
+                    "title": "Link Relationships",
+                    "explanation": "External resource links",
+                    "code": "<link rel=\"stylesheet\" href=\"styles.css\">\n<link rel=\"icon\" href=\"favicon.ico\" type=\"image/x-icon\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">"
+                }
+            ]
+        },
+        "accessibility": {
+            "description": "Accessibility best practices",
+            "examples": [
+                {
+                    "title": "ARIA Landmarks",
+                    "explanation": "Improving screen reader navigation",
+                    "code": "<nav role=\"navigation\">...</nav>\n<main role=\"main\">...</main>\n<aside role=\"complementary\">...</aside>"
+                },
+                {
+                    "title": "Accessible Forms",
+                    "explanation": "Proper form labeling and instructions",
+                    "code": "<label for=\"search\">Search:</label>\n<input type=\"search\" id=\"search\" aria-describedby=\"search-help\">\n<div id=\"search-help\">Enter your search terms here</div>"
+                }
+            ]
+        },
+        "web_components": {
+            "description": "Modern component-based HTML",
+            "examples": [
+                {
+                    "title": "Template Tag",
+                    "explanation": "Reusable HTML templates",
+                    "code": "<template id=\"card-template\">\n    <div class=\"card\">\n        <h2 class=\"title\"></h2>\n        <p class=\"content\"></p>\n    </div>\n</template>"
+                },
+                {
+                    "title": "Custom Elements",
+                    "explanation": "Defining web components",
+                    "code": "<script>\nclass MyComponent extends HTMLElement {\n    constructor() {\n        super();\n        // Component logic\n    }\n}\ncustomElements.define('my-component', MyComponent);\n</script>\n\n<my-component></my-component>"
+                }
+            ]
+        },
+        "scripting": {
+            "description": "JavaScript integration",
+            "examples": [
+                {
+                    "title": "Script Loading",
+                    "explanation": "Proper script tag usage",
+                    "code": "<script src=\"app.js\" defer></script>\n<script type=\"module\">\n    // ES Module code\n</script>"
+                }
+            ]
+        },
+        "modern_features": {
+            "description": "Latest HTML5+ features",
+            "examples": [
+                {
+                    "title": "Responsive Images",
+                    "explanation": "Adaptive image loading",
+                    "code": "<img src=\"small.jpg\"\n     srcset=\"large.jpg 1024w, medium.jpg 640w\"\n     sizes=\"(max-width: 600px) 100vw, 50vw\"\n     alt=\"Responsive image\">"
+                },
+                {
+                    "title": "Dialog Element",
+                    "explanation": "Native modal dialog support",
+                    "code": "<dialog open>\n    <p>Hello from a dialog!</p>\n    <form method=\"dialog\">\n        <button>Close</button>\n    </form>\n</dialog>"
+                }
+            ]
+        }
+    }
+}

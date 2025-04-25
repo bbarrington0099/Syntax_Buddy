@@ -1,0 +1,110 @@
+{
+    "name": "Next.js",
+    "sections": {
+        "file_based_routing": {
+            "description": "Automatic routing based on file system structure",
+            "examples": [
+                {
+                    "title": "Basic Page Route",
+                    "explanation": "Create routes by adding files to pages directory",
+                    "code": "// pages/about.js\nexport default function About() {\n  return <div>About Page</div>\n}"
+                },
+                {
+                    "title": "Nested Routes",
+                    "explanation": "Create nested routes using folders",
+                    "code": "// pages/blog/index.js (matches /blog)\n// pages/blog/first-post.js (matches /blog/first-post)"
+                }
+            ]
+        },
+        "api_routes": {
+            "description": "Serverless API endpoints within the application",
+            "examples": [
+                {
+                    "title": "Basic API Endpoint",
+                    "explanation": "Create API routes in pages/api directory",
+                    "code": "// pages/api/hello.js\nexport default function handler(req, res) {\n  res.status(200).json({ message: 'Hello World' })\n}"
+                }
+            ]
+        },
+        "data_fetching": {
+            "description": "Different methods for fetching and pre-rendering data",
+            "examples": [
+                {
+                    "title": "Static Generation (SSG)",
+                    "explanation": "Pre-render at build time with getStaticProps",
+                    "code": "export async function getStaticProps() {\n  const res = await fetch('https://api.example.com/data')\n  const data = await res.json()\n  return { props: { data } }\n}"
+                },
+                {
+                    "title": "Server-side Rendering (SSR)",
+                    "explanation": "Render on each request with getServerSideProps",
+                    "code": "export async function getServerSideProps(context) {\n  const { req, res } = context\n  const data = await fetchData()\n  return { props: { data } }\n}"
+                }
+            ]
+        },
+        "dynamic_routes": {
+            "description": "Handling dynamic URL parameters",
+            "examples": [
+                {
+                    "title": "Dynamic Page Paths",
+                    "explanation": "Create dynamic routes using brackets",
+                    "code": "// pages/posts/[id].js\nexport default function Post({ postData }) {\n  return <div>{postData.title}</div>\n}"
+                },
+                {
+                    "title": "getStaticPaths",
+                    "explanation": "Specify dynamic paths for static generation",
+                    "code": "export async function getStaticPaths() {\n  return {\n    paths: [{ params: { id: '1' } }, { params: { id: '2' } }],\n    fallback: false\n  }\n}"
+                }
+            ]
+        },
+        "image_optimization": {
+            "description": "Optimized image handling with built-in component",
+            "examples": [
+                {
+                    "title": "Image Component",
+                    "explanation": "Automatically optimized image loading",
+                    "code": "import Image from 'next/image'\n\n<Image\n  src=\"/profile.jpg\"\n  alt=\"Profile\"\n  width={500}\n  height={500}\n  priority\n/>"
+                }
+            ]
+        },
+        "environment_variables": {
+            "description": "Managing environment-specific configurations",
+            "examples": [
+                {
+                    "title": "Environment Configuration",
+                    "explanation": "Access environment variables in browser and server",
+                    "code": "// .env.local\nNEXT_PUBLIC_API_URL=https://api.example.com\n\n// Client-side\nconst apiUrl = process.env.NEXT_PUBLIC_API_URL\n\n// Server-side (pages/api/*)\nconst secret = process.env.SERVER_SIDE_SECRET"
+                }
+            ]
+        },
+        "static_export": {
+            "description": "Exporting static HTML files for deployment",
+            "examples": [
+                {
+                    "title": "Static Export",
+                    "explanation": "Generate static site for static hosting",
+                    "code": "// package.json\n{\n  \"scripts\": {\n    \"export\": \"next build && next export\"\n  }\n}\n\n// Run: npm run export"
+                }
+            ]
+        },
+        "configuration": {
+            "description": "Customizing Next.js behavior",
+            "examples": [
+                {
+                    "title": "next.config.js",
+                    "explanation": "Modify webpack config or add redirects",
+                    "code": "// next.config.js\nmodule.exports = {\n  reactStrictMode: true,\n  async redirects() {\n    return [\n      {\n        source: '/old-blog/:slug',\n        destination: '/news/:slug',\n        permanent: true\n      }\n    ]\n  }\n}"
+                }
+            ]
+        },
+        "deployment": {
+            "description": "Production deployment configurations",
+            "examples": [
+                {
+                    "title": "Vercel Deployment",
+                    "explanation": "Deploy to Vercel with zero configuration",
+                    "code": "// vercel.json\n{\n  \"rewrites\": [\n    {\n      \"source\": \"/(.*)\",\n      \"destination\": \"/index.html\"\n    }\n  ]\n}"
+                }
+            ]
+        }
+    }
+}

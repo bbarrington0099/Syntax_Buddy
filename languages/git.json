@@ -1,0 +1,200 @@
+{
+    "name": "Git",
+    "sections": {
+        "configuration": {
+            "description": "Setting up Git configuration",
+            "examples": [
+                {
+                    "title": "User Configuration",
+                    "explanation": "Set global username and email",
+                    "code": "git config --global user.name \"Your Name\"\ngit config --global user.email \"your.email@example.com\""
+                },
+                {
+                    "title": "Default Editor",
+                    "explanation": "Set preferred text editor",
+                    "code": "git config --global core.editor \"code --wait\""
+                }
+            ]
+        },
+        "repository_basics": {
+            "description": "Working with repositories",
+            "examples": [
+                {
+                    "title": "Initialize Repository",
+                    "explanation": "Create new repository",
+                    "code": "git init\ngit clone https://github.com/user/repo.git"
+                }
+            ]
+        },
+        "committing_changes": {
+            "description": "Staging and committing changes",
+            "examples": [
+                {
+                    "title": "Stage Changes",
+                    "explanation": "Add files to staging area",
+                    "code": "git add file.txt\ngit add .\ngit add -p"
+                },
+                {
+                    "title": "Commit Changes",
+                    "explanation": "Create commits with messages",
+                    "code": "git commit -m \"Initial commit\"\ngit commit --amend"
+                }
+            ]
+        },
+        "branching": {
+            "description": "Branch management",
+            "examples": [
+                {
+                    "title": "Create/Switch Branches",
+                    "explanation": "Branch operations",
+                    "code": "git branch new-feature\ngit checkout main\ngit switch -c hotfix"
+                },
+                {
+                    "title": "Merge Branches",
+                    "explanation": "Combine branch histories",
+                    "code": "git merge feature-branch\ngit merge --abort"
+                }
+            ]
+        },
+        "remote_repositories": {
+            "description": "Working with remote repos",
+            "examples": [
+                {
+                    "title": "Manage Remotes",
+                    "explanation": "Add and inspect remotes",
+                    "code": "git remote add origin https://github.com/user/repo.git\ngit remote -v"
+                },
+                {
+                    "title": "Push/Pull Changes",
+                    "explanation": "Sync with remote repositories",
+                    "code": "git push -u origin main\ngit pull origin develop\ngit fetch --all"
+                }
+            ]
+        },
+        "collaboration": {
+            "description": "Team collaboration workflows",
+            "examples": [
+                {
+                    "title": "Resolve Conflicts",
+                    "explanation": "Handle merge conflicts",
+                    "code": "# After conflict occurs\ngit mergetool\ngit add conflicted-file.txt\ngit commit -m \"Resolved merge conflict\""
+                }
+            ]
+        },
+        "undoing_changes": {
+            "description": "Reverting and resetting changes",
+            "examples": [
+                {
+                    "title": "Reset Changes",
+                    "explanation": "Undo commits and staging",
+                    "code": "git reset --soft HEAD~\ngit reset --hard HEAD~3\ngit restore --staged file.txt"
+                },
+                {
+                    "title": "Revert Commits",
+                    "explanation": "Create undo commits",
+                    "code": "git revert abc1234"
+                }
+            ]
+        },
+        "advanced_features": {
+            "description": "Power user Git features",
+            "examples": [
+                {
+                    "title": "Stash Changes",
+                    "explanation": "Temporarily store changes",
+                    "code": "git stash\ngit stash pop\ngit stash list"
+                },
+                {
+                    "title": "Rebase Workflow",
+                    "explanation": "Clean up commit history",
+                    "code": "git rebase main\ngit rebase -i HEAD~3"
+                }
+            ]
+        },
+        "submodules": {
+            "description": "Working with nested repositories",
+            "examples": [
+                {
+                    "title": "Add Submodule",
+                    "explanation": "Include external repositories",
+                    "code": "git submodule add https://github.com/user/lib.git\ngit submodule update --init --recursive"
+                }
+            ]
+        },
+        "history_inspection": {
+            "description": "Exploring repository history",
+            "examples": [
+                {
+                    "title": "View History",
+                    "explanation": "Browse commit history",
+                    "code": "git log --oneline\ngit log --graph --all\ngit show abc1234"
+                },
+                {
+                    "title": "Compare Changes",
+                    "explanation": "Diff between versions",
+                    "code": "git diff HEAD~2 HEAD\ngit diff --staged\ngit blame file.txt"
+                }
+            ]
+        },
+        "hooks": {
+            "description": "Custom Git hooks",
+            "examples": [
+                {
+                    "title": "Pre-commit Hook",
+                    "explanation": "Run checks before committing",
+                    "code": "#!/bin/sh\n# .git/hooks/pre-commit\nnpm run lint\nnpm test"
+                }
+            ]
+        },
+        "workflows": {
+            "description": "Common Git workflows",
+            "examples": [
+                {
+                    "title": "GitHub Flow",
+                    "explanation": "Feature branch workflow",
+                    "code": "git checkout -b feature\n# Make changes\ngit commit -am \"Add feature\"\ngit push origin feature\n# Create PR on GitHub"
+                },
+                {
+                    "title": "Git Flow",
+                    "explanation": "Structured release workflow",
+                    "code": "git flow init\ngit flow feature start new-feature\ngit flow feature finish new-feature"
+                }
+            ]
+        },
+        "utilities": {
+            "description": "Helper commands and aliases",
+            "examples": [
+                {
+                    "title": "Useful Aliases",
+                    "explanation": "Common shortcut configurations",
+                    "code": "git config --global alias.co checkout\ngit config --global alias.br branch\ngit config --global alias.st status"
+                },
+                {
+                    "title": "Cleanup Repository",
+                    "explanation": "Maintenance commands",
+                    "code": "git gc\ngit prune\ngit clean -fd"
+                }
+            ]
+        },
+        "ignore_files": {
+            "description": "Managing ignored files",
+            "examples": [
+                {
+                    "title": ".gitignore Patterns",
+                    "explanation": "Exclude files from tracking",
+                    "code": "# .gitignore\n*.log\nnode_modules/\n.env\n.DS_Store"
+                }
+            ]
+        },
+        "tagging": {
+            "description": "Working with version tags",
+            "examples": [
+                {
+                    "title": "Create/Manage Tags",
+                    "explanation": "Mark release points",
+                    "code": "git tag v1.0.0\ngit tag -a v1.1.0 -m \"Release version 1.1.0\"\ngit push origin --tags"
+                }
+            ]
+        }
+    }
+}

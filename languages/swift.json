@@ -1,0 +1,180 @@
+{
+    "name": "Swift",
+    "sections": {
+        "basic_syntax": {
+            "description": "Fundamental Swift syntax and type system",
+            "examples": [
+                {
+                    "title": "Variables & Constants",
+                    "explanation": "Declaration using var and let",
+                    "code": "var greeting = \"Hello\"\nlet maxAttempts = 3\ngreeting += \", World!\""
+                },
+                {
+                    "title": "Type Annotations",
+                    "explanation": "Explicit type declarations",
+                    "code": "var score: Double = 92.5\nlet message: String = \"Success\""
+                }
+            ]
+        },
+        "collections": {
+            "description": "Collection types in Swift",
+            "examples": [
+                {
+                    "title": "Arrays",
+                    "explanation": "Ordered collections of values",
+                    "code": "var numbers = [1, 2, 3]\nnumbers.append(4)\nlet first = numbers[0]"
+                },
+                {
+                    "title": "Dictionaries",
+                    "explanation": "Key-value pairs collection",
+                    "code": "var capitals = [\"France\": \"Paris\", \"Japan\": \"Tokyo\"]\ncapitals[\"Brazil\"] = \"Brasilia\""
+                }
+            ]
+        },
+        "control_flow": {
+            "description": "Conditionals and loops",
+            "examples": [
+                {
+                    "title": "Switch Statement",
+                    "explanation": "Pattern matching with switch",
+                    "code": "let value = 5\nswitch value {\ncase 1...5:\n    print(\"Between 1-5\")\ncase 6...10:\n    print(\"Between 6-10\")\ndefault:\n    print(\"Other\")\n}"
+                },
+                {
+                    "title": "For-In Loops",
+                    "explanation": "Iterating over collections",
+                    "code": "for number in 1...5 {\n    print(number)\n}\n\nfor (country, capital) in capitals {\n    print(\"(country): (capital)\")\n}"
+                }
+            ]
+        },
+        "functions": {
+            "description": "Function declarations and closures",
+            "examples": [
+                {
+                    "title": "Function Parameters",
+                    "explanation": "Parameter labels and return types",
+                    "code": "func greet(person: String, from hometown: String) -> String {\n    return \"Hello (person) from (hometown)!\"\n}\ngreet(person: \"John\", from: \"London\")"
+                },
+                {
+                    "title": "Closures",
+                    "explanation": "Anonymous functions and trailing syntax",
+                    "code": "let numbers = [1, 2, 3]\nlet doubled = numbers.map { $0 * 2 }\nlet sorted = numbers.sorted(by: >)"
+                }
+            ]
+        },
+        "oop": {
+            "description": "Object-Oriented Programming",
+            "examples": [
+                {
+                    "title": "Classes & Structs",
+                    "explanation": "Reference vs value types",
+                    "code": "class Vehicle {\n    var wheels: Int\n    init(wheels: Int) { self.wheels = wheels }\n}\n\nstruct Point {\n    var x: Double\n    var y: Double\n}"
+                },
+                {
+                    "title": "Protocols",
+                    "explanation": "Defining blueprints of functionality",
+                    "code": "protocol Drawable {\n    func draw()\n    var area: Double { get }\n}\n\nclass Circle: Drawable {\n    func draw() { /* implementation */ }\n    var area: Double { return .pi * radius * radius }\n}"
+                }
+            ]
+        },
+        "optionals": {
+            "description": "Handling optional values",
+            "examples": [
+                {
+                    "title": "Optional Binding",
+                    "explanation": "Safe unwrapping of optionals",
+                    "code": "if let number = Int(\"123\") {\n    print(\"Number is (number)\")\n}\n\nguard let value = optionalValue else {\n    fatalError(\"Value required\")\n}"
+                },
+                {
+                    "title": "Nil Coalescing",
+                    "explanation": "Providing default values",
+                    "code": "let input: String? = nil\nlet value = input ?? \"default\""
+                }
+            ]
+        },
+        "error_handling": {
+            "description": "Error management in Swift",
+            "examples": [
+                {
+                    "title": "Throwing Functions",
+                    "explanation": "Error propagation",
+                    "code": "enum NetworkError: Error {\n    case invalidURL\n    case timeout\n}\n\nfunc fetchData() throws -> Data {\n    throw NetworkError.timeout\n}"
+                },
+                {
+                    "title": "Do-Try-Catch",
+                    "explanation": "Error handling blocks",
+                    "code": "do {\n    let data = try fetchData()\n} catch NetworkError.invalidURL {\n    print(\"Invalid URL\")\n} catch {\n    print(\"Other error: (error)\")\n}"
+                }
+            ]
+        },
+        "swiftui": {
+            "description": "Declarative UI framework",
+            "examples": [
+                {
+                    "title": "Basic View",
+                    "explanation": "Creating a SwiftUI view",
+                    "code": "struct ContentView: View {\n    var body: some View {\n        VStack {\n            Text(\"Hello, SwiftUI!\")\n                .font(.title)\n            Button(\"Tap Me\") {\n                print(\"Button tapped\")\n            }\n        }\n    }\n}"
+                },
+                {
+                    "title": "State Management",
+                    "explanation": "Using @State and @Binding",
+                    "code": "struct CounterView: View {\n    @State private var count = 0\n    \n    var body: some View {\n        Button(\"Count: (count)\") {\n            count += 1\n        }\n    }\n}"
+                }
+            ]
+        },
+        "concurrency": {
+            "description": "Modern concurrency model",
+            "examples": [
+                {
+                    "title": "Async/Await",
+                    "explanation": "Asynchronous code handling",
+                    "code": "func fetchUser() async throws -> User {\n    let data = try await URLSession.shared.data(from: url)\n    return try JSONDecoder().decode(User.self, from: data)\n}\n\nTask {\n    do {\n        let user = try await fetchUser()\n    } catch {\n        print(\"Error: (error)\")\n    }\n}"
+                }
+            ]
+        },
+        "extensions": {
+            "description": "Extending existing types",
+            "examples": [
+                {
+                    "title": "Type Extensions",
+                    "explanation": "Adding new functionality",
+                    "code": "extension String {\n    func localized() -> String {\n        NSLocalizedString(self, comment: \"\")\n    }\n}\n\nlet greeting = \"hello\".localized()"
+                }
+            ]
+        },
+        "memory_management": {
+            "description": "ARC and reference types",
+            "examples": [
+                {
+                    "title": "Weak References",
+                    "explanation": "Breaking reference cycles",
+                    "code": "class Person {\n    weak var apartment: Apartment?\n}\n\nclass Apartment {\n    var tenant: Person?\n}"
+                }
+            ]
+        },
+        "interoperability": {
+            "description": "Working with Objective-C",
+            "examples": [
+                {
+                    "title": "Bridging Headers",
+                    "explanation": "Using Objective-C code in Swift",
+                    "code": "// In Bridging-Header.h\n#import \"LegacyObjCClass.h\"\n\n// Swift usage\nlet legacy = LegacyObjCClass()\nlegacy.oldMethod()"
+                }
+            ]
+        },
+        "modern_features": {
+            "description": "Recent Swift features",
+            "examples": [
+                {
+                    "title": "Result Builders",
+                    "explanation": "Domain-specific languages",
+                    "code": "@resultBuilder\nstruct HTMLBuilder {\n    static func buildBlock(_ components: String...) -> String {\n        components.joined(separator: \"\\n\")\n    }\n}"
+                },
+                {
+                    "title": "Property Wrappers",
+                    "explanation": "Reusable property logic",
+                    "code": "@propertyWrapper\nstruct Clamped {\n    private var value: Int\n    let range: ClosedRange<Int>\n    \n    init(wrappedValue: Int, _ range: ClosedRange<Int>) {\n        self.range = range\n        self.value = min(max(wrappedValue, range.lowerBound), range.upperBound)\n    }\n    \n    var wrappedValue: Int {\n        get { value }\n        set { value = min(max(newValue, range.lowerBound), range.upperBound) }\n    }\n}"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Syntax Buddy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" media="screen and (max-width: 600px)" href="./mobilescreen.css">
+        <link rel="stylesheet" media="screen and (min-width: 601px)" href="./widescreen.css">
+    </head>
+    <body>
+        <div id="container-header">
+            <div id="container-h-icon">
+                <img id="h-icon" src="" alt="Syntax Buddy Icon">
+            </div>
+            <header id="h_header">
+                <h1 id="h-title">Syntax Buddy</h1>
+                <em id="h-subtitle">Your go-to resource for syntax highlighting</em>
+            </header>
+        </div>
+        
+        <div id="container-nav">
+            <nav id="n_nav">
+                <div id="container-n-select">
+                    <select name="n-languages" id="n-languages" onchange="">
+                        <!-- Option for each supported language  -->
+                    </select>
+                </div>
+                <div id="container-n-buttons">
+                    <!-- Button for each syntax section  -->
+                </div>
+            </nav>
+        </div>
+
+        <div id="container-syntax_buddy">
+            <!-- The main content of the selected syntax section  -->
+        </div>
+
+        <script src="./script.js" async defer></script>
+    </body>
+</html>
